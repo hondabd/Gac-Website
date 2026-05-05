@@ -1,0 +1,16 @@
+# Large design files
+*.psd
+*.ai
+*.sketch
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor folders
+.vscode/
+.idea/
+
+# Logs
+*.log

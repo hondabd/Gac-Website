@@ -1,0 +1,39 @@
+Exterior 1 "AION 19" Rim
+
+Exterior 2 "Angel Wing LED Headlights"
+
+Exterior 3 "Skyline Connected LED Taillight"
+
+
+
+Interior 1 "Sunroof With Electric Sunshade"
+
+Interior 2 "Spacious Cockpit Blends Comfort with Innovation"
+
+Interior 3 "Multiple Compartment with Wireless Charging"
+
+
+
+Feature 1 *Headline* "Lounge-Class Rear Comfort" 
+
+*body text* "Inside Aion Y, the rear cabin offers lounge-class comfort with exceptional legroom, a fully flat floor, and flexible seating, creating a spacious, open environment designed for effortless relaxation on every drive."
+
+Feature 2 *Headline* " 14.6” Touchscreen Display" 
+
+*body text* "Equipped with a 14.6-inch touchscreen, the Aion Y integrates infotainment, navigation, Apple CarPlay, and voice control into a unified system, delivering responsive interaction, high-resolution visuals, and seamless connectivity within an intelligent digital cockpit."
+
+Feature 3 *Headline* "Magazine Battery"
+
+*body text* "Aion Y features the Magazine Battery with advanced thermal management and multi-layer cell protection, engineered to resist heat propagation and maintain structural integrity under extreme conditions, ensuring enhanced safety and long-term battery durability."
+
+
+
+Safety 1 "Automatic Emergency Braking"
+
+Safety 2 "Lane Departure Warning"
+
+Safety 3 "Adaptive Cruise Control"
+
+
+
+

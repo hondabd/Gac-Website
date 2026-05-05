@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>E9 PHEV — GAC Motor Bangladesh</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body { font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; background: #fff; color: #333; overflow-x: hidden; }
+
+    /* ── NAVBAR ── */
+    .navbar { position: sticky; top: 0; z-index: 1000; background: #fff; border-bottom: 1px solid #e5e5e5; box-shadow: 0 1px 6px rgba(0,0,0,0.07); }
+    .navbar-inner { max-width: 1200px; margin: 0 auto; padding: 0 28px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo img { height: 38px; width: auto; display: block; }
+    .nav-links { display: flex; align-items: center; gap: 38px; list-style: none; margin: 0; padding: 0; }
+    .nav-links > li { position: relative; }
+    .nav-links > li > a { font-size: 12px; font-weight: 700; color: #333; text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; display: flex; align-items: center; gap: 4px; padding: 4px 0; }
+    .nav-links > li > a:hover { color: #e63946; }
+    .dropdown { display: none; position: absolute; top: calc(100% + 4px); left: -16px; background: #fff; border: 1px solid #eee; box-shadow: 0 6px 20px rgba(0,0,0,0.10); min-width: 150px; z-index: 500; padding: 6px 0; }
+    .dropdown a { display: block; padding: 9px 20px; font-size: 13px; font-weight: 500; color: #444; text-decoration: none; }
+    .dropdown a:hover { color: #e63946; background: #fafafa; }
+    .nav-links > li.open .dropdown { display: block; }
+    .btn-book { background: #e63946; color: #fff; font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; padding: 11px 22px; border: none; cursor: pointer; text-decoration: none; white-space: nowrap; display: inline-block; }
+    .btn-book:hover { background: #c8222f; }
+
+    /* ── HERO ── */
+    .hero-wrap { position: relative; width: 100%; background: #07111a; overflow: hidden; }
+    .hero-wrap img.hero-img { width: 100%; height: auto; display: block; }
+
+    /* ── TAB STRIP ── */
+    .tab-strip { display: flex; justify-content: center; align-items: center; background: #fff; border-bottom: 1px solid #e8e8e8; position: sticky; top: 64px; z-index: 900; padding: 16px 0; gap: 12px; }
+    .tab-btn { padding: 14px 56px; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #aaa; cursor: pointer; border: none; background: transparent; font-family: 'Montserrat', sans-serif; transition: color 0.15s, background 0.15s; border-radius: 4px; }
+    .tab-btn.active { background: #e63946; color: #fff; }
+    .tab-btn:not(.active):hover { color: #555; }
+
+    /* ── TAB PANELS ── */
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* ── GALLERY ── */
+    .ext-gallery-section { background: #fff; padding: 48px 80px 60px; }
+    .ext-gallery { display: grid; grid-template-columns: 1.5fr 1fr; gap: 4px; max-width: 1100px; margin: 0 auto; overflow: hidden; }
+    .ext-gallery-left { overflow: hidden; position: relative; min-height: 0; }
+    .ext-gallery-left img { width: 100%; height: 100%; object-fit: cover; display: block; min-height: 0; }
+    .ext-gallery-right { display: grid; grid-template-rows: 1fr 1fr; gap: 4px; min-height: 0; overflow: hidden; }
+    .ext-gallery-right > div { position: relative; overflow: hidden; min-height: 0; }
+    .ext-gallery-right img { width: 100%; height: 100%; object-fit: cover; display: block; min-height: 0; }
+    .gallery-caption {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 28px 16px 14px;
+      background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 100%);
+      color: #fff;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    }
+
+    /* ── COLOUR SELECTOR ── */
+    .colour-section { background: #fafafa; padding: 0; }
+    .colour-inner { max-width: 1300px; margin: 0 auto; padding: 0 64px; display: grid; grid-template-columns: 1fr 1.6fr 1fr; gap: 40px; align-items: center; }
+    .colour-info { padding-right: 16px; }
+    .colour-eyebrow { font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #e63946; margin-bottom: 14px; }
+    .colour-heading { font-size: 28px; font-weight: 700; color: #111; line-height: 1.2; text-transform: uppercase; letter-spacing: 0.01em; margin: 0; }
+    .colour-car-wrap { display: flex; align-items: center; justify-content: center; padding: 24px 0; }
+    .colour-car-wrap img { width: 100%; max-width: 520px; height: auto; object-fit: contain; display: block; transition: opacity 0.2s ease; }
+    .colour-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+    .colour-item { display: flex; align-items: center; justify-content: space-between; padding: 10px 10px 10px 20px; border: 1px solid #e8e8e8; border-radius: 50px; background: #f0f0f0; cursor: pointer; gap: 14px; transition: all 0.2s; }
+    .colour-name { font-size: 14px; font-weight: 400; color: #555; letter-spacing: 0.01em; }
+    .colour-item.active { background: #fff; border-color: #ccc; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+    .colour-item.active .colour-name { color: #111; font-weight: 600; }
+    .colour-swatch-btn { width: 28px; height: 28px; border-radius: 50%; border: 1px solid #ddd; background: #fff; padding: 0; flex-shrink: 0; display: block; box-sizing: border-box; }
+    .colour-swatch-btn img { width: 100%; height: 100%; border-radius: 50%; display: block; }
+    .colour-item:hover { border-color: #bbb; background: #f8f8f8; }
+
+    /* ── ALL NEW E9 ── */
+    .all-new { background: #fff; padding: 24px 0 80px; }
+    .all-new-header { text-align: center; margin-bottom: 64px; }
+    .all-new-header h2 { font-size: 30px; font-weight: 600; color: #111; letter-spacing: 0.01em; margin: 0; font-family: 'Montserrat', sans-serif; }
+    .all-new-list { max-width: 1100px; margin: 0 auto; padding: 0 48px; display: flex; flex-direction: column; gap: 64px; }
+    .all-new-row { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 56px; align-items: center; }
+    .all-new-row.reverse { grid-template-columns: 0.9fr 1.1fr; }
+    .all-new-row.reverse .all-new-img { order: 2; }
+    .all-new-row.reverse .all-new-text { order: 1; }
+    .all-new-img img { width: 100%; height: auto; display: block; border-radius: 4px; }
+    .all-new-text h3 { font-size: 20px; font-weight: 700; color: #111; margin: 0 0 16px; letter-spacing: 0.01em; text-transform: uppercase; }
+    .all-new-text p { font-size: 14px; color: #666; line-height: 1.85; margin: 0; }
+
+    /* ── TECH ASSURANCE ── */
+    .tech-section { background: #fafafa; padding: 80px 0; }
+    .tech-inner { max-width: 1100px; margin: 0 auto; padding: 0 48px; }
+    .tech-header { margin-bottom: 48px; }
+    .tech-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; }
+    .tech-card { background: #fff; border: 1px solid #ebebeb; border-radius: 8px; overflow: hidden; }
+    .tech-card-img { overflow: hidden; }
+    .tech-card-img img { width: 100%; height: 240px; object-fit: cover; display: block; }
+    .tech-card-body { padding: 20px 22px 24px; }
+    .tech-title { font-size: 15px; font-weight: 600; color: #111; margin: 0; line-height: 1.4; letter-spacing: 0.01em; }
+
+    /* ── BROCHURE ── */
+    .brochure-section { background: linear-gradient(135deg, #eeeeee 0%, #e4e4e4 100%); padding: 80px 24px; text-align: center; }
+    .btn-brochure { display: inline-block; background: #111; color: #fff; font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; padding: 18px 52px; border-radius: 6px; text-decoration: none; text-transform: uppercase; box-shadow: 0 4px 20px rgba(0,0,0,0.18); transition: background 0.2s, transform 0.15s; }
+    .btn-brochure:hover { background: #333; transform: translateY(-2px); }
+
+    /* ── SHARED ── */
+    .eyebrow { font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #e63946; margin-bottom: 12px; }
+    .section-title { font-size: 30px; font-weight: 600; color: #111; line-height: 1.2; letter-spacing: 0.01em; text-transform: uppercase; font-family: 'Montserrat', sans-serif; margin: 0; }
+
+    /* ── FOOTER ── */
+    .footer-link { display: block; font-size: 12px; color: #666; text-decoration: none; line-height: 2.2; }
+    .footer-link:hover { color: #e63946; }
+  </style>
+</head>
+<body>
+
+<!-- ══ NAVBAR ══ -->
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="nav-logo"><img src="logo.png" alt="GAC Motor" /></a>
+    <ul class="nav-links">
+      <li><a href="#">About Us</a></li>
+      <li>
+        <a href="#">Models <svg width="8" height="5" viewBox="0 0 8 5" fill="currentColor"><path d="M0 0l4 5 4-5z"/></svg></a>
+        <div class="dropdown">
+          <a href="aion-v.html">Aion V</a>
+          <a href="aion-y.html">Aion Y</a>
+          <a href="e9.html">E9</a>
+          <a href="emkoo.html">Emkoo</a>
+          <a href="emzoom.html">Emzoom</a>
+        </div>
+      </li>
+      <li><a href="#">Contact Us</a></li>
+    </ul>
+    <a href="#" class="btn-book">Book A Test Drive</a>
+  </div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<div class="hero-wrap">
+  <img class="hero-img" src="GAC_Model_Page_Banner_E9.jpg" alt="GAC E9 PHEV" />
+</div>
+
+<!-- ══ TAB STRIP ══ -->
+<div class="tab-strip">
+  <button class="tab-btn active" data-tab="exterior">Exterior</button>
+  <button class="tab-btn" data-tab="interior">Interior</button>
+</div>
+
+
+<!-- ══════════════════════════
+     EXTERIOR TAB
+══════════════════════════ -->
+<div id="tab-exterior" class="tab-panel active">
+
+  <div class="ext-gallery-section" style="padding-bottom:14px;">
+    <div class="ext-gallery" style="height:420px;">
+      <div class="ext-gallery-left">
+        <img src="GAC_E9_EXT_1.jpg" alt="Assertive Exterior Design" />
+        <div class="gallery-caption">Assertive Exterior Design</div>
+      </div>
+      <div class="ext-gallery-right">
+        <div>
+          <img src="e9exterior_2.png" alt="Full-Width LED Lighting" />
+          <div class="gallery-caption">Full-Width LED Lighting</div>
+        </div>
+        <div>
+          <img src="e9exterior_3.png" alt="Panoramic Sunroof" />
+          <div class="gallery-caption">Panoramic Sunroof</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /exterior -->
+
+
+<!-- ══════════════════════════
+     INTERIOR TAB
+══════════════════════════ -->
+<div id="tab-interior" class="tab-panel">
+
+  <div class="ext-gallery-section" style="padding-bottom:14px;">
+    <div class="ext-gallery" style="height:420px;">
+      <div class="ext-gallery-left">
+        <img src="GAC_E9_INT_2.jpg" alt="Executive Cabin" />
+        <div class="gallery-caption">Executive Cabin</div>
+      </div>
+      <div class="ext-gallery-right">
+        <div>
+          <img src="e9interior3.png" alt="Independent Executive Seats" />
+          <div class="gallery-caption">Independent Executive Seats</div>
+        </div>
+        <div>
+          <img src="e9_cockpit.png" alt="Digital Cockpit" />
+          <div class="gallery-caption">Digital Cockpit</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /interior -->
+
+
+<!-- ══════════════════════════
+     COLOUR SELECTOR — always visible
+══════════════════════════ -->
+<div class="colour-section">
+  <div class="colour-inner">
+
+    <div class="colour-info">
+      <p class="colour-eyebrow">Design</p>
+      <h2 class="colour-heading">Sporty And<br>Elegant Colour<br>Choice For You</h2>
+    </div>
+
+    <div class="colour-car-wrap">
+      <img id="colourCarImg" src="black_e9.png" alt="E9 PHEV Classic Black" />
+    </div>
+
+    <ul class="colour-list">
+      <li class="colour-item active" data-img="black_e9.png" data-name="Classic Black">
+        <span class="colour-name">Classic Black</span>
+        <button class="colour-swatch-btn active"><img src="icon-car-color4.png" alt="Classic Black" /></button>
+      </li>
+      <li class="colour-item" data-img="white_e9.png" data-name="Blade White">
+        <span class="colour-name">Blade White</span>
+        <button class="colour-swatch-btn"><img src="icon-car-color2.png" alt="Blade White" /></button>
+      </li>
+    </ul>
+
+  </div>
+</div>
+
+
+<!-- ══════════════════════════
+     ALL NEW GAC E9 PHEV
+══════════════════════════ -->
+<section class="all-new">
+  <div class="all-new-header">
+    <h2>GAC E9 PHEV</h2>
+  </div>
+  <div class="all-new-list">
+
+    <div class="all-new-row">
+      <div class="all-new-img"><img src="rowimage_1.png" alt="GAC E9 Luxury Interior" /></div>
+      <div class="all-new-text">
+        <h3>Luxury Redefined for Every Journey</h3>
+        <p>The E9 features a bold grille, full-width LED lighting, and an executive MPV silhouette that commands presence. Its smooth, modern design blends sophistication with aerodynamic efficiency.</p>
+      </div>
+    </div>
+
+    <div class="all-new-row reverse">
+      <div class="all-new-img"><img src="rowimage_2.png" alt="E9 Cabin Experience" /></div>
+      <div class="all-new-text">
+        <h3>Cabin Experience</h3>
+        <p>Equipped with two independent executive seats, massage and ventilation functions, and a panoramic sunroof. The spacious, tech-rich interior is tailored for VIP-level comfort and convenience.</p>
+      </div>
+    </div>
+
+    <div class="all-new-row">
+      <div class="all-new-img"><img src="GAC_E9_Banner_2.webp" alt="E9 Hybrid Power" /></div>
+      <div class="all-new-text">
+        <h3>Hybrid Power with Smart Driving Tech</h3>
+        <p>Powered by a 2.0T engine paired with electric motors, the E9 delivers smooth hybrid performance. Features include Drive Mode Selector, adaptive cruise control, and intelligent safety systems.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════
+     TECH ASSURANCE
+══════════════════════════ -->
+<section class="tech-section">
+  <div class="tech-inner">
+    <div class="tech-header">
+      <p class="eyebrow">Safety &amp; Technology</p>
+      <h2 class="section-title">Elevating Drive With Tech Assurance</h2>
+    </div>
+    <div class="tech-grid">
+      <div class="tech-card">
+        <div class="tech-card-img"><img src="elevating_1.png" alt="Advanced Safety System" /></div>
+        <div class="tech-card-body"><h3 class="tech-title">Advanced Safety System</h3></div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-card-img"><img src="elevating_2.png" alt="Smart Driving Automation" /></div>
+        <div class="tech-card-body"><h3 class="tech-title">Smart Driving Automation</h3></div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-card-img"><img src="elevating_3.png" alt="Level 2 Advanced Driving Assistance" /></div>
+        <div class="tech-card-body"><h3 class="tech-title">Level 2 Advanced Driving Assistance</h3></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ BROCHURE ══ -->
+<div class="brochure-section">
+  <p style="font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#999;margin-bottom:12px;">GAC E9 PHEV</p>
+  <h2 style="font-size:20px;font-weight:800;color:#111;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:28px;">Download The Brochure</h2>
+  <a href="https://gac.com.bd/assets/gac/brochure/GAC_E9_Brochure.pdf" target="_blank" class="btn-brochure">Download Brochure</a>
+</div>
+
+
+<!-- ══ FOOTER ══ -->
+<footer style="background:#fff;border-top:1px solid #e8e8e8;padding:48px 28px 28px;">
+  <div style="max-width:980px;margin:0 auto;display:grid;grid-template-columns:1.2fr 0.85fr 1fr;gap:36px;align-items:start;">
+    <div>
+      <div style="margin-bottom:16px;"><img src="logo.png" alt="GAC Motor" style="height:28px;width:auto;" /></div>
+      <p style="font-size:11.5px;color:#666;line-height:1.8;max-width:230px;">
+        The Guangzhou Automobile Group Co., Ltd. (GAC) is currently a Fortune 500 company. GAC Motor Bangladesh is the authorized importer and distributor of GAC vehicles in Bangladesh.
+      </p>
+    </div>
+    <div>
+      <h4 style="font-size:12.5px;font-weight:700;color:#222;letter-spacing:0.05em;margin:0 0 16px;">Quick Links</h4>
+      <a href="index.html" class="footer-link">Home</a>
+      <a href="emzoom.html" class="footer-link">Emzoom</a>
+      <a href="emkoo.html" class="footer-link">Emkoo</a>
+      <a href="e9.html" class="footer-link">E9</a>
+      <a href="#" class="footer-link">Contact Us</a>
+    </div>
+    <div>
+      <input type="email" placeholder="Enter Your Email"
+        style="width:100%;border:1px solid #ddd;padding:10px 12px;font-size:11px;font-family:'Montserrat',sans-serif;color:#999;outline:none;display:block;margin-bottom:22px;" />
+      <h4 style="font-size:12.5px;font-weight:700;color:#222;letter-spacing:0.05em;margin:0 0 12px;">Follow Us</h4>
+      <div style="display:flex;gap:10px;">
+        <a href="https://www.facebook.com/gacbangladesh" target="_blank"
+          style="width:32px;height:32px;border-radius:50%;background:#3b5998;display:flex;align-items:center;justify-content:center;color:#fff;text-decoration:none;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+        </a>
+        <a href="#" target="_blank"
+          style="width:32px;height:32px;border-radius:50%;background:#e63946;display:flex;align-items:center;justify-content:center;color:#fff;text-decoration:none;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 001.46 6.42 29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.54C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.96A29 29 0 0023 12a29 29 0 00-.46-5.58zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div style="max-width:980px;margin:28px auto 0;padding-top:16px;border-top:1px solid #efefef;text-align:center;font-size:11px;color:#aaa;">
+    © 2026 GAC Motor Bangladesh. All rights reserved.
+  </div>
+</footer>
+
+
+<script>
+/* Dropdown hover */
+document.querySelectorAll(".nav-links > li").forEach(li => {
+  if (!li.querySelector(".dropdown")) return;
+  let t;
+  li.addEventListener("mouseenter", () => { clearTimeout(t); li.classList.add("open"); });
+  li.addEventListener("mouseleave", () => { t = setTimeout(() => li.classList.remove("open"), 150); });
+});
+
+/* Tab switching */
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const target = btn.dataset.tab;
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + target).classList.add('active');
+  });
+});
+
+/* Colour selector */
+const carImg = document.getElementById('colourCarImg');
+
+document.querySelectorAll('.colour-item').forEach(item => {
+  item.addEventListener('click', () => {
+    carImg.style.opacity = '0';
+    setTimeout(() => {
+      carImg.src = item.dataset.img;
+      carImg.alt = 'E9 PHEV ' + item.dataset.name;
+      carImg.style.opacity = '1';
+    }, 200);
+    document.querySelectorAll('.colour-item').forEach(el => {
+      el.classList.remove('active');
+      el.querySelector('.colour-swatch-btn').classList.remove('active');
+    });
+    item.classList.add('active');
+    item.querySelector('.colour-swatch-btn').classList.add('active');
+  });
+});
+</script>
+
+</body>
+</html>

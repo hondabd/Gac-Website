@@ -1,0 +1,40 @@
+Exterior 1 "19"Aluminum Alloy Wheel"
+
+Exterior 2 "Cyber Dragon Claw Taillights"
+
+Exterior 3 "Signature Dragon Claw Taillights"
+
+
+
+Interior 1 "Sunroof With Electric Sunshade"
+
+Interior 2 "14.6” Touchscreen Display"
+
+Interior 3 "Immersive Sound & Cinema Experience"
+
+
+
+Feature 1 *Headline* "Four-Control
+In-Car Refrigerator" 
+
+*body text* "The GAC Aion Y features an intelligent in-car refrigerator with precision temperature control from -15°C to 50°C, delivering seamless cooling or heating to elevate everyday journeys with comfort, convenience, and smart functionality."
+
+Feature 2 *Headline* "One-Touch Bed Mode" 
+
+*body text* "Designed for modern comfort, Aion V introduces One-Touch Bed Mode, allowing the front seats to fully recline into a flat position, creating a restful, lounge-inspired environment within the smart electric cabin"
+
+Feature 3 *Headline* "8 Point Massage Front Seats"
+
+*body text* "Aion V features 8-point massage front seats with integrated heating and ventilation, delivering targeted pressure relief and climate-controlled comfort to enhance every journey with a refined, lounge-like seating experience."
+
+
+
+Safety 1 "U-Shaped Safety Airbags for 360° Protection"
+
+Safety 2 "Advanced Intelligent Driving"
+
+Safety 3 "Magazine Battery 2.0"
+
+
+
+

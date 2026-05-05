@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GAC Motor Bangladesh</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      margin: 0; padding: 0;
+      background: #fff;
+      overflow-x: hidden;
+      color: #333;
+    }
+
+    /* ════════════════════════════
+       NAVBAR
+    ════════════════════════════ */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: #fff;
+      border-bottom: 1px solid #e5e5e5;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+    }
+    .navbar-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 28px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo img { height: 38px; width: auto; display: block; }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 38px;
+      list-style: none;
+      margin: 0; padding: 0;
+    }
+    .nav-links > li { position: relative; }
+    .nav-links > li > a {
+      font-size: 12px;
+      font-weight: 700;
+      color: #333;
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 0;
+    }
+    .nav-links > li > a:hover { color: #e63946; }
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: -16px;
+      padding-top: 12px;
+      min-width: 150px;
+      z-index: 500;
+    }
+    .dropdown-inner {
+      background: #fff;
+      border: 1px solid #eee;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.10);
+      padding: 6px 0;
+    }
+    .dropdown a {
+      display: block;
+      padding: 9px 20px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #444;
+      text-decoration: none;
+    }
+    .dropdown a:hover { color: #e63946; background: #fafafa; }
+    .nav-links > li.open .dropdown { display: block; }
+    .btn-book {
+      background: #e63946;
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      padding: 11px 22px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+      display: inline-block;
+    }
+    .btn-book:hover { background: #c8222f; }
+
+    /* ════════════════════════════
+       HERO — natural aspect ratio
+       Ghost sizer image sets the
+       height; slides overlay it.
+    ════════════════════════════ */
+    .hero {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      background: #0d1a24;
+    }
+    /* Invisible sizer — sets the container height to the
+       natural height of the landscape slide images */
+    .hero-sizer {
+      display: block;
+      width: 100%;
+      height: auto;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    /* All slides sit on top of the sizer */
+    .hero-slides {
+      position: absolute;
+      inset: 0;
+    }
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.75s ease;
+      pointer-events: none;
+    }
+    .hero-slide.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .hero-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      display: block;
+    }
+    /* 3-cars portrait slide anchors to the top */
+    .hero-slide[data-index="0"] img {
+      object-position: center top;
+    }
+
+    /* Dots */
+    .hero-dots {
+      position: absolute;
+      bottom: 22px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 9px;
+      z-index: 30;
+    }
+    .hero-dot {
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.38);
+      cursor: pointer;
+      border: none;
+      padding: 0;
+      transition: background 0.3s;
+    }
+    .hero-dot.active { background: rgba(255,255,255,0.95); }
+
+    /* Social sidebar */
+    .social-sidebar {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      z-index: 30;
+    }
+    .social-btn {
+      width: 34px; height: 34px;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; text-decoration: none;
+    }
+
+    /* ════════════════════════════
+       DARK / AERIAL VIDEO SECTION
+    ════════════════════════════ */
+    .dark-section {
+      width: 100%;
+      /* height matches roughly ~75% of the hero height */
+      height: 0;
+      padding-bottom: 30%; /* will be set to auto height via JS */
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse 80% 40% at 50% 55%,
+          #3a2800 0%,
+          #1a1000 35%,
+          #060606 65%,
+          #000000 100%
+        );
+    }
+    .dark-inner {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ════════════════════════════
+       MODELS SECTION — infinite drag carousel
+    ════════════════════════════ */
+    .models-scroll-wrap {
+      position: relative;
+      overflow: hidden;
+    }
+    .models-grid {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: scroll;
+      gap: 28px;
+      padding: 0 60px 28px;
+      scrollbar-width: none;
+      cursor: grab;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    .models-grid::-webkit-scrollbar { display: none; }
+    .models-grid.dragging { cursor: grabbing; }
+    .model-card {
+      flex: 0 0 800px;
+      text-decoration: none;
+      display: block;
+    }
+    .model-card .thumb {
+      overflow: hidden;
+      border-radius: 4px;
+      line-height: 0;
+    }
+    .model-card .thumb img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.4s ease;
+      pointer-events: none;
+      -webkit-user-drag: none;
+    }
+    .model-card:hover .thumb img { transform: scale(1.03); }
+    .model-card .model-label {
+      text-align: center;
+      font-size: 14px;
+      font-weight: 600;
+      color: #333;
+      margin-top: 12px;
+      letter-spacing: 0.05em;
+    }
+    /* Arrow buttons */
+    .carousel-btn {
+      position: absolute;
+      top: calc(50% - 18px);
+      transform: translateY(-50%);
+      width: 48px; height: 48px;
+      background: #fff;
+      border: none;
+      border-radius: 50%;
+      box-shadow: 0 2px 14px rgba(0,0,0,0.18);
+      cursor: pointer;
+      z-index: 20;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s, color 0.2s;
+      color: #222;
+      font-size: 22px;
+      line-height: 1;
+    }
+    .carousel-btn:hover { background: #e63946; color: #fff; }
+    .carousel-btn.prev { left: 14px; }
+    .carousel-btn.next { right: 14px; }
+
+    /* ════════════════════════════
+       FOOTER
+    ════════════════════════════ */
+    .footer-link {
+      display: block;
+      font-size: 12px;
+      color: #666;
+      text-decoration: none;
+      line-height: 2.1;
+    }
+    .footer-link:hover { color: #e63946; }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════
+     NAVBAR
+══════════════════════════════════ -->
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="#" class="nav-logo">
+      <img src="logo.png" alt="GAC Motor" />
+    </a>
+    <ul class="nav-links">
+      <li><a href="#">About Us</a></li>
+      <li>
+        <a href="#">
+          Models
+          <svg width="8" height="5" viewBox="0 0 8 5" fill="currentColor"><path d="M0 0l4 5 4-5z"/></svg>
+        </a>
+        <div class="dropdown">
+          <div class="dropdown-inner">
+            <a href="aion-v.html">Aion V</a>
+            <a href="aion-y.html">Aion Y</a>
+            <a href="e9.html">E9</a>
+            <a href="emkoo.html">Emkoo</a>
+            <a href="emzoom.html">Emzoom</a>
+          </div>
+        </div>
+      </li>
+      <li><a href="#">Contact Us</a></li>
+    </ul>
+    <a href="#" class="btn-book">Book A Test Drive</a>
+  </div>
+</nav>
+
+
+<!-- ══════════════════════════════════
+     HERO SLIDER
+══════════════════════════════════ -->
+<section class="hero" id="heroSection">
+
+  <!--
+    Ghost sizer: invisible copy of one landscape image.
+    Its natural height (width:100%, height:auto) defines
+    the hero container height — zero cropping, zero empty space.
+  -->
+  <img
+    id="heroSizer"
+    class="hero-sizer"
+    src="Landing page/aion v hero.png"
+    alt=""
+    aria-hidden="true"
+  />
+
+  <!-- Slides — absolutely fill the sizer-defined space -->
+  <div class="hero-slides">
+
+    <!-- Slide 0: Aion V -->
+    <div class="hero-slide active" data-index="0">
+      <img src="Landing page/aion v hero.png" alt="AION V" />
+    </div>
+
+    <!-- Slide 1: Aion Y -->
+    <div class="hero-slide" data-index="1">
+      <img src="Landing page/aion y hero.png" alt="AION Y" />
+    </div>
+
+    <!-- Slide 2: E9 PHEV -->
+    <div class="hero-slide" data-index="2">
+      <img src="Landing page/e9 hero.png" alt="E9 PHEV — Luxury Redefined, Electrified" />
+    </div>
+
+    <!-- Slide 3: EMKOO -->
+    <div class="hero-slide" data-index="3">
+      <img src="Landing page/emkoo hero.png" alt="EMKOO — Elegance in Motion, Innovation Redefined" />
+    </div>
+
+    <!-- Slide 4: EMZOOM -->
+    <div class="hero-slide" data-index="4">
+      <img src="Landing page/emzoom hero.png" alt="EMZOOM — Born to Thrill, Built to Move" />
+    </div>
+
+  </div><!-- /hero-slides -->
+
+  <!-- Nav dots -->
+  <div class="hero-dots">
+    <button class="hero-dot active" data-slide="0"></button>
+    <button class="hero-dot" data-slide="1"></button>
+    <button class="hero-dot" data-slide="2"></button>
+    <button class="hero-dot" data-slide="3"></button>
+    <button class="hero-dot" data-slide="4"></button>
+  </div>
+
+  <!-- Social sidebar -->
+  <div class="social-sidebar">
+    <a href="https://www.youtube.com" class="social-btn" style="background:#cc2233;" target="_blank">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M23 7s-.3-2-1.1-2.7C20.9 3.2 19.7 3.2 19.2 3.1 16.4 3 12 3 12 3s-4.4 0-7.2.1c-.5.1-1.7.1-2.7 1.2C1.3 5.1 1 7 1 7S.7 9.2.7 11.4v2c0 2.2.3 4.4.3 4.4s.3 2 1.1 2.7c1 1.1 2.4 1 3 1.1C7.2 21.8 12 21.8 12 21.8s4.4 0 7.2-.2c.5-.1 1.7-.1 2.7-1.2.8-.8 1.1-2.7 1.1-2.7s.3-2.2.3-4.4v-2C23.3 9.2 23 7 23 7zm-13.5 9V8.5l7.3 3.8-7.3 3.7z"/>
+      </svg>
+    </a>
+    <a href="https://www.facebook.com/gacbangladesh" class="social-btn" style="background:#3b5998;" target="_blank">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+      </svg>
+    </a>
+    <a href="https://www.instagram.com/gacmotorbangladesh/" class="social-btn" style="background:#b7347a;" target="_blank">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="2" y="2" width="20" height="20" rx="5"/>
+        <circle cx="12" cy="12" r="4"/>
+        <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+      </svg>
+    </a>
+  </div>
+
+</section>
+
+
+<!-- ══════════════════════════════════
+     DARK / AERIAL SECTION
+     Height = ~75% of hero height (set by JS)
+══════════════════════════════════ -->
+<section class="dark-section" id="darkSection">
+  <div class="dark-inner">
+    <!-- Aerial top-down car silhouette -->
+    <svg viewBox="0 0 58 116" width="46" fill="none" style="opacity:0.55; position:relative; z-index:2;">
+      <rect x="11" y="5" width="36" height="106" rx="8" fill="#1c1c1c" stroke="#2e2e2e" stroke-width="1.2"/>
+      <rect x="15" y="16" width="28" height="20" rx="3" fill="#222" stroke="#333" stroke-width="0.6"/>
+      <rect x="15" y="82" width="28" height="16" rx="3" fill="#222" stroke="#333" stroke-width="0.6"/>
+      <rect x="17" y="36" width="24" height="44" rx="2" fill="#1e1e1e"/>
+      <line x1="29" y1="36" x2="29" y2="80" stroke="#2a2a2a" stroke-width="1"/>
+      <rect x="2"  y="14" width="11" height="15" rx="3" fill="#101010" stroke="#1e1e1e" stroke-width="0.5"/>
+      <rect x="45" y="14" width="11" height="15" rx="3" fill="#101010" stroke="#1e1e1e" stroke-width="0.5"/>
+      <rect x="2"  y="87" width="11" height="15" rx="3" fill="#101010" stroke="#1e1e1e" stroke-width="0.5"/>
+      <rect x="45" y="87" width="11" height="15" rx="3" fill="#101010" stroke="#1e1e1e" stroke-width="0.5"/>
+      <rect x="13" y="6"  width="32" height="7"  rx="2" fill="#1a1a1a" stroke="#2e2e2e" stroke-width="0.5"/>
+    </svg>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+     MODELS SECTION
+══════════════════════════════════ -->
+<section class="models-scroll-wrap" style="background:#fff; padding:52px 0 60px;">
+  <button class="carousel-btn prev" id="carouselPrev">&#8249;</button>
+  <button class="carousel-btn next" id="carouselNext">&#8250;</button>
+  <div class="models-grid" id="modelsGrid">
+
+    <!-- AION V -->
+    <a href="aion-v.html" class="model-card">
+      <div class="thumb">
+        <img src="Landing page/aion v hero.png" alt="Aion V" />
+      </div>
+      <p class="model-label">Aion V</p>
+    </a>
+
+    <!-- AION Y -->
+    <a href="aion-y.html" class="model-card">
+      <div class="thumb">
+        <img src="Landing page/aion y hero.png" alt="Aion Y" />
+      </div>
+      <p class="model-label">Aion Y</p>
+    </a>
+
+    <!-- E9 -->
+    <a href="e9.html" class="model-card">
+      <div class="thumb">
+        <img src="Landing page/e9 hero.png" alt="E9 PHEV — Luxury Redefined, Electrified" />
+      </div>
+      <p class="model-label">E9</p>
+    </a>
+
+    <!-- EMKOO -->
+    <a href="emkoo.html" class="model-card">
+      <div class="thumb">
+        <img src="Landing page/emkoo hero.png" alt="Emkoo — Elegance in Motion, Innovation Redefined" />
+      </div>
+      <p class="model-label">Emkoo</p>
+    </a>
+
+    <!-- EMZOOM -->
+    <a href="emzoom.html" class="model-card">
+      <div class="thumb">
+        <img src="Landing page/emzoom hero.png" alt="Emzoom — Born to Thrill, Built to Move" />
+      </div>
+      <p class="model-label">Emzoom</p>
+    </a>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
+     FOOTER
+══════════════════════════════════ -->
+<footer style="background:#fff; border-top:1px solid #e8e8e8; padding:42px 28px 28px;">
+  <div style="max-width:980px; margin:0 auto; display:grid;
+    grid-template-columns:1.2fr 0.85fr 1fr; gap:36px; align-items:start;">
+
+    <!-- Col 1: Brand -->
+    <div>
+      <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;">
+        <img src="logo.png" alt="GAC Motor" style="height:28px; width:auto;" />
+      </div>
+      <p style="font-size:11.5px; color:#666; line-height:1.78; max-width:220px;">
+        The Guangzhou Automobile Group Co., Ltd. (GAC) was incorporated in June 1997 and is currently a Fortune 500 company with a ranking of 165. GAC Motor Bangladesh is the authorized importer and distributor of GAC Motor vehicles in Bangladesh, with the widest dealer network across all major cities.
+      </p>
+    </div>
+
+    <!-- Col 2: Quick Links -->
+    <div>
+      <h4 style="font-size:12.5px; font-weight:700; color:#222; letter-spacing:0.05em; margin:0 0 16px;">Quick Links</h4>
+      <a href="#" class="footer-link">About Us</a>
+      <a href="#" class="footer-link">Models</a>
+      <a href="#" class="footer-link">Contact Us</a>
+      <a href="#" class="footer-link">Privacy Policy</a>
+      <a href="#" class="footer-link">Book Test Drive</a>
+    </div>
+
+    <!-- Col 3: Subscribe + Follow -->
+    <div>
+      <input type="email" placeholder="Enter Your Email"
+        style="width:100%; border:1px solid #ccc; padding:9px 12px; font-size:11px;
+               font-family:'Montserrat',sans-serif; color:#999; outline:none;
+               display:block; margin-bottom:20px;" />
+      <h4 style="font-size:12.5px; font-weight:700; color:#222; letter-spacing:0.05em; margin:0 0 12px;">Follow Us</h4>
+      <div style="display:flex; gap:9px;">
+        <a href="https://www.facebook.com/gacbangladesh" target="_blank"
+          style="width:30px;height:30px;border-radius:50%;background:#3b5998;
+                 display:flex;align-items:center;justify-content:center;color:#fff;text-decoration:none;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+          </svg>
+        </a>
+        <a href="https://www.youtube.com" target="_blank"
+          style="width:30px;height:30px;border-radius:50%;background:#e63946;
+                 display:flex;align-items:center;justify-content:center;color:#fff;text-decoration:none;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M23 7s-.3-2-1.1-2.7C20.9 3.2 19.7 3.2 19.2 3.1 16.4 3 12 3 12 3s-4.4 0-7.2.1c-.5.1-1.7.1-2.7 1.2C1.3 5.1 1 7 1 7S.7 9.2.7 11.4v2c0 2.2.3 4.4.3 4.4s.3 2 1.1 2.7c1 1.1 2.4 1 3 1.1C7.2 21.8 12 21.8 12 21.8s4.4 0 7.2-.2c.5-.1 1.7-.1 2.7-1.2.8-.8 1.1-2.7 1.1-2.7s.3-2.2.3-4.4v-2C23.3 9.2 23 7 23 7zm-13.5 9V8.5l7.3 3.8-7.3 3.7z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="max-width:980px; margin:28px auto 0; padding-top:16px;
+    border-top:1px solid #efefef; text-align:center; font-size:11px; color:#aaa;">
+    © 2026 GAC Motor Bangladesh. All rights reserved.
+  </div>
+</footer>
+
+
+<!-- ══════════════════════════════════
+     SCRIPTS
+══════════════════════════════════ -->
+<script>
+  /* ── Slider ── */
+  const slides = document.querySelectorAll('.hero-slide');
+  const dots   = document.querySelectorAll('.hero-dot');
+  const sizer  = document.getElementById('heroSizer');
+  let current  = 0;
+  let timer;
+
+  /* Landscape image URLs per slide index (for updating sizer) */
+  const sizerSrcs = [
+    'Landing page/aion v hero.png',
+    'Landing page/aion y hero.png',
+    'Landing page/e9 hero.png',
+    'Landing page/emkoo hero.png',
+    'Landing page/emzoom hero.png',
+  ];
+
+  function goTo(n) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+    /* Update sizer so hero height matches the landscape image */
+    sizer.src = sizerSrcs[current];
+  }
+
+  function autoPlay() {
+    timer = setInterval(() => goTo(current + 1), 4500);
+  }
+
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      clearInterval(timer);
+      goTo(parseInt(dot.dataset.slide));
+      autoPlay();
+    });
+  });
+
+  autoPlay();
+
+  /* ── Dropdown hover ── */
+  document.querySelectorAll('.nav-links > li').forEach(li => {
+    if (!li.querySelector('.dropdown')) return;
+    let t;
+    li.addEventListener('mouseenter', () => { clearTimeout(t); li.classList.add('open'); });
+    li.addEventListener('mouseleave', () => { t = setTimeout(() => li.classList.remove('open'), 150); });
+  });
+
+  /* ── Infinite drag carousel ── */
+  (function() {
+    const track = document.getElementById('modelsGrid');
+    if (!track) return;
+
+    const CARD_W = 800;
+    const GAP    = 28;
+    const STEP   = CARD_W + GAP;
+
+    /* Build 3 sets: [clones-before | originals | clones-after] */
+    const origCards = [...track.querySelectorAll('.model-card')];
+    /* Append clones after */
+    origCards.forEach(c => track.appendChild(c.cloneNode(true)));
+    /* Prepend clones before — insert in REVERSE so order is preserved */
+    [...origCards].reverse().forEach(c =>
+      track.insertBefore(c.cloneNode(true), track.firstChild)
+    );
+
+    const setWidth = origCards.length * STEP;
+
+    /* Jump to the middle (original) set without animation */
+    function resetToMiddle() {
+      track.style.scrollBehavior = 'auto';
+      track.scrollLeft = setWidth;
+    }
+    if (document.readyState === 'complete') {
+      setTimeout(resetToMiddle, 0);
+    } else {
+      window.addEventListener('load', resetToMiddle);
+    }
+
+    /* Seamless infinite loop */
+    track.addEventListener('scroll', () => {
+      if (track.scrollLeft < setWidth) {
+        track.style.scrollBehavior = 'auto';
+        track.scrollLeft += setWidth;
+      } else if (track.scrollLeft >= setWidth * 2) {
+        track.style.scrollBehavior = 'auto';
+        track.scrollLeft -= setWidth;
+      }
+    }, { passive: true });
+
+    /* Arrow buttons */
+    document.getElementById('carouselPrev').addEventListener('click', () => {
+      track.style.scrollBehavior = 'smooth';
+      track.scrollLeft -= STEP;
+    });
+    document.getElementById('carouselNext').addEventListener('click', () => {
+      track.style.scrollBehavior = 'smooth';
+      track.scrollLeft += STEP;
+    });
+
+    /* Drag — delta-based so infinite-loop jumps never fight the drag */
+    let dragging = false, lastX = 0, totalDx = 0, moved = false;
+
+    function stopDrag() {
+      dragging = false;
+      track.classList.remove('dragging');
+      track.style.scrollBehavior = '';
+    }
+
+    /* Kill native browser drag on links/images — this was locking the cursor */
+    track.addEventListener('dragstart', e => e.preventDefault());
+
+    track.addEventListener('mousedown', e => {
+      if (e.button !== 0) return;
+      e.preventDefault();          /* stops native drag + text selection */
+      dragging  = true;
+      moved     = false;
+      totalDx   = 0;
+      lastX     = e.clientX;
+      track.style.scrollBehavior = 'auto';
+      track.classList.add('dragging');
+    });
+
+    document.addEventListener('mousemove', e => {
+      if (!dragging) return;
+      const dx = e.clientX - lastX;
+      lastX = e.clientX;
+      totalDx += Math.abs(dx);
+      if (totalDx > 6) moved = true;
+      track.scrollLeft -= dx;
+    });
+
+    document.addEventListener('mouseup', stopDrag);
+    window.addEventListener('blur',      stopDrag);
+
+    /* Only block link navigation if mouse actually moved */
+    track.addEventListener('click', e => {
+      if (moved) {
+        e.preventDefault();
+        e.stopPropagation();
+        moved = false;
+      }
+    }, true);
+  })();
+
+  /* ── Dark section: height = 75% of hero height ── */
+  function setDarkHeight() {
+    const heroH = document.getElementById('heroSection').offsetHeight;
+    document.getElementById('darkSection').style.paddingBottom = '0';
+    document.getElementById('darkSection').style.height = Math.round(heroH * 0.75) + 'px';
+  }
+  /* Run after images likely loaded */
+  window.addEventListener('load', setDarkHeight);
+  window.addEventListener('resize', setDarkHeight);
+  /* Also run shortly after DOM ready in case load fires late */
+  setTimeout(setDarkHeight, 800);
+</script>
+
+</body>
+</html>

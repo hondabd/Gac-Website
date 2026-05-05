@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AION V — GAC Motor Bangladesh</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body { font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; background: #fff; color: #333; overflow-x: hidden; }
+
+    /* ── NAVBAR ── */
+    .navbar { position: sticky; top: 0; z-index: 1000; background: #fff; border-bottom: 1px solid #e5e5e5; box-shadow: 0 1px 6px rgba(0,0,0,0.07); }
+    .navbar-inner { max-width: 1200px; margin: 0 auto; padding: 0 28px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo img { height: 38px; width: auto; display: block; }
+    .nav-links { display: flex; align-items: center; gap: 38px; list-style: none; margin: 0; padding: 0; }
+    .nav-links > li { position: relative; }
+    .nav-links > li > a { font-size: 12px; font-weight: 700; color: #333; text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; display: flex; align-items: center; gap: 4px; padding: 4px 0; }
+    .nav-links > li > a:hover { color: #e63946; }
+    .dropdown { display: none; position: absolute; top: calc(100% + 4px); left: -16px; background: #fff; border: 1px solid #eee; box-shadow: 0 6px 20px rgba(0,0,0,0.10); min-width: 160px; z-index: 500; padding: 6px 0; }
+    .dropdown a { display: block; padding: 9px 20px; font-size: 13px; font-weight: 500; color: #444; text-decoration: none; }
+    .dropdown a:hover { color: #e63946; background: #fafafa; }
+    .nav-links > li.open .dropdown { display: block; }
+    .btn-book { background: #e63946; color: #fff; font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; padding: 11px 22px; border: none; cursor: pointer; text-decoration: none; white-space: nowrap; display: inline-block; }
+    .btn-book:hover { background: #c8222f; }
+
+    /* ── HERO ── */
+    .hero-wrap { position: relative; width: 100%; background: #07111a; overflow: hidden; }
+    .hero-wrap img.hero-img { width: 100%; height: auto; display: block; }
+
+    /* ── TAB STRIP ── */
+    .tab-strip { display: flex; justify-content: center; align-items: center; background: #fff; border-bottom: 1px solid #e8e8e8; position: sticky; top: 64px; z-index: 900; padding: 16px 0; gap: 12px; }
+    .tab-btn { padding: 14px 56px; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #aaa; cursor: pointer; border: none; background: transparent; font-family: 'Montserrat', sans-serif; transition: color 0.15s, background 0.15s; border-radius: 4px; }
+    .tab-btn.active { background: #e63946; color: #fff; }
+    .tab-btn:not(.active):hover { color: #555; }
+
+    /* ── TAB PANELS ── */
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* ── GALLERY ── */
+    .ext-gallery-section { background: #fff; padding: 48px 80px 60px; }
+    .ext-gallery { display: grid; grid-template-columns: 1.5fr 1fr; gap: 4px; max-width: 1100px; margin: 0 auto; overflow: hidden; }
+    .ext-gallery-left { overflow: hidden; position: relative; min-height: 0; }
+    .ext-gallery-left img { width: 100%; height: 100%; object-fit: cover; display: block; min-height: 0; }
+    .ext-gallery-right { display: grid; grid-template-rows: 1fr 1fr; gap: 4px; min-height: 0; overflow: hidden; }
+    .ext-gallery-right > div { position: relative; overflow: hidden; min-height: 0; }
+    .ext-gallery-right img { width: 100%; height: 100%; object-fit: cover; display: block; min-height: 0; }
+    .gallery-caption {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 28px 16px 14px;
+      background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 100%);
+      color: #fff;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    }
+
+    /* ── COLOUR SELECTOR ── */
+    .colour-section { background: #fafafa; padding: 72px 0; }
+    .colour-inner { max-width: 1300px; margin: 0 auto; padding: 0 64px; display: grid; grid-template-columns: 1fr 1.6fr 1fr; gap: 40px; align-items: center; }
+    .colour-info { padding-right: 16px; }
+    .colour-eyebrow { font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #e63946; margin-bottom: 14px; }
+    .colour-heading { font-size: 28px; font-weight: 700; color: #111; line-height: 1.2; text-transform: uppercase; letter-spacing: 0.01em; margin: 0; }
+    .colour-car-wrap { display: flex; align-items: center; justify-content: center; padding: 24px 0; }
+    .colour-car-wrap img { width: 100%; max-width: 520px; height: auto; object-fit: contain; display: block; transition: opacity 0.2s ease; }
+    .colour-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+    .colour-item { display: flex; align-items: center; justify-content: space-between; padding: 8px 10px 8px 18px; border: 1px solid #e8e8e8; border-radius: 50px; background: #f0f0f0; cursor: pointer; gap: 12px; transition: all 0.2s; }
+    .colour-name { font-size: 13px; font-weight: 400; color: #555; letter-spacing: 0.01em; }
+    .colour-item.active { background: #fff; border-color: #ccc; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+    .colour-item.active .colour-name { color: #111; font-weight: 600; }
+    .colour-swatch-btn { width: 26px; height: 26px; border-radius: 50%; border: 1px solid #ccc; padding: 0; flex-shrink: 0; display: block; cursor: pointer; }
+    .colour-item:hover { border-color: #bbb; background: #f8f8f8; }
+
+    /* ── ALL NEW AION V ── */
+    .all-new { background: #fff; padding: 80px 0; }
+    .all-new-header { text-align: center; margin-bottom: 64px; }
+    .all-new-header h2 { font-size: 30px; font-weight: 600; color: #111; letter-spacing: 0.01em; margin: 0; font-family: 'Montserrat', sans-serif; }
+    .all-new-list { max-width: 1100px; margin: 0 auto; padding: 0 48px; display: flex; flex-direction: column; gap: 64px; }
+    .all-new-row { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 56px; align-items: center; }
+    .all-new-row.reverse { grid-template-columns: 0.9fr 1.1fr; }
+    .all-new-row.reverse .all-new-img { order: 2; }
+    .all-new-row.reverse .all-new-text { order: 1; }
+    .all-new-img img { width: 100%; height: auto; display: block; border-radius: 4px; }
+    .all-new-text h3 { font-size: 20px; font-weight: 700; color: #111; margin: 0 0 16px; letter-spacing: 0.01em; text-transform: uppercase; }
+    .all-new-text p { font-size: 14px; color: #666; line-height: 1.85; margin: 0; }
+
+    /* ── TECH ASSURANCE ── */
+    .tech-section { background: #fafafa; padding: 80px 0; }
+    .tech-inner { max-width: 1100px; margin: 0 auto; padding: 0 48px; }
+    .tech-header { margin-bottom: 48px; }
+    .tech-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; }
+    .tech-card { background: #fff; border: 1px solid #ebebeb; border-radius: 8px; overflow: hidden; }
+    .tech-card-img { overflow: hidden; }
+    .tech-card-img img { width: 100%; height: 240px; object-fit: cover; display: block; }
+    .tech-card-body { padding: 20px 22px 24px; }
+    .tech-title { font-size: 15px; font-weight: 600; color: #111; margin: 0; line-height: 1.4; letter-spacing: 0.01em; }
+
+    /* ── BROCHURE ── */
+    .brochure-section { background: linear-gradient(135deg, #eeeeee 0%, #e4e4e4 100%); padding: 80px 24px; text-align: center; }
+    .btn-brochure { display: inline-block; background: #111; color: #fff; font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; padding: 18px 52px; border-radius: 6px; text-decoration: none; text-transform: uppercase; box-shadow: 0 4px 20px rgba(0,0,0,0.18); transition: background 0.2s, transform 0.15s; }
+    .btn-brochure:hover { background: #333; transform: translateY(-2px); }
+
+    /* ── SHARED ── */
+    .eyebrow { font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #e63946; margin-bottom: 12px; }
+    .section-title { font-size: 30px; font-weight: 600; color: #111; line-height: 1.2; letter-spacing: 0.01em; text-transform: uppercase; font-family: 'Montserrat', sans-serif; margin: 0; }
+
+    /* ── FOOTER ── */
+    .footer-link { display: block; font-size: 12px; color: #666; text-decoration: none; line-height: 2.2; }
+    .footer-link:hover { color: #e63946; }
+  </style>
+</head>
+<body>
+
+<!-- ══ NAVBAR ══ -->
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="nav-logo"><img src="logo.png" alt="GAC Motor" /></a>
+    <ul class="nav-links">
+      <li><a href="#">About Us</a></li>
+      <li>
+        <a href="#">Models <svg width="8" height="5" viewBox="0 0 8 5" fill="currentColor"><path d="M0 0l4 5 4-5z"/></svg></a>
+        <div class="dropdown">
+          <a href="aion-v.html">Aion V</a>
+          <a href="aion-y.html">Aion Y</a>
+          <a href="e9.html">E9</a>
+          <a href="emkoo.html">Emkoo</a>
+          <a href="emzoom.html">Emzoom</a>
+        </div>
+      </li>
+      <li><a href="#">Contact Us</a></li>
+    </ul>
+    <a href="#" class="btn-book">Book A Test Drive</a>
+  </div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<!-- IMAGE SLOT: Hero image → [model-folder]/Hero image.png -->
+<div class="hero-wrap">
+  <img class="hero-img" src="aion v/Hero image.png" alt="GAC AION V" />
+</div>
+
+<!-- ══ TAB STRIP ══ -->
+<div class="tab-strip">
+  <button class="tab-btn active" data-tab="exterior">Exterior</button>
+  <button class="tab-btn" data-tab="interior">Interior</button>
+</div>
+
+
+<!-- ══════════════════════════
+     EXTERIOR TAB
+══════════════════════════ -->
+<div id="tab-exterior" class="tab-panel active">
+
+  <!-- IMAGE SLOTS: Exterior 1 (large left), Exterior 2 (top right), Exterior 3 (bottom right) -->
+  <div class="ext-gallery-section">
+    <div class="ext-gallery" style="height:420px;">
+      <div class="ext-gallery-left">
+        <img src="aion v/Exterior 1.png" alt="19&quot; Aluminum Alloy Wheel" />
+        <div class="gallery-caption">19" Aluminum Alloy Wheel</div>
+      </div>
+      <div class="ext-gallery-right">
+        <div>
+          <img src="aion v/Exterior 2.png" alt="Cyber Dragon Claw Taillights" />
+          <div class="gallery-caption">Cyber Dragon Claw Taillights</div>
+        </div>
+        <div>
+          <img src="aion v/exterior 3.png" alt="Signature Dragon Claw Taillights" />
+          <div class="gallery-caption">Signature Dragon Claw Taillights</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /exterior -->
+
+
+<!-- ══════════════════════════
+     INTERIOR TAB
+══════════════════════════ -->
+<div id="tab-interior" class="tab-panel">
+
+  <!-- IMAGE SLOTS: interior 1 (large left), interior 2 (top right), interior 3 (bottom right) -->
+  <div class="ext-gallery-section">
+    <div class="ext-gallery" style="height:420px;">
+      <div class="ext-gallery-left">
+        <img src="aion v/interior 1.png" alt="Sunroof With Electric Sunshade" />
+        <div class="gallery-caption">Sunroof With Electric Sunshade</div>
+      </div>
+      <div class="ext-gallery-right">
+        <div>
+          <img src="aion v/interior 2.png" alt='14.6" Touchscreen Display' />
+          <div class="gallery-caption">14.6" Touchscreen Display</div>
+        </div>
+        <div>
+          <img src="aion v/interior 3.png" alt="Immersive Sound &amp; Cinema Experience" />
+          <div class="gallery-caption">Immersive Sound &amp; Cinema Experience</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /interior -->
+
+
+<!-- ══════════════════════════
+     COLOUR SELECTOR — always visible
+     IMAGE SLOTS: [model-folder]/Color Section/[Colour Name].png
+══════════════════════════ -->
+<div class="colour-section">
+  <div class="colour-inner">
+
+    <div class="colour-info">
+      <p class="colour-eyebrow">Design</p>
+      <h2 class="colour-heading">Sporty And<br>Elegant Colour<br>Choice For You</h2>
+    </div>
+
+    <div class="colour-car-wrap">
+      <img id="colourCarImg" src="aion v/Color Section/Space Black.png" alt="AION V Space Black" />
+    </div>
+
+    <ul class="colour-list">
+      <li class="colour-item active" data-img="aion v/Color Section/Space Black.png" data-name="Space Black">
+        <span class="colour-name">Space Black</span>
+        <button class="colour-swatch-btn" style="background:#1a1a1a;"></button>
+      </li>
+      <li class="colour-item" data-img="aion v/Color Section/Glacier White.png" data-name="Glacier White">
+        <span class="colour-name">Glacier White</span>
+        <button class="colour-swatch-btn" style="background:#f0f0f0;"></button>
+      </li>
+      <li class="colour-item" data-img="aion v/Color Section/Everest Grey.png" data-name="Everest Grey">
+        <span class="colour-name">Everest Grey</span>
+        <button class="colour-swatch-btn" style="background:#6e6e6e;"></button>
+      </li>
+      <li class="colour-item" data-img="aion v/Color Section/Aurora Silver.png" data-name="Aurora Silver">
+        <span class="colour-name">Aurora Silver</span>
+        <button class="colour-swatch-btn" style="background:#b8b8b8;"></button>
+      </li>
+      <li class="colour-item" data-img="aion v/Color Section/Sahara Beige.png" data-name="Sahara Beige">
+        <span class="colour-name">Sahara Beige</span>
+        <button class="colour-swatch-btn" style="background:#c5a96c;"></button>
+      </li>
+      <li class="colour-item" data-img="aion v/Color Section/Volcano Orange.png" data-name="Volcano Orange">
+        <span class="colour-name">Volcano Orange</span>
+        <button class="colour-swatch-btn" style="background:#d94e0f;"></button>
+      </li>
+      <li class="colour-item" data-img="aion v/Color Section/Duotone Volcano Orange.png" data-name="Duotone Volcano Orange">
+        <span class="colour-name">Duotone Volcano Orange</span>
+        <button class="colour-swatch-btn" style="background:linear-gradient(135deg,#d94e0f 50%,#1a1a1a 50%);"></button>
+      </li>
+      <li class="colour-item" data-img="aion v/Color Section/galaxy_blue.png" data-name="Galaxy Blue">
+        <span class="colour-name">Galaxy Blue</span>
+        <button class="colour-swatch-btn" style="background:#1a3a6e;"></button>
+      </li>
+      <li class="colour-item" data-img="aion v/Color Section/Duotone Galaxy Blue.png" data-name="Duotone Galaxy Blue">
+        <span class="colour-name">Duotone Galaxy Blue</span>
+        <button class="colour-swatch-btn" style="background:linear-gradient(135deg,#1a3a6e 50%,#1a1a1a 50%);"></button>
+      </li>
+    </ul>
+
+  </div>
+</div>
+
+
+<!-- ══════════════════════════
+     ALL NEW GAC AION V
+     IMAGE SLOTS: [model-folder]/Feature 1/2/3.png
+══════════════════════════ -->
+<section class="all-new">
+  <div class="all-new-header">
+    <h2>The All-New GAC AION V</h2>
+  </div>
+  <div class="all-new-list">
+
+    <div class="all-new-row">
+      <div class="all-new-img"><img src="aion v/Feature 1.png" alt="Four-Control In-Car Refrigerator" /></div>
+      <div class="all-new-text">
+        <h3>Four-Control In-Car Refrigerator</h3>
+        <p>The GAC Aion V features an intelligent in-car refrigerator with precision temperature control from -15°C to 50°C, delivering seamless cooling or heating to elevate everyday journeys with comfort, convenience, and smart functionality.</p>
+      </div>
+    </div>
+
+    <div class="all-new-row reverse">
+      <div class="all-new-img"><img src="aion v/Feature 2.png" alt="One-Touch Bed Mode" /></div>
+      <div class="all-new-text">
+        <h3>One-Touch Bed Mode</h3>
+        <p>Designed for modern comfort, Aion V introduces One-Touch Bed Mode, allowing the front seats to fully recline into a flat position, creating a restful, lounge-inspired environment within the smart electric cabin.</p>
+      </div>
+    </div>
+
+    <div class="all-new-row">
+      <div class="all-new-img"><img src="aion v/feature 3.png" alt="8 Point Massage Front Seats" /></div>
+      <div class="all-new-text">
+        <h3>8 Point Massage Front Seats</h3>
+        <p>Aion V features 8-point massage front seats with integrated heating and ventilation, delivering targeted pressure relief and climate-controlled comfort to enhance every journey with a refined, lounge-like seating experience.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════
+     TECH ASSURANCE
+     IMAGE SLOTS: [model-folder]/safety 1/2/3
+══════════════════════════ -->
+<section class="tech-section">
+  <div class="tech-inner">
+    <div class="tech-header">
+      <p class="eyebrow">Safety &amp; Technology</p>
+      <h2 class="section-title">Elevating Drive With Tech Assurance</h2>
+    </div>
+    <div class="tech-grid">
+      <div class="tech-card">
+        <div class="tech-card-img"><img src="aion v/safety 1.png" alt="U-Shaped Safety Airbags" /></div>
+        <div class="tech-card-body"><h3 class="tech-title">U-Shaped Safety Airbags for 360° Protection</h3></div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-card-img"><img src="aion v/safety 2.png" alt="Advanced Intelligent Driving" /></div>
+        <div class="tech-card-body"><h3 class="tech-title">Advanced Intelligent Driving</h3></div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-card-img"><img src="aion v/safety 3.png" alt="Magazine Battery 2.0" /></div>
+        <div class="tech-card-body"><h3 class="tech-title">Magazine Battery 2.0</h3></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ BROCHURE ══ -->
+<div class="brochure-section">
+  <p style="font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#999;margin-bottom:12px;">GAC AION V</p>
+  <h2 style="font-size:20px;font-weight:800;color:#111;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:28px;">Download The Brochure</h2>
+  <a href="aion v/AION-V.pdf" target="_blank" class="btn-brochure">Download Brochure</a>
+</div>
+
+
+<!-- ══ FOOTER ══ -->
+<footer style="background:#fff;border-top:1px solid #e8e8e8;padding:48px 28px 28px;">
+  <div style="max-width:980px;margin:0 auto;display:grid;grid-template-columns:1.2fr 0.85fr 1fr;gap:36px;align-items:start;">
+    <div>
+      <div style="margin-bottom:16px;"><img src="logo.png" alt="GAC Motor" style="height:28px;width:auto;" /></div>
+      <p style="font-size:11.5px;color:#666;line-height:1.8;max-width:230px;">
+        The Guangzhou Automobile Group Co., Ltd. (GAC) is currently a Fortune 500 company. GAC Motor Bangladesh is the authorized importer and distributor of GAC vehicles in Bangladesh.
+      </p>
+    </div>
+    <div>
+      <h4 style="font-size:12.5px;font-weight:700;color:#222;letter-spacing:0.05em;margin:0 0 16px;">Quick Links</h4>
+      <a href="index.html" class="footer-link">Home</a>
+      <a href="aion-v.html" class="footer-link">Aion V</a>
+      <a href="#" class="footer-link">Aion Y</a>
+      <a href="e9.html" class="footer-link">E9</a>
+      <a href="emkoo.html" class="footer-link">Emkoo</a>
+      <a href="emzoom.html" class="footer-link">Emzoom</a>
+      <a href="#" class="footer-link">Contact Us</a>
+    </div>
+    <div>
+      <input type="email" placeholder="Enter Your Email"
+        style="width:100%;border:1px solid #ddd;padding:10px 12px;font-size:11px;font-family:'Montserrat',sans-serif;color:#999;outline:none;display:block;margin-bottom:22px;" />
+      <h4 style="font-size:12.5px;font-weight:700;color:#222;letter-spacing:0.05em;margin:0 0 12px;">Follow Us</h4>
+      <div style="display:flex;gap:10px;">
+        <a href="https://www.facebook.com/gacbangladesh" target="_blank"
+          style="width:32px;height:32px;border-radius:50%;background:#3b5998;display:flex;align-items:center;justify-content:center;color:#fff;text-decoration:none;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+        </a>
+        <a href="#" target="_blank"
+          style="width:32px;height:32px;border-radius:50%;background:#e63946;display:flex;align-items:center;justify-content:center;color:#fff;text-decoration:none;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 001.46 6.42 29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.54C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.96A29 29 0 0023 12a29 29 0 00-.46-5.58zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div style="max-width:980px;margin:28px auto 0;padding-top:16px;border-top:1px solid #efefef;text-align:center;font-size:11px;color:#aaa;">
+    © 2026 GAC Motor Bangladesh. All rights reserved.
+  </div>
+</footer>
+
+
+<script>
+/* Dropdown hover */
+document.querySelectorAll('.nav-links > li').forEach(li => {
+  if (!li.querySelector('.dropdown')) return;
+  let t;
+  li.addEventListener('mouseenter', () => { clearTimeout(t); li.classList.add('open'); });
+  li.addEventListener('mouseleave', () => { t = setTimeout(() => li.classList.remove('open'), 150); });
+});
+
+/* Tab switching */
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const target = btn.dataset.tab;
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + target).classList.add('active');
+  });
+});
+
+/* Colour selector */
+const carImg = document.getElementById('colourCarImg');
+document.querySelectorAll('.colour-item').forEach(item => {
+  item.addEventListener('click', () => {
+    carImg.style.opacity = '0';
+    setTimeout(() => {
+      carImg.src = item.dataset.img;
+      carImg.alt = 'AION V ' + item.dataset.name;
+      carImg.style.opacity = '1';
+    }, 200);
+    document.querySelectorAll('.colour-item').forEach(el => el.classList.remove('active'));
+    item.classList.add('active');
+  });
+});
+</script>
+
+</body>
+</html>

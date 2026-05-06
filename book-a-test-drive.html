@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book A Test Drive — GAC Motor Bangladesh</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body { font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; background: #fff; color: #333; }
+
+    /* ── NAVBAR ── */
+    .navbar { position: sticky; top: 0; z-index: 1000; background: #fff; border-bottom: 1px solid #e5e5e5; box-shadow: 0 1px 6px rgba(0,0,0,0.07); }
+    .navbar-inner { max-width: 1200px; margin: 0 auto; padding: 0 28px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo img { height: 38px; width: auto; display: block; }
+    .nav-links { display: flex; align-items: center; gap: 38px; list-style: none; margin: 0; padding: 0; }
+    .nav-links > li { position: relative; }
+    .nav-links > li > a { font-size: 12px; font-weight: 700; color: #333; text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; display: flex; align-items: center; gap: 4px; padding: 4px 0; }
+    .nav-links > li > a:hover { color: #e63946; }
+    .dropdown { display: none; position: absolute; top: calc(100% + 4px); left: -16px; background: #fff; border: 1px solid #eee; box-shadow: 0 6px 20px rgba(0,0,0,0.10); min-width: 160px; z-index: 500; padding: 6px 0; }
+    .dropdown a { display: block; padding: 9px 20px; font-size: 13px; font-weight: 500; color: #444; text-decoration: none; }
+    .dropdown a:hover { color: #e63946; background: #fafafa; }
+    .nav-links > li.open .dropdown { display: block; }
+    .btn-book { background: #e63946; color: #fff; font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; padding: 11px 22px; border: none; cursor: pointer; text-decoration: none; white-space: nowrap; display: inline-block; }
+    .btn-book:hover { background: #c8222f; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: #333; border-radius: 2px; }
+
+    /* ── PAGE ── */
+    .page-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 64px 32px 96px;
+    }
+
+    .page-heading {
+      text-align: center;
+      margin-bottom: 44px;
+    }
+    .page-heading h1 {
+      font-size: 36px;
+      font-weight: 700;
+      color: #1a2332;
+      margin: 0 0 12px;
+      letter-spacing: 0.01em;
+    }
+    .page-heading p {
+      font-size: 16px;
+      color: #888;
+      margin: 0;
+      font-weight: 400;
+    }
+
+    /* ── MAIN CARD ── */
+    .card {
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    /* ── MODEL SECTION ── */
+    .model-section {
+      padding: 52px 52px 0;
+    }
+    .model-section-title {
+      font-size: 19px;
+      font-weight: 700;
+      color: #1a2332;
+      margin: 0 0 36px;
+      text-align: center;
+    }
+    .model-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: stretch;
+    }
+
+    /* Model list */
+    .model-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      justify-content: space-between;
+      height: 100%;
+    }
+    .model-option { cursor: pointer; display: block; flex: 1; }
+    .model-option input[type="radio"] { display: none; }
+    .model-pill {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      padding: 0 28px;
+      border: 1.5px solid #ddd;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #333;
+      background: #fff;
+      transition: all 0.15s;
+    }
+    .model-option input:checked + .model-pill {
+      background: #e63946;
+      border-color: #e63946;
+      color: #fff;
+    }
+    .model-option:hover input:not(:checked) + .model-pill {
+      border-color: #bbb;
+      background: #fafafa;
+    }
+
+    /* Car image */
+    .model-image-wrap {
+      border-radius: 10px;
+      overflow: hidden;
+      background: #f5f5f5;
+      aspect-ratio: 5 / 3;
+    }
+    .model-image-wrap img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      display: block;
+      transition: opacity 0.2s ease;
+    }
+
+    /* ── DIVIDER ── */
+    .divider { height: 1px; background: #ebebeb; margin: 44px 0 0; }
+
+    /* ── FORM SECTION ── */
+    .form-section { padding: 36px 52px 52px; }
+    .form-section-title {
+      font-size: 19px;
+      font-weight: 700;
+      color: #1a2332;
+      margin: 0 0 28px;
+      text-align: center;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label,
+    .form-group label * {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: #555;
+      margin-bottom: 8px;
+      letter-spacing: 0.02em;
+    }
+    label { color: #555; }
+    .form-group input {
+      width: 100%;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      padding: 14px 18px;
+      font-size: 14px;
+      font-family: 'Montserrat', sans-serif;
+      color: #333;
+      outline: none;
+      transition: border-color 0.2s;
+      background: #fff;
+    }
+    .form-group input:focus { border-color: #e63946; }
+    .form-group input::placeholder { color: #bbb; }
+
+    .btn-submit {
+      width: 100%;
+      background: #e63946;
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 18px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: background 0.2s;
+    }
+    .btn-submit:hover { background: #c8222f; }
+
+    /* ── SUCCESS MODAL ── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-overlay.show { display: flex; }
+    .modal-box {
+      background: #fff;
+      border-radius: 10px;
+      padding: 44px 36px;
+      text-align: center;
+      max-width: 380px;
+      width: 90%;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.18);
+    }
+    .modal-check {
+      width: 56px; height: 56px;
+      background: #e63946;
+      border-radius: 50%;
+      margin: 0 auto 18px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .modal-check svg { width: 24px; height: 24px; color: #fff; }
+    .modal-box h3 { font-size: 18px; font-weight: 700; color: #111; margin: 0 0 10px; }
+    .modal-box p { font-size: 13px; color: #777; margin: 0 0 24px; line-height: 1.6; }
+    .btn-ok {
+      background: #111; color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 11px 32px; border: none; border-radius: 4px;
+      cursor: pointer;
+    }
+    .btn-ok:hover { background: #333; }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      .hamburger { display: flex; }
+      .nav-links { display: none; position: absolute; top: 64px; left: 0; right: 0; background: #fff; flex-direction: column; gap: 0; padding: 8px 0 16px; border-bottom: 1px solid #e5e5e5; box-shadow: 0 6px 16px rgba(0,0,0,0.08); z-index: 999; }
+      .nav-links.open { display: flex; }
+      .nav-links > li > a { padding: 13px 24px; }
+      .btn-book { display: none; }
+      .dropdown { position: static; box-shadow: none; border: none; border-top: 1px solid #f0f0f0; }
+      .nav-links > li.open .dropdown { display: block; }
+      .dropdown a { padding: 9px 36px; color: #777; }
+      .model-layout { grid-template-columns: 1fr; }
+      .model-image-wrap { aspect-ratio: 16/9; }
+      .page-container { padding: 36px 16px 60px; }
+      .model-section, .form-section { padding-left: 16px; padding-right: 16px; }
+      .page-heading h1 { font-size: 22px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ NAVBAR ══ -->
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="nav-logo"><img src="logo.png" alt="GAC Motor" /></a>
+    <ul class="nav-links">
+      <li><a href="#">About Us</a></li>
+      <li>
+        <a href="#">Models <svg width="8" height="5" viewBox="0 0 8 5" fill="currentColor"><path d="M0 0l4 5 4-5z"/></svg></a>
+        <div class="dropdown">
+          <a href="aion-v.html">Aion V</a>
+          <a href="aion-y.html">Aion Y</a>
+          <a href="e9.html">E9</a>
+          <a href="emkoo.html">Emkoo</a>
+          <a href="emzoom.html">Emzoom</a>
+        </div>
+      </li>
+      <li><a href="#">Contact Us</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    <a href="book-a-test-drive.html" class="btn-book">Book A Test Drive</a>
+  </div>
+</nav>
+
+
+<div class="page-container">
+
+  <!-- Page heading -->
+  <div class="page-heading">
+    <h1>Schedule Your Test Drive</h1>
+    <p>Experience GAC Motor's innovative technology and performance</p>
+  </div>
+
+  <!-- Main card -->
+  <div class="card">
+
+    <!-- Model selector -->
+    <div class="model-section">
+      <p class="model-section-title">Choose Your GAC Model</p>
+      <div class="model-layout">
+
+        <!-- Left: model list -->
+        <div class="model-list">
+
+          <label class="model-option">
+            <input type="radio" name="model" value="Aion V" checked onchange="selectModel(this)" />
+            <div class="model-pill">Aion V</div>
+          </label>
+
+          <label class="model-option">
+            <input type="radio" name="model" value="Aion Y" onchange="selectModel(this)" />
+            <div class="model-pill">Aion Y</div>
+          </label>
+
+          <label class="model-option">
+            <input type="radio" name="model" value="E9" onchange="selectModel(this)" />
+            <div class="model-pill">E9</div>
+          </label>
+
+          <label class="model-option">
+            <input type="radio" name="model" value="Emkoo" onchange="selectModel(this)" />
+            <div class="model-pill">Emkoo</div>
+          </label>
+
+          <label class="model-option">
+            <input type="radio" name="model" value="Emzoom" onchange="selectModel(this)" />
+            <div class="model-pill">Emzoom</div>
+          </label>
+
+        </div>
+
+        <!-- Right: car image -->
+        <div class="model-image-wrap">
+          <img id="carImg" src="Book a test drive/aion v.png" alt="Aion V" />
+        </div>
+
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Form -->
+    <div class="form-section">
+      <p class="form-section-title">Your Information</p>
+      <form id="testDriveForm" onsubmit="submitForm(event)">
+        <input type="hidden" name="Model" id="selectedModel" value="Aion V" />
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" name="Name" placeholder="Your full name" required />
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" name="Email" placeholder="Your email address" required />
+        </div>
+        <div class="form-group">
+          <label>Phone</label>
+          <input type="tel" name="Phone" placeholder="Your phone number" required />
+        </div>
+        <button type="submit" class="btn-submit">Schedule Test Drive</button>
+      </form>
+    </div>
+
+  </div><!-- /card -->
+
+</div><!-- /page-container -->
+
+
+<!-- Success Modal -->
+<div class="modal-overlay" id="modal">
+  <div class="modal-box">
+    <div class="modal-check">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 6 9 17 4 12"/>
+      </svg>
+    </div>
+    <h3>Request Submitted!</h3>
+    <p>Thank you for your interest.<br>We'll contact you soon.</p>
+    <button class="btn-ok" onclick="closeModal()">OK</button>
+  </div>
+</div>
+
+
+<!-- ══ FOOTER ══ -->
+<footer style="background:#fff;border-top:1px solid #e8e8e8;padding:48px 28px 28px;">
+  <div style="max-width:980px;margin:0 auto;display:grid;grid-template-columns:1.2fr 0.85fr 1fr;gap:36px;align-items:start;">
+    <div>
+      <div style="margin-bottom:16px;"><img src="logo.png" alt="GAC Motor" style="height:28px;width:auto;" /></div>
+      <p style="font-size:11.5px;color:#666;line-height:1.8;max-width:230px;">GAC Motor Bangladesh is the authorized importer and distributor of GAC vehicles in Bangladesh.</p>
+    </div>
+    <div>
+      <h4 style="font-size:12.5px;font-weight:700;color:#222;letter-spacing:0.05em;margin:0 0 16px;">Quick Links</h4>
+      <a href="index.html" style="display:block;font-size:12px;color:#666;text-decoration:none;line-height:2.2;">Home</a>
+      <a href="aion-v.html" style="display:block;font-size:12px;color:#666;text-decoration:none;line-height:2.2;">Aion V</a>
+      <a href="aion-y.html" style="display:block;font-size:12px;color:#666;text-decoration:none;line-height:2.2;">Aion Y</a>
+      <a href="e9.html" style="display:block;font-size:12px;color:#666;text-decoration:none;line-height:2.2;">E9</a>
+      <a href="emkoo.html" style="display:block;font-size:12px;color:#666;text-decoration:none;line-height:2.2;">Emkoo</a>
+      <a href="emzoom.html" style="display:block;font-size:12px;color:#666;text-decoration:none;line-height:2.2;">Emzoom</a>
+    </div>
+    <div>
+      <input type="email" placeholder="Enter Your Email" style="width:100%;border:1px solid #ddd;padding:10px 12px;font-size:11px;font-family:'Montserrat',sans-serif;color:#999;outline:none;display:block;margin-bottom:22px;" />
+      <h4 style="font-size:12.5px;font-weight:700;color:#222;letter-spacing:0.05em;margin:0 0 12px;">Follow Us</h4>
+      <a href="https://www.facebook.com/gacbangladesh" target="_blank" style="width:32px;height:32px;border-radius:50%;background:#3b5998;display:inline-flex;align-items:center;justify-content:center;color:#fff;text-decoration:none;">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+      </a>
+    </div>
+  </div>
+  <div style="max-width:980px;margin:28px auto 0;padding-top:16px;border-top:1px solid #efefef;text-align:center;font-size:11px;color:#aaa;">
+    © 2026 GAC Motor Bangladesh. All rights reserved.
+  </div>
+</footer>
+
+
+<script>
+/* Hamburger */
+document.getElementById('hamburger').addEventListener('click', () => {
+  document.querySelector('.nav-links').classList.toggle('open');
+});
+
+/* Dropdown hover */
+document.querySelectorAll('.nav-links > li').forEach(li => {
+  if (!li.querySelector('.dropdown')) return;
+  let t;
+  li.addEventListener('mouseenter', () => { clearTimeout(t); li.classList.add('open'); });
+  li.addEventListener('mouseleave', () => { t = setTimeout(() => li.classList.remove('open'), 150); });
+});
+
+/* Model image map */
+const images = {
+  'Aion V':  'Book a test drive/aion v.png',
+  'Aion Y':  'Book a test drive/aion y.png',
+  'E9':      'Book a test drive/E9.png',
+  'Emkoo':   'Book a test drive/emkoo.png',
+  'Emzoom':  'Book a test drive/emzoom.png',
+};
+
+/* Sync selected model to hidden field */
+function selectModel(input) {
+  const img = document.getElementById('carImg');
+  img.style.opacity = '0';
+  setTimeout(() => {
+    img.src = images[input.value];
+    img.alt = input.value;
+    img.style.opacity = '1';
+  }, 150);
+  document.getElementById('selectedModel').value = input.value;
+}
+
+/* Submit to Formspree */
+async function submitForm(e) {
+  e.preventDefault();
+  const form = document.getElementById('testDriveForm');
+  const btn  = form.querySelector('.btn-submit');
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+
+  try {
+    const res = await fetch('https://formspree.io/f/mwvyqvov', {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    });
+    if (res.ok) {
+      document.getElementById('modal').classList.add('show');
+      form.reset();
+      document.getElementById('selectedModel').value = 'Aion V';
+    } else {
+      alert('Something went wrong. Please try again.');
+    }
+  } catch {
+    alert('Network error. Please check your connection and try again.');
+  }
+
+  btn.textContent = 'Schedule Test Drive';
+  btn.disabled = false;
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('show');
+}
+</script>
+
+</body>
+</html>

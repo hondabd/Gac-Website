@@ -108,6 +108,54 @@
     /* ── FOOTER ── */
     .footer-link { display: block; font-size: 12px; color: #666; text-decoration: none; line-height: 2.2; }
     .footer-link:hover { color: #e63946; }
+    /* ══════════════════════════
+       HAMBURGER BUTTON
+    ══════════════════════════ */
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; z-index: 1100; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: #333; border-radius: 2px; transition: all 0.3s; }
+
+    @media (max-width: 768px) {
+      .hamburger { display: flex; }
+      .nav-links { display: none; position: absolute; top: 64px; left: 0; right: 0; background: #fff; flex-direction: column; gap: 0; padding: 8px 0 16px; border-bottom: 1px solid #e5e5e5; box-shadow: 0 6px 16px rgba(0,0,0,0.08); z-index: 999; }
+      .nav-links.open { display: flex; }
+      .nav-links > li > a { padding: 13px 24px; font-size: 12px; }
+      .btn-book { display: none; }
+      .dropdown { position: static; padding-top: 0; box-shadow: none; border: none; border-top: 1px solid #f0f0f0; margin-top: 4px; }
+      .nav-links > li.open .dropdown { display: block; }
+      .dropdown a { padding: 9px 36px; font-size: 12px; color: #777; }
+      .tab-btn { padding: 12px 28px; font-size: 11px; }
+      .ext-gallery-section { padding: 20px 16px 28px; }
+      .ext-gallery { grid-template-columns: 1fr !important; height: auto !important; }
+      .ext-gallery-left { height: 220px; }
+      .ext-gallery-right { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr; height: 130px; }
+      .colour-section { padding: 40px 0; }
+      .colour-inner { grid-template-columns: 1fr !important; padding: 0 20px; gap: 20px; text-align: center; }
+      .colour-info { padding-right: 0; }
+      .colour-heading { font-size: 22px; }
+      .colour-car-wrap img { max-width: 300px; margin: 0 auto; }
+      .colour-list { max-width: 320px; margin: 0 auto; }
+      .all-new { padding: 40px 0 60px; }
+      .all-new-list { padding: 0 20px; gap: 40px; }
+      .all-new-row, .all-new-row.reverse { grid-template-columns: 1fr !important; gap: 20px; }
+      .all-new-row.reverse .all-new-img { order: 0 !important; }
+      .all-new-row.reverse .all-new-text { order: 0 !important; }
+      .all-new-header h2 { font-size: 22px; }
+      .all-new-text h3 { font-size: 16px; }
+      .all-new-text p { font-size: 13px; }
+      .tech-section { padding: 40px 0; }
+      .tech-inner { padding: 0 20px; }
+      .tech-grid { grid-template-columns: 1fr !important; }
+      .tech-header { margin-bottom: 28px; }
+      .section-title { font-size: 22px !important; }
+      .brochure-section { padding: 48px 20px; }
+      .btn-brochure { padding: 14px 32px; font-size: 12px; }
+    }
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .colour-inner { padding: 0 28px; gap: 24px; }
+      .all-new-list { padding: 0 28px; }
+      .tech-inner { padding: 0 28px; }
+      .ext-gallery-section { padding: 32px 32px 40px; }
+    }
   </style>
 </head>
 <body>
@@ -130,6 +178,7 @@
       </li>
       <li><a href="#">Contact Us</a></li>
     </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
     <a href="#" class="btn-book">Book A Test Drive</a>
   </div>
 </nav>
@@ -352,6 +401,11 @@
 
 
 <script>
+/* Hamburger menu */
+document.getElementById("hamburger").addEventListener("click", function() {
+  document.querySelector(".nav-links").classList.toggle("open");
+});
+
 /* Dropdown hover */
 document.querySelectorAll(".nav-links > li").forEach(li => {
   if (!li.querySelector(".dropdown")) return;

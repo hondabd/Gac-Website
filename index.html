@@ -280,6 +280,32 @@
     .carousel-btn.next { right: 14px; }
 
     /* ════════════════════════════
+       HAMBURGER
+    ════════════════════════════ */
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: #333; border-radius: 2px; transition: all 0.3s; }
+
+    /* ════════════════════════════
+       MOBILE
+    ════════════════════════════ */
+    @media (max-width: 768px) {
+      .hamburger { display: flex; }
+      .nav-links { display: none; position: absolute; top: 64px; left: 0; right: 0; background: #fff; flex-direction: column; gap: 0; padding: 8px 0 16px; border-bottom: 1px solid #e5e5e5; box-shadow: 0 6px 16px rgba(0,0,0,0.08); z-index: 999; }
+      .nav-links.open { display: flex; }
+      .nav-links > li > a { padding: 13px 24px; font-size: 12px; }
+      .btn-book { display: none; }
+      .dropdown { position: static; padding-top: 0; }
+      .dropdown-inner { box-shadow: none; border: none; border-top: 1px solid #f0f0f0; }
+      .dropdown a { padding: 9px 36px; font-size: 12px; color: #777; }
+      .nav-links > li.open .dropdown { display: block; }
+      .model-card { flex: 0 0 280px; }
+      .models-grid { padding: 0 20px 24px; gap: 16px; }
+      .carousel-btn { width: 36px; height: 36px; font-size: 18px; }
+      .carousel-btn.prev { left: 6px; }
+      .carousel-btn.next { right: 6px; }
+    }
+
+    /* ════════════════════════════
        FOOTER
     ════════════════════════════ */
     .footer-link {
@@ -321,6 +347,7 @@
       </li>
       <li><a href="#">Contact Us</a></li>
     </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
     <a href="#" class="btn-book">Book A Test Drive</a>
   </div>
 </nav>
@@ -586,6 +613,11 @@
   });
 
   autoPlay();
+
+  /* ── Hamburger ── */
+  document.getElementById('hamburger').addEventListener('click', function() {
+    document.querySelector('.nav-links').classList.toggle('open');
+  });
 
   /* ── Dropdown hover ── */
   document.querySelectorAll('.nav-links > li').forEach(li => {

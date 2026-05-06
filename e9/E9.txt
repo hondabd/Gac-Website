@@ -1,0 +1,39 @@
+Exterior 1 "Awakening Eye LED Headlights"
+
+Exterior 2 "Dual-side Electric Sliding Doors"
+
+Exterior 3 "Connecting Taillights & Turn Signal Lights"
+
+
+
+Interior 1 "Premium Second-Row Captain Seats"
+
+Interior 2 "Luxury Lounge Cockpit"
+
+Interior 3 "Three-zone Automatic AC"
+
+
+
+Feature 1 *Headline* "Touch Screen Seat And Massage Controls" 
+
+*body text* "An integrated touchscreen control panel provides seamless access to multi-mode massage functions, seat positioning, and comfort adjustments through a responsive digital interface, allowing rear passengers to personalize relaxation settings for a refined executive-class travel experience."
+
+Feature 2 *Ceiling-Mounted HD Display" 
+
+*body text* "A 17.3" IPS display powered by an MT8788 processor with 4G+64G memory delivers high-definition entertainment, wireless Android/iOS screen casting, dual-motor electric folding, multi-touch responsiveness, and seamless access to online media applications."
+
+Feature 3 *Sunroof with Panoramic Roof"
+
+*body text* "An openable sunroof combined with a panoramic roof enhances cabin openness by maximizing natural light, exterior visibility, and spatial perception, creating a brighter and more refined executive-class travel environment."
+
+
+
+Safety 1 "Fusion Automatic Parking Assist (FAPA)"
+
+Safety 2 "360° Airbag Protection "
+
+Safety 3 "High-Strength Structural Safety"
+
+
+
+

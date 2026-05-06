@@ -1,0 +1,39 @@
+Exterior 1 "Lightsaber Led Tail lights"
+
+Exterior 2 "Automatic LED Head lights"
+
+Exterior 3 "Mecha-Style Spoiler"
+
+
+
+Interior 1 "Sunroof  With Electric Sunshade"
+
+Interior 2 "Second-row air vents"
+
+Interior 3 "Multifunction Steering Wheel"
+
+
+
+Feature 1 *Headline* "10.1" Touchscreen Display" 
+
+*body text* "Emkoo features a 10.1" HD touchscreen powered by the Qualcomm Snapdragon 8155 chipset, delivering fast processing speeds, smooth interface transitions, and real-time system control through a responsive, low-latency digital display."
+
+Feature 2 *Headline* "DTS Sound System" 
+
+*body text* "Equipped with a 6-speaker DTS audio system, the Emkoo utilizes advanced sound tuning and signal processing to produce clear highs, rich mids, and deep bass for a well-balanced in-cabin listening experience."
+
+Feature 3 *Flexible Seating & Storage"
+
+*body text* "Designed with modular interior architecture, the Emkoo enables flexible seating and storage configurations, allowing seamless transitions between passenger comfort and cargo capacity while maintaining efficient cabin space management."
+
+
+
+Safety 1 "6 SRS Airbag"
+
+Safety 2 "360  Camera With Parking Sensors"
+
+Safety 3 "Safety Cage-Type Bodywork"
+
+
+
+

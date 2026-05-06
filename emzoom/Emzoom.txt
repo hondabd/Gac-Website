@@ -1,0 +1,39 @@
+Exterior 1 "Flying-Mecha Front Face Design"
+
+Exterior 2 "Beaming-Eye LED Headlights"
+
+Exterior 3 "Glowing Dart LED Taillights"
+
+
+
+Interior 1 "Spacious Cockpit"
+
+Interior 2 "Sunroof  With Electric Sunshade "
+
+Interior 3 "Multifunction Steering Wheel"
+
+
+
+Feature 1 *Headline* "10.25” Touchscreen Display" 
+
+*body text* "Emzoom features a 10.25" multifunctional touchscreen powered by an 8-core chipset, delivering fast processing speeds, high-resolution visuals & seamless control of infotainment and vehicle functions through a centralized digital interface"
+
+Feature 2 *Headline* "DTS Sound System" 
+
+*body text* "Equipped with a 6-speaker DTS audio system, the Emzoom utilizes advanced sound tuning and signal processing to produce clear highs, rich mids, and deep bass for a well-balanced in-cabin listening experience."
+
+Feature 3 *Spacious Cabin Design"
+
+*body text* "Emzoom’s intelligently designed cabin maximizes interior space with a wide-body layout and optimized seating geometry, ensuring generous legroom, balanced proportions, and efficient space utilization for both passengers and everyday practicality."
+
+
+
+Safety 1 "Dual, Front & Side Curtain Airbags"
+
+Safety 2 "Surround View Camera System"
+
+Safety 3 "High Strength Car Body Structure"
+
+
+
+

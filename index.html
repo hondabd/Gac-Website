@@ -189,18 +189,20 @@
     ════════════════════════════ */
     .dark-section {
       width: 100%;
-      /* height matches roughly ~75% of the hero height */
-      height: 0;
-      padding-bottom: 30%; /* will be set to auto height via JS */
+      background: #000;
+      line-height: 0;
+    }
+    .video-wrap {
       position: relative;
-      overflow: hidden;
-      background:
-        radial-gradient(ellipse 80% 40% at 50% 55%,
-          #3a2800 0%,
-          #1a1000 35%,
-          #060606 65%,
-          #000000 100%
-        );
+      width: 100%;
+      padding-bottom: 56.25%; /* 16:9 */
+    }
+    .video-wrap iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
     }
     .dark-inner {
       position: absolute;
@@ -435,25 +437,14 @@
 
 
 <!-- ══════════════════════════════════
-     DARK / AERIAL SECTION
-     Height = ~75% of hero height (set by JS)
+     TVC VIDEO SECTION
 ══════════════════════════════════ -->
 <section class="dark-section" id="darkSection">
-  <div class="dark-inner">
-    <!-- Aerial top-down car silhouette -->
-    <svg viewBox="0 0 58 116" width="46" fill="none" style="opacity:0.55; position:relative; z-index:2;">
-      <rect x="11" y="5" width="36" height="106" rx="8" fill="#1c1c1c" stroke="#2e2e2e" stroke-width="1.2"/>
-      <rect x="15" y="16" width="28" height="20" rx="3" fill="#222" stroke="#333" stroke-width="0.6"/>
-      <rect x="15" y="82" width="28" height="16" rx="3" fill="#222" stroke="#333" stroke-width="0.6"/>
-      <rect x="17" y="36" width="24" height="44" rx="2" fill="#1e1e1e"/>
-      <line x1="29" y1="36" x2="29" y2="80" stroke="#2a2a2a" stroke-width="1"/>
-      <rect x="2"  y="14" width="11" height="15" rx="3" fill="#101010" stroke="#1e1e1e" stroke-width="0.5"/>
-      <rect x="45" y="14" width="11" height="15" rx="3" fill="#101010" stroke="#1e1e1e" stroke-width="0.5"/>
-      <rect x="2"  y="87" width="11" height="15" rx="3" fill="#101010" stroke="#1e1e1e" stroke-width="0.5"/>
-      <rect x="45" y="87" width="11" height="15" rx="3" fill="#101010" stroke="#1e1e1e" stroke-width="0.5"/>
-      <rect x="13" y="6"  width="32" height="7"  rx="2" fill="#1a1a1a" stroke="#2e2e2e" stroke-width="0.5"/>
-    </svg>
-  </div>
+  <video
+    autoplay muted loop playsinline
+    style="width:100%; height:auto; display:block;">
+    <source src="TVC.mp4" type="video/mp4" />
+  </video>
 </section>
 
 
@@ -724,17 +715,6 @@
     }, true);
   })();
 
-  /* ── Dark section: height = 75% of hero height ── */
-  function setDarkHeight() {
-    const heroH = document.getElementById('heroSection').offsetHeight;
-    document.getElementById('darkSection').style.paddingBottom = '0';
-    document.getElementById('darkSection').style.height = Math.round(heroH * 0.75) + 'px';
-  }
-  /* Run after images likely loaded */
-  window.addEventListener('load', setDarkHeight);
-  window.addEventListener('resize', setDarkHeight);
-  /* Also run shortly after DOM ready in case load fires late */
-  setTimeout(setDarkHeight, 800);
 </script>
 
 </body>

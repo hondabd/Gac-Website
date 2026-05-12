@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us — GAC Motor Bangladesh</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body { font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; background: #fff; color: #333; overflow-x: hidden; }
+
+    /* ══ NAVBAR ══ */
+    .navbar { position: sticky; top: 0; z-index: 1000; background: #fff; border-bottom: 1px solid #e5e5e5; box-shadow: 0 1px 6px rgba(0,0,0,0.07); }
+    .navbar-inner { max-width: 1200px; margin: 0 auto; padding: 0 28px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo img { height: 38px; width: auto; display: block; }
+    .nav-links { display: flex; align-items: center; gap: 38px; list-style: none; margin: 0; padding: 0; }
+    .nav-links > li { position: relative; }
+    .nav-links > li > a { font-size: 12px; font-weight: 700; color: #333; text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; display: flex; align-items: center; gap: 4px; padding: 4px 0; }
+    .nav-links > li > a:hover, .nav-links > li > a.active { color: #e63946; }
+    .dropdown { display: none; position: absolute; top: calc(100% + 4px); left: -16px; background: #fff; border: 1px solid #eee; box-shadow: 0 6px 20px rgba(0,0,0,0.10); min-width: 160px; z-index: 500; padding: 6px 0; }
+    .dropdown a { display: block; padding: 9px 20px; font-size: 13px; font-weight: 500; color: #444; text-decoration: none; }
+    .dropdown a:hover { color: #e63946; background: #fafafa; }
+    .nav-links > li.open .dropdown { display: block; }
+    .btn-book { background: #e63946; color: #fff; font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; padding: 11px 22px; border: none; cursor: pointer; text-decoration: none; white-space: nowrap; display: inline-block; }
+    .btn-book:hover { background: #c8222f; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: #333; border-radius: 2px; }
+
+    /* ══ SCROLL REVEAL — mirrors Framer Motion config ══
+       opacity:0 y:40 → opacity:1 y:0 | 0.7s easeOut | once:true */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .d1 { transition-delay: 0.10s; }
+    .d2 { transition-delay: 0.20s; }
+    .d3 { transition-delay: 0.30s; }
+    .d4 { transition-delay: 0.40s; }
+    .d5 { transition-delay: 0.50s; }
+
+    /* ══ HERO ══ */
+    .hero {
+      position: relative;
+      height: 380px;
+      overflow: hidden;
+      background: #0a1520;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center;
+      opacity: 0.45;
+    }
+    /* Animated red diagonal lines */
+    .hero-lines {
+      position: absolute; inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .hero-lines::before,
+    .hero-lines::after {
+      content: '';
+      position: absolute;
+      width: 200%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent 0%, #e63946 40%, #ff6b6b 60%, transparent 100%);
+      opacity: 0.7;
+      animation: lineSweep 3s ease-in-out infinite;
+    }
+    .hero-lines::before { top: 38%; transform: rotate(-8deg); animation-delay: 0s; }
+    .hero-lines::after  { top: 52%; transform: rotate(-8deg); animation-delay: 0.4s; }
+    @keyframes lineSweep {
+      0%   { transform: rotate(-8deg) translateX(-60%); opacity: 0; }
+      20%  { opacity: 0.8; }
+      80%  { opacity: 0.8; }
+      100% { transform: rotate(-8deg) translateX(10%); opacity: 0; }
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      height: 100%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-title {
+      color: #fff;
+      font-size: 52px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin: 0;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+    }
+
+    /* ══ SHARED ══ */
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 0 48px; }
+    .section-tag {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.18em;
+      text-transform: uppercase; color: #e63946; margin-bottom: 10px;
+    }
+    .section-heading {
+      font-size: 26px; font-weight: 700; color: #111;
+      letter-spacing: 0.01em; margin: 0 0 20px;
+    }
+    .section-heading.center { text-align: center; }
+    .body-text {
+      font-size: 15px; color: #444; line-height: 1.9; font-weight: 400;
+    }
+    .body-text p { margin: 0 0 20px; }
+    .body-text p:last-child { margin: 0; }
+    hr.section-divider { border: none; border-top: 1px solid #ebebeb; margin: 0; }
+
+    /* ══ INTRO ══ */
+    .intro-section {
+      padding: 80px 0 0;
+      background:
+        linear-gradient(to bottom, #fff 20%, rgba(255,255,255,0.85) 52%, rgba(255,255,255,0) 78%),
+        url('About us/Introduction about GAC background image.jpg') center bottom / cover no-repeat;
+      min-height: 680px;
+    }
+    .intro-section .section-heading {
+      text-align: center;
+      margin-bottom: 36px;
+      font-size: 32px;
+    }
+    .intro-text {
+      max-width: 860px;
+      margin: 0 auto;
+      text-align: justify;
+      padding-bottom: 200px;
+    }
+
+    /* ══ STATS ══ */
+    .stats-section { padding: 48px 0; background: #fff; border-top: 1px solid #ebebeb; border-bottom: 1px solid #ebebeb; }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      max-width: 1100px; margin: 0 auto; padding: 0 48px;
+    }
+    .stat-block {
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center; padding: 36px 24px;
+      border-right: 1px solid #e8e8e8;
+    }
+    .stat-block:last-child { border-right: none; }
+    .stat-icon { width: 80px; height: 80px; margin-bottom: 20px; }
+    .stat-icon img { width: 100%; height: 100%; object-fit: contain; }
+    .stat-label {
+      font-size: 13px; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: #e63946; margin-bottom: 12px;
+    }
+    .stat-values { font-size: 14px; color: #444; line-height: 1.8; font-weight: 500; }
+    .stat-values strong { font-size: 14px; font-weight: 800; color: #111; display: block; }
+
+    /* ══ ABOUT LOCAL ══ */
+    .about-local { padding: 72px 0; }
+    .about-local .section-heading { text-align: center; margin-bottom: 28px; font-size: 32px; }
+    .about-local-text { max-width: 860px; margin: 0 auto; text-align: justify; }
+
+    /* ══ CITY BANNER ══ */
+    .city-banner { line-height: 0; }
+    .city-banner img { width: 100%; height: 400px; object-fit: cover; display: block; }
+
+    /* ══ BRAND ROWS (Group Brand / Investment / Vision) ══ */
+    .brand-section { padding: 80px 0; }
+    .brand-section:nth-child(even) { background: #f9f9f9; }
+    .brand-row {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 72px; align-items: center;
+      max-width: 1100px; margin: 0 auto; padding: 0 48px;
+    }
+    .brand-row.reverse .brand-img { order: -1; }
+    .brand-img { overflow: hidden; border-radius: 4px; }
+    .brand-img img { width: 100%; height: 340px; object-fit: cover; display: block; }
+    .section-heading { font-size: 30px; font-weight: 700; color: #111; margin: 0 0 16px; letter-spacing: 0.01em; }
+    .brand-sub {
+      font-size: 15px; font-weight: 700; color: #111;
+      letter-spacing: 0.01em; margin-bottom: 16px;
+    }
+
+    /* ══ PHILOSOPHY ══ */
+    .philosophy-section { padding: 80px 0; background: #fff; }
+    .philosophy-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 48px; margin-top: 48px;
+    }
+    .philosophy-item { display: flex; flex-direction: column; align-items: center; text-align: center; }
+    .philosophy-icon { width: 88px; height: 88px; margin-bottom: 20px; }
+    .philosophy-icon img { width: 100%; height: 100%; object-fit: contain; }
+    .philosophy-name { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #111; margin-bottom: 10px; }
+    .philosophy-desc { font-size: 12.5px; color: #777; line-height: 1.75; }
+
+    /* ══ DEVELOPMENT PLAN e-TIME ══ */
+    .dev-section {
+      padding: 80px 0 72px;
+      background: #f9f9f9;
+      position: relative;
+      overflow: hidden;
+    }
+    /* Globe image absolutely behind letters */
+    .dev-globe {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -42%);
+      width: 68%; height: auto;
+      opacity: 0.13;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .dev-intro { max-width: 720px; margin: 0 auto; text-align: center; font-size: 15px; color: #666; line-height: 1.8; margin-bottom: 56px; position: relative; z-index: 2; }
+    .dev-letters {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      width: 100%;
+      padding: 20px 120px 0;
+      position: relative;
+      z-index: 2;
+    }
+    .dev-col { display: flex; flex-direction: column; align-items: center; }
+    .dl {
+      font-size: 140px;
+      font-weight: 200;
+      color: #e63946;
+      line-height: 1;
+      letter-spacing: -0.01em;
+    }
+    .dl.e {
+      font-size: 140px;
+      font-style: italic;
+      font-weight: 200;
+      color: #e63946;
+    }
+    .dw {
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #111;
+      margin-top: 16px;
+    }
+    .dev-desc { max-width: 720px; margin: 40px auto 0; text-align: center; font-size: 14px; color: #666; line-height: 1.85; padding: 0 40px; position: relative; z-index: 2; }
+
+    /* ══ GLASS ══ */
+    .glass-section { position: relative; min-height: 88vh; overflow: hidden; display: flex; align-items: center; }
+    .glass-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+    .glass-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.28); }
+    .glass-inner {
+      position: relative; z-index: 2;
+      width: 100%;
+      color: #fff;
+      padding: 80px 0 60px;
+    }
+    .glass-top { text-align: center; margin-bottom: 64px; padding: 0 48px; }
+    .glass-eyebrow { font-size: 14px; font-weight: 400; letter-spacing: 0.06em; color: rgba(255,255,255,0.85); margin-bottom: 12px; }
+    .glass-title { font-size: 38px; font-weight: 600; letter-spacing: 0.01em; margin: 0; color: #fff; }
+    .glass-letters {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      width: 100%;
+      padding: 0 80px;
+    }
+    .gl-col { display: flex; flex-direction: column; align-items: center; }
+    .gl { font-size: 140px; font-weight: 200; line-height: 1; color: #fff; }
+    .gw { font-size: 10.5px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.9); margin-top: 16px; }
+
+    /* ══ VISION 2035 ══ */
+    .vision-section { position: relative; padding: 80px 0 90px; overflow: hidden; }
+    .vision-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+    .vision-overlay { position: absolute; inset: 0; background: rgba(255,255,255,0.40); }
+    .vision-inner { position: relative; z-index: 2; max-width: 660px; margin: 0; padding: 0 0 0 200px; }
+    .vision-heading { font-size: 44px; font-weight: 600; color: #111; margin: 0 0 24px; letter-spacing: 0.01em; }
+    .vision-para { font-size: 16px; color: #222; line-height: 1.85; text-align: justify; margin-bottom: 48px; font-weight: 400; }
+    .vision-stats { display: flex; flex-direction: column; gap: 32px; }
+    .vs-row { display: flex; align-items: center; gap: 22px; }
+    .vs-num { font-size: 88px; font-weight: 700; color: #e63946; line-height: 1; flex-shrink: 0; }
+    .vs-label { font-size: 20px; font-weight: 500; color: #111; }
+
+    /* ══ FOOTER ══ */
+    .footer-link { display: block; font-size: 12px; color: #666; text-decoration: none; line-height: 2.2; }
+    .footer-link:hover { color: #e63946; }
+
+    /* ══ MOBILE ══ */
+    @media (max-width: 768px) {
+      .hamburger { display: flex; }
+      .nav-links { display: none; position: absolute; top: 64px; left: 0; right: 0; background: #fff; flex-direction: column; gap: 0; padding: 8px 0 16px; border-bottom: 1px solid #e5e5e5; box-shadow: 0 6px 16px rgba(0,0,0,0.08); z-index: 999; }
+      .nav-links.open { display: flex; }
+      .nav-links > li > a { padding: 13px 24px; }
+      .btn-book { display: none; }
+      .dropdown { position: static; box-shadow: none; border: none; border-top: 1px solid #f0f0f0; }
+      .nav-links > li.open .dropdown { display: block; }
+      .dropdown a { padding: 9px 36px; color: #777; }
+
+      .hero { height: 240px; }
+      .hero-title { font-size: 30px; }
+      .wrap { padding: 0 20px; }
+      .intro-section { padding: 48px 0 36px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); padding: 0 16px; }
+      .stat-block { border-right: none; border-bottom: 1px solid #e8e8e8; }
+      .about-local { padding: 48px 0; }
+      .city-banner img { height: 220px; }
+      .brand-row, .brand-row.reverse { grid-template-columns: 1fr; gap: 28px; padding: 0 20px; }
+      .brand-row.reverse .brand-img { order: 0; }
+      .brand-img img { height: 220px; }
+      .philosophy-grid { grid-template-columns: 1fr; gap: 36px; }
+      .dev-letters { padding: 0 16px; }
+      .dl { font-size: 48px; }
+      .dl.e { font-size: 48px; }
+      .dw { font-size: 7.5px; }
+      .glass-section { min-height: 60vh; }
+      .glass-title { font-size: 24px; }
+      .glass-letters { padding: 0 20px; }
+      .gl { font-size: 48px; }
+      .gw { font-size: 7.5px; letter-spacing: 0.1em; }
+      .vision-section { padding: 52px 0; }
+      .vision-inner { padding: 0 20px; max-width: 100%; }
+      .vs-num { font-size: 60px; }
+      .vs-label { font-size: 16px; }
+      .vision-heading { font-size: 32px; }
+      .vision-para { font-size: 14px; }
+    }
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .wrap { padding: 0 28px; }
+      .brand-row { gap: 36px; padding: 0 28px; }
+      .stats-grid { padding: 0 28px; }
+      .dl { font-size: 76px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ NAVBAR ══ -->
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="nav-logo"><img src="logo.png" alt="GAC Motor" /></a>
+    <ul class="nav-links">
+      <li><a href="about.html" class="active">About Us</a></li>
+      <li>
+        <a href="#">Models <svg width="8" height="5" viewBox="0 0 8 5" fill="currentColor"><path d="M0 0l4 5 4-5z"/></svg></a>
+        <div class="dropdown">
+          <a href="aion-v.html">Aion V</a>
+          <a href="aion-y.html">Aion Y</a>
+          <a href="e9.html">E9</a>
+          <a href="emkoo.html">Emkoo</a>
+          <a href="emzoom.html">Emzoom</a>
+        </div>
+      </li>
+      <li><a href="contact.html">Contact Us</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    <a href="book-a-test-drive.html" class="btn-book">Book A Test Drive</a>
+  </div>
+</nav>
+
+
+<!-- ══ HERO ══ -->
+<div class="hero">
+  <img class="hero-bg" src="About us/group-banner.png" alt="GAC Motor Bangladesh" />
+  <div class="hero-lines"></div>
+  <div class="hero-content">
+    <h1 class="hero-title">About Us</h1>
+  </div>
+</div>
+
+
+<!-- ══ INTRODUCTION ══ -->
+<section class="intro-section">
+  <div class="wrap">
+    <h2 class="section-heading center reveal">Introduction about GAC</h2>
+    <div class="intro-text body-text reveal">
+      <p>Guangzhou Automobile Group Co., Ltd. (GAC Group) was founded in June 1997 and is headquartered in Guangzhou. As of 2023, it ranks among the world's top 500 enterprises, successfully expanding to 40+ countries across the Middle East, Southeast Asia, Eastern Europe, Africa, and the Americas.</p>
+      <p>GAC is devoted to the production and sales of world-class vehicles, engines, auto parts, and accessories, as well as R&D of automobile engineering technology. Since its establishment, GAC has adopted a global vision and adhered to international standards, forming a world-leading manufacturing system encompassing GAC global production procedures, world-class production processes, and global supply chain systems.</p>
+      <p>GAC has nearly 30 years of experience collaborating with major brands in the automotive industry. Through this collaboration, GAC developed assembly plants in China, continuously enhancing product quality and improving production processes while expanding its product portfolio.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ STATS ══ -->
+<section class="stats-section">
+  <div class="stats-grid">
+    <div class="stat-block reveal d1">
+      <div class="stat-icon"><img src="About us/core-parts.svg" alt="Core Parts" /></div>
+      <div class="stat-label">Core Parts</div>
+      <div class="stat-values">R&D · Vehicle · Parts &amp; Components<br>Trade · Finance · Mobility</div>
+    </div>
+    <div class="stat-block reveal d2">
+      <div class="stat-icon"><img src="About us/performance.svg" alt="Performance" /></div>
+      <div class="stat-label">Performance</div>
+      <div class="stat-values"><strong>3.5M</strong> Production<br><strong>2.67M</strong> Sales</div>
+    </div>
+    <div class="stat-block reveal d3">
+      <div class="stat-icon"><img src="About us/employee.svg" alt="Employees" /></div>
+      <div class="stat-label">Employees</div>
+      <div class="stat-values"><strong>78,400+</strong> Staff<br>Over 800,000 Industry Cabin</div>
+    </div>
+    <div class="stat-block reveal d4">
+      <div class="stat-icon"><img src="About us/fortune.svg" alt="Fortune 500" /></div>
+      <div class="stat-label">Fortune Global 500</div>
+      <div class="stat-values"><strong>Ranked No.88</strong><br>in 2023</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ ABOUT GAC IN BANGLADESH ══ -->
+<section class="about-local">
+  <div class="wrap">
+    <h2 class="section-heading reveal">About GAC in Bangladesh</h2>
+    <div class="about-local-text body-text reveal">
+      <p>GAC entered the Bangladeshi market through its official distributor, DHS Motors Limited, bringing global automotive innovation, intelligent technology, and premium mobility solutions to local customers. Since its debut, GAC Bangladesh has introduced advanced models such as the EMZOOM, EMKOO, E9 PHEV, AION V, and AION Y, combining bold design, smart features, everyday practicality, and electric mobility for modern Bangladeshi drivers.</p>
+      <p>Backed by DHS Motors' growing sales and aftersales network, GAC Bangladesh is committed to delivering vehicles that suit the evolving lifestyles of Bangladeshi customers. With strong warranty support, customer-focused services, and a future-ready line-up of SUVs, MPVs, and electric vehicles, GAC continues to shape a smarter and more connected driving experience in Bangladesh.</p>
+      <p>With a focus on quality, innovation, safety, and reliability, GAC Bangladesh aims to redefine the future of mobility and establish itself as one of the country's leading modern automotive brands.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ GROUP BRAND ══ -->
+<section class="brand-section" style="background:#fff;">
+  <div class="brand-row">
+    <div>
+      <h2 class="section-heading reveal">Group Brand</h2>
+      <p class="brand-sub reveal">What Is The Soul Of An Enterprise?</p>
+      <div class="body-text reveal">
+        <p>It is this unwavering commitment to creating high-quality products and the ambition to surpass, to exceed BMW, MINI, lean closely into people's needs, GAC, unfolds continuously in the minds of its customers, and through its technology, it sets up its most authentic image — to sincerely serve every one of you.</p>
+      </div>
+    </div>
+    <div class="brand-img reveal d2">
+      <img src="About us/group-brand-1.jpg" alt="GAC Group Brand" />
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ INVESTMENT STRUCTURE ══ -->
+<section class="brand-section" style="background:#f9f9f9;">
+  <div class="brand-row reverse">
+    <div>
+      <h2 class="section-heading reveal">Investment Structure</h2>
+      <p class="brand-sub reveal">An All-in-One Automotive Group</p>
+      <div class="body-text reveal">
+        <p>GAC Group's investment structure spans seven key sectors: Research &amp; Development, Vehicle, Parts, Energy &amp; Ecology, Internationalisation, Commerce &amp; Transportation, and Investment &amp; Finance. This integrated ecosystem not only strengthens GAC's core automotive capabilities but also enables sustainable growth and innovation across the entire value chain.</p>
+      </div>
+    </div>
+    <div class="brand-img reveal d2">
+      <img src="About us/group-brand-2.png" alt="GAC Investment Structure" />
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ OUR VISION ══ -->
+<section class="brand-section" style="background:#fff;">
+  <div class="brand-row">
+    <div>
+      <h2 class="section-heading reveal">Our Vision</h2>
+      <p class="brand-sub reveal">To Become a World-Class Enterprise by 2030</p>
+      <div class="body-text reveal">
+        <p>Looking ahead, GAC has set a bold development goal and mission: to achieve over 5.78 million vehicles in production and sales, attain revenue exceeding 600 billion yuan, and build a world-class enterprise that embodies global influence, leading innovation, and modern governance. GAC is committed to becoming a world-class technology enterprise by 2030.</p>
+      </div>
+    </div>
+    <div class="brand-img reveal d2">
+      <img src="About us/group-brand-3.png" alt="Our Vision" />
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ PRODUCING PHILOSOPHY ══ -->
+<section class="philosophy-section" style="background:#f9f9f9;">
+  <div class="wrap">
+    <h2 class="section-heading center reveal">Producing Philosophy</h2>
+    <p class="body-text reveal" style="text-align:center;max-width:760px;margin:0 auto;">
+      Integrate Japanese production methods for the purpose of eliminating waste and reducing costs to enhance the competitiveness of the enterprise. The lean management model focuses on customer satisfaction, error-free production, and continuous improvement — integrating local culture to create a five-star, high-quality and high-efficiency working method.
+    </p>
+    <div class="philosophy-grid">
+      <div class="philosophy-item reveal d1">
+        <div class="philosophy-icon"><img src="About us/japanese-production-methods.png" alt="Japanese Production Methods" /></div>
+        <div class="philosophy-name">Japanese Production Methods</div>
+        <div class="philosophy-desc">Adopting world-class lean manufacturing practices to eliminate waste and optimise every production step for maximum efficiency.</div>
+      </div>
+      <div class="philosophy-item reveal d2">
+        <div class="philosophy-icon"><img src="About us/japanese-lean-management.png" alt="Japanese Lean Management" /></div>
+        <div class="philosophy-name">Japanese Lean Management</div>
+        <div class="philosophy-desc">Implementing lean principles focused on customer satisfaction, zero-defect production, and continuous improvement across all departments.</div>
+      </div>
+      <div class="philosophy-item reveal d3">
+        <div class="philosophy-icon"><img src="About us/local-culture.png" alt="Local Culture" /></div>
+        <div class="philosophy-name">Local Culture Integration</div>
+        <div class="philosophy-desc">Fully realising local potential through easier operations and thorough waste elimination — building a high-performance, people-first culture.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ DEVELOPMENT PLAN e-TIME ══ -->
+<section class="dev-section">
+  <!-- Globe background as img so SVG renders reliably -->
+  <img class="dev-globe" src="About us/global-map (1).svg" alt="" aria-hidden="true" />
+
+  <div class="wrap" style="position:relative;z-index:2;">
+    <h2 class="section-heading center reveal">Development Plan</h2>
+    <p class="dev-intro reveal">Faced with the transformation and upgrading in the automobile industry, GAC Group is transforming itself into a technology-based enterprise and launching the e-TIME action plan.</p>
+  </div>
+
+  <div class="dev-letters">
+    <div class="dev-col reveal">
+      <div class="dl e">e</div>
+      <div class="dw">Experience</div>
+    </div>
+    <div class="dev-col reveal d1">
+      <div class="dl">T</div>
+      <div class="dw">Technology</div>
+    </div>
+    <div class="dev-col reveal d2">
+      <div class="dl">I</div>
+      <div class="dw">Intelligent</div>
+    </div>
+    <div class="dev-col reveal d3">
+      <div class="dl">M</div>
+      <div class="dw">Manufacture</div>
+    </div>
+    <div class="dev-col reveal d4">
+      <div class="dl">E</div>
+      <div class="dw">Electrification</div>
+    </div>
+  </div>
+
+  <p class="dev-desc reveal">This is the action taken by GAC based on the current situation, focused on customer experience and oriented to future high-quality development, and also an important measure to implement the 13th five-year plan, and the medium- to long-term development strategy.</p>
+</section>
+
+
+<!-- ══ GREEN CLEAN PROJECT GLASS ══ -->
+<section class="glass-section">
+  <img class="glass-bg" src="About us/green-clean-project1.jpg" alt="Green Clean Project" />
+  <div class="glass-overlay"></div>
+  <div class="glass-inner">
+    <div class="glass-top">
+      <h2 class="glass-title reveal">Green Clean Project GLASS</h2>
+      <p class="glass-eyebrow reveal">Green and Low-carbon for Achieving Sustainable Success</p>
+    </div>
+    <div class="glass-letters">
+      <div class="gl-col reveal d1"><div class="gl">G</div><div class="gw">Green</div></div>
+      <div class="gl-col reveal d2"><div class="gl">L</div><div class="gw">Low-Carbon</div></div>
+      <div class="gl-col reveal d3"><div class="gl">A</div><div class="gw">Achieving</div></div>
+      <div class="gl-col reveal d4"><div class="gl">S</div><div class="gw">Sustainable</div></div>
+      <div class="gl-col reveal d5"><div class="gl">S</div><div class="gw">Success</div></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ VISION 2035 ══ -->
+<section class="vision-section">
+  <img class="vision-bg" src="About us/group-vision-bg.png" alt="Vision 2035" />
+  <div class="vision-overlay"></div>
+  <div class="vision-inner">
+    <h2 class="vision-heading reveal">Vision of 2035</h2>
+    <p class="vision-para reveal">GAC Group aims to build a world-class enterprise with global competitiveness, embodying client trust, ensuring staff well-being, and delivering to stakeholders. We will achieve the production and sales volume of over 5 million vehicles with revenue exceeding 1 trillion yuan, continuing toward our people-based philosophy of sustainable development.</p>
+    <div class="vision-stats">
+      <div class="vs-row reveal d1">
+        <div class="vs-num">5</div>
+        <div class="vs-label">Production and Sales (Million vehicles)</div>
+      </div>
+      <div class="vs-row reveal d2">
+        <div class="vs-num">1,000</div>
+        <div class="vs-label">Revenue (Billion yuan)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ FOOTER ══ -->
+<footer style="background:#fff;border-top:1px solid #e8e8e8;padding:48px 28px 28px;">
+  <div style="max-width:980px;margin:0 auto;display:grid;grid-template-columns:1.2fr 0.85fr 1fr;gap:36px;align-items:start;">
+    <div>
+      <div style="margin-bottom:16px;"><img src="logo.png" alt="GAC Motor" style="height:28px;width:auto;" /></div>
+      <p style="font-size:11.5px;color:#666;line-height:1.8;max-width:230px;">The Guangzhou Automobile Group Co., Ltd. (GAC) is currently a Fortune 500 company. GAC Motor Bangladesh is the authorized importer and distributor of GAC vehicles in Bangladesh.</p>
+    </div>
+    <div>
+      <h4 style="font-size:12.5px;font-weight:700;color:#222;letter-spacing:0.05em;margin:0 0 16px;">Quick Links</h4>
+      <a href="index.html" class="footer-link">Home</a>
+      <a href="about.html" class="footer-link">About Us</a>
+      <a href="aion-v.html" class="footer-link">Aion V</a>
+      <a href="aion-y.html" class="footer-link">Aion Y</a>
+      <a href="e9.html" class="footer-link">E9</a>
+      <a href="emkoo.html" class="footer-link">Emkoo</a>
+      <a href="emzoom.html" class="footer-link">Emzoom</a>
+    </div>
+    <div>
+      <input type="email" placeholder="Enter Your Email" style="width:100%;border:1px solid #ddd;padding:10px 12px;font-size:11px;font-family:'Montserrat',sans-serif;color:#999;outline:none;display:block;margin-bottom:22px;" />
+      <h4 style="font-size:12.5px;font-weight:700;color:#222;letter-spacing:0.05em;margin:0 0 12px;">Follow Us</h4>
+      <div style="display:flex;gap:10px;">
+        <a href="https://www.facebook.com/gacbangladesh" target="_blank" style="width:32px;height:32px;border-radius:50%;background:#3b5998;display:flex;align-items:center;justify-content:center;color:#fff;text-decoration:none;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+        </a>
+        <a href="#" target="_blank" style="width:32px;height:32px;border-radius:50%;background:#e63946;display:flex;align-items:center;justify-content:center;color:#fff;text-decoration:none;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 001.46 6.42 29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.54C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.96A29 29 0 0023 12a29 29 0 00-.46-5.58zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div style="max-width:980px;margin:28px auto 0;padding-top:16px;border-top:1px solid #efefef;text-align:center;font-size:11px;color:#aaa;">
+    © 2026 GAC Motor Bangladesh. All rights reserved.
+  </div>
+</footer>
+
+
+<script>
+/* Hamburger */
+document.getElementById('hamburger').addEventListener('click', () => {
+  document.querySelector('.nav-links').classList.toggle('open');
+});
+
+/* Dropdown hover */
+document.querySelectorAll('.nav-links > li').forEach(li => {
+  if (!li.querySelector('.dropdown')) return;
+  let t;
+  li.addEventListener('mouseenter', () => { clearTimeout(t); li.classList.add('open'); });
+  li.addEventListener('mouseleave', () => { t = setTimeout(() => li.classList.remove('open'), 150); });
+});
+
+/* ── Scroll Reveal — Framer Motion equivalent ──
+   opacity:0 y:40 → opacity:1 y:0 | 0.7s easeOut | once:true  */
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.18 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

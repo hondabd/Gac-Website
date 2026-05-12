@@ -155,6 +155,18 @@
       .tech-inner { padding: 0 28px; }
       .ext-gallery-section { padding: 32px 32px 40px; }
     }
+    /* ══ SCROLL REVEAL ══ */
+    .sr { opacity: 0; transform: translateY(32px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; will-change: opacity, transform; }
+    .sr.sr-left  { transform: translateX(-44px); }
+    .sr.sr-right { transform: translateX(44px); }
+    .sr.sr-scale { transform: scale(0.95) translateY(12px); }
+    .sr.in-view  { opacity: 1 !important; transform: translateY(0) translateX(0) scale(1) !important; }
+    .sr.sr-d1 { transition-delay: 0.06s; }
+    .sr.sr-d2 { transition-delay: 0.12s; }
+    .sr.sr-d3 { transition-delay: 0.20s; }
+    .sr.sr-d4 { transition-delay: 0.28s; }
+    @media (prefers-reduced-motion: reduce) { .sr { opacity: 1 !important; transform: none !important; transition: none !important; } }
+    @media (max-width: 768px) { .sr.sr-left, .sr.sr-right { transform: translateY(20px); } }
   </style>
 </head>
 <body>
@@ -164,7 +176,7 @@
   <div class="navbar-inner">
     <a href="index.html" class="nav-logo"><img src="logo.png" alt="GAC Motor" /></a>
     <ul class="nav-links">
-      <li><a href="#">About Us</a></li>
+      <li><a href="about.html">About Us</a></li>
       <li>
         <a href="#">Models <svg width="8" height="5" viewBox="0 0 8 5" fill="currentColor"><path d="M0 0l4 5 4-5z"/></svg></a>
         <div class="dropdown">
@@ -175,7 +187,7 @@
           <a href="emzoom.html">Emzoom</a>
         </div>
       </li>
-      <li><a href="#">Contact Us</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
     </ul>
     <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
     <a href="book-a-test-drive.html" class="btn-book">Book A Test Drive</a>
@@ -200,19 +212,18 @@
 ══════════════════════════ -->
 <div id="tab-exterior" class="tab-panel active">
 
-  <!-- IMAGE SLOTS: Exterior 1 (large left), exterior 2 (top right), exterior 3 (bottom right) -->
   <div class="ext-gallery-section">
-    <div class="ext-gallery" style="height:420px;">
+    <div class="ext-gallery sr sr-scale" style="height:420px;">
       <div class="ext-gallery-left">
         <img src="Aion y/Exterior 1.png" alt='AION 19" Rim' />
         <div class="gallery-caption">AION 19" Rim</div>
       </div>
       <div class="ext-gallery-right">
-        <div>
+        <div class="sr sr-right sr-d1">
           <img src="Aion y/exterior 2.png" alt="Angel Wing LED Headlights" />
           <div class="gallery-caption">Angel Wing LED Headlights</div>
         </div>
-        <div>
+        <div class="sr sr-right sr-d2">
           <img src="Aion y/exterior 3.png" alt="Skyline Connected LED Taillight" />
           <div class="gallery-caption">Skyline Connected LED Taillight</div>
         </div>
@@ -228,19 +239,18 @@
 ══════════════════════════ -->
 <div id="tab-interior" class="tab-panel">
 
-  <!-- IMAGE SLOTS: interior 1 (large left), interior 2 (top right), interior 3 (bottom right) -->
   <div class="ext-gallery-section">
-    <div class="ext-gallery" style="height:420px;">
+    <div class="ext-gallery sr sr-scale" style="height:420px;">
       <div class="ext-gallery-left">
         <img src="Aion y/interior 1.png" alt="Sunroof With Electric Sunshade" />
         <div class="gallery-caption">Sunroof With Electric Sunshade</div>
       </div>
       <div class="ext-gallery-right">
-        <div>
+        <div class="sr sr-right sr-d1">
           <img src="Aion y/interior 2.png" alt="Spacious Cockpit Blends Comfort with Innovation" />
           <div class="gallery-caption">Spacious Cockpit Blends Comfort with Innovation</div>
         </div>
-        <div>
+        <div class="sr sr-right sr-d2">
           <img src="Aion y/interior 3.png" alt="Multiple Compartment with Wireless Charging" />
           <div class="gallery-caption">Multiple Compartment with Wireless Charging</div>
         </div>
@@ -251,33 +261,28 @@
 </div><!-- /interior -->
 
 
-<!-- ══════════════════════════
-     COLOUR SELECTOR — always visible
-     IMAGE SLOTS: [model-folder]/Color Section/[Colour Name].png
-     SWATCH SLOTS: [model-folder]/Color Section/[Colour Name] Bubble.png
-══════════════════════════ -->
 <div class="colour-section">
   <div class="colour-inner">
 
-    <div class="colour-info">
+    <div class="colour-info sr sr-left">
       <p class="colour-eyebrow">Design</p>
       <h2 class="colour-heading">Sporty And<br>Elegant Colour<br>Choice For You</h2>
     </div>
 
-    <div class="colour-car-wrap">
+    <div class="colour-car-wrap sr sr-scale">
       <img id="colourCarImg" src="Aion y/Color Section/Glamour Black.png" alt="AION Y Glamour Black" />
     </div>
 
     <ul class="colour-list">
-      <li class="colour-item active" data-img="Aion y/Color Section/Glamour Black.png" data-name="Glamour Black">
+      <li class="colour-item active sr" data-img="Aion y/Color Section/Glamour Black.png" data-name="Glamour Black">
         <span class="colour-name">Glamour Black</span>
         <button class="colour-swatch-btn active"><img src="Aion y/Color Section/Glamour Black Bubble.png" alt="Glamour Black" /></button>
       </li>
-      <li class="colour-item" data-img="Aion y/Color Section/Pure White with Black Roof.png" data-name="Pure White with Black Roof">
+      <li class="colour-item sr sr-d1" data-img="Aion y/Color Section/Pure White with Black Roof.png" data-name="Pure White with Black Roof">
         <span class="colour-name">Pure White with Black Roof</span>
         <button class="colour-swatch-btn"><img src="Aion y/Color Section/Pure White with Black Roof Bubble.png" alt="Pure White with Black Roof" /></button>
       </li>
-      <li class="colour-item" data-img="Aion y/Color Section/Quick Silver.png" data-name="Quick Silver">
+      <li class="colour-item sr sr-d2" data-img="Aion y/Color Section/Quick Silver.png" data-name="Quick Silver">
         <span class="colour-name">Quick Silver</span>
         <button class="colour-swatch-btn"><img src="Aion y/Color Section/Quick Silver Bubble.png" alt="Quick Silver" /></button>
       </li>
@@ -287,35 +292,31 @@
 </div>
 
 
-<!-- ══════════════════════════
-     ALL NEW GAC AION Y
-     IMAGE SLOTS: [model-folder]/feature 1/2/3.png
-══════════════════════════ -->
 <section class="all-new">
-  <div class="all-new-header">
+  <div class="all-new-header sr">
     <h2>The All-New GAC AION Y</h2>
   </div>
   <div class="all-new-list">
 
     <div class="all-new-row">
-      <div class="all-new-img"><img src="Aion y/feature 1.png" alt="Lounge-Class Rear Comfort" /></div>
-      <div class="all-new-text">
+      <div class="all-new-img sr sr-left"><img src="Aion y/feature 1.png" alt="Lounge-Class Rear Comfort" /></div>
+      <div class="all-new-text sr sr-right">
         <h3>Lounge-Class Rear Comfort</h3>
         <p>Inside Aion Y, the rear cabin offers lounge-class comfort with exceptional legroom, a fully flat floor, and flexible seating, creating a spacious, open environment designed for effortless relaxation on every drive.</p>
       </div>
     </div>
 
     <div class="all-new-row reverse">
-      <div class="all-new-img"><img src="Aion y/feature 2.png" alt='14.6" Touchscreen Display' /></div>
-      <div class="all-new-text">
+      <div class="all-new-img sr sr-right"><img src="Aion y/feature 2.png" alt='14.6" Touchscreen Display' /></div>
+      <div class="all-new-text sr sr-left">
         <h3>14.6" Touchscreen Display</h3>
         <p>Equipped with a 14.6-inch touchscreen, the Aion Y integrates infotainment, navigation, Apple CarPlay, and voice control into a unified system, delivering responsive interaction, high-resolution visuals, and seamless connectivity within an intelligent digital cockpit.</p>
       </div>
     </div>
 
     <div class="all-new-row">
-      <div class="all-new-img"><img src="Aion y/feature 3.png" alt="Magazine Battery" /></div>
-      <div class="all-new-text">
+      <div class="all-new-img sr sr-left"><img src="Aion y/feature 3.png" alt="Magazine Battery" /></div>
+      <div class="all-new-text sr sr-right">
         <h3>Magazine Battery</h3>
         <p>Aion Y features the Magazine Battery with advanced thermal management and multi-layer cell protection, engineered to resist heat propagation and maintain structural integrity under extreme conditions, ensuring enhanced safety and long-term battery durability.</p>
       </div>
@@ -325,26 +326,22 @@
 </section>
 
 
-<!-- ══════════════════════════
-     TECH ASSURANCE
-     IMAGE SLOTS: [model-folder]/safety 1/2/3.png
-══════════════════════════ -->
 <section class="tech-section">
   <div class="tech-inner">
-    <div class="tech-header">
+    <div class="tech-header sr">
       <p class="eyebrow">Safety &amp; Technology</p>
       <h2 class="section-title">Elevating Drive With Tech Assurance</h2>
     </div>
     <div class="tech-grid">
-      <div class="tech-card">
+      <div class="tech-card sr">
         <div class="tech-card-img"><img src="Aion y/safety 1.png" alt="Automatic Emergency Braking" /></div>
         <div class="tech-card-body"><h3 class="tech-title">Automatic Emergency Braking</h3></div>
       </div>
-      <div class="tech-card">
+      <div class="tech-card sr sr-d1">
         <div class="tech-card-img"><img src="Aion y/safety 2.png" alt="Lane Departure Warning" /></div>
         <div class="tech-card-body"><h3 class="tech-title">Lane Departure Warning</h3></div>
       </div>
-      <div class="tech-card">
+      <div class="tech-card sr sr-d2">
         <div class="tech-card-img"><img src="Aion y/safety 3.png" alt="Adaptive Cruise Control" /></div>
         <div class="tech-card-body"><h3 class="tech-title">Adaptive Cruise Control</h3></div>
       </div>
@@ -354,7 +351,7 @@
 
 
 <!-- ══ BROCHURE ══ -->
-<div class="brochure-section">
+<div class="brochure-section sr sr-scale">
   <p style="font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#999;margin-bottom:12px;">GAC AION Y</p>
   <h2 style="font-size:20px;font-weight:800;color:#111;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:28px;">Download The Brochure</h2>
   <a href="#" class="btn-brochure">Download Brochure</a>
@@ -378,7 +375,7 @@
       <a href="e9.html" class="footer-link">E9</a>
       <a href="emkoo.html" class="footer-link">Emkoo</a>
       <a href="emzoom.html" class="footer-link">Emzoom</a>
-      <a href="#" class="footer-link">Contact Us</a>
+      <a href="contact.html" class="footer-link">Contact Us</a>
     </div>
     <div>
       <input type="email" placeholder="Enter Your Email"
@@ -416,18 +413,32 @@ document.querySelectorAll('.nav-links > li').forEach(li => {
   li.addEventListener('mouseleave', () => { t = setTimeout(() => li.classList.remove('open'), 150); });
 });
 
-/* Tab switching */
+/* ══ Scroll Reveal ══ */
+(function() {
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add("in-view"); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.14, rootMargin: "0px 0px -32px 0px" });
+  document.querySelectorAll(".sr").forEach(el => io.observe(el));
+})();
+
+/* Tab switching — triggers sr animations for newly shown panel */
 document.querySelectorAll('.tab-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     const target = btn.dataset.tab;
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
     document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
     btn.classList.add('active');
-    document.getElementById('tab-' + target).classList.add('active');
+    const panel = document.getElementById('tab-' + target);
+    panel.classList.add('active');
+    setTimeout(() => {
+      panel.querySelectorAll('.sr:not(.in-view)').forEach(el => el.classList.add('in-view'));
+    }, 40);
   });
 });
 
-/* Colour selector */
+/* Colour selector — only touches .colour-item, never .in-view */
 const carImg = document.getElementById('colourCarImg');
 document.querySelectorAll('.colour-item').forEach(item => {
   item.addEventListener('click', () => {

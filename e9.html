@@ -156,6 +156,21 @@
       .tech-inner { padding: 0 28px; }
       .ext-gallery-section { padding: 32px 32px 40px; }
     }
+    /* ══════════════════════════
+       SCROLL REVEAL — creative multi-direction
+    ══════════════════════════ */
+    .sr { opacity: 0; transform: translateY(32px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; will-change: opacity, transform; }
+    .sr.sr-left  { transform: translateX(-44px); }
+    .sr.sr-right { transform: translateX(44px); }
+    .sr.sr-scale { transform: scale(0.95) translateY(12px); }
+    .sr.sr-fade  { transform: none; }
+    .sr.in-view  { opacity: 1 !important; transform: translateY(0) translateX(0) scale(1) !important; }
+    .sr.sr-d1 { transition-delay: 0.06s; }
+    .sr.sr-d2 { transition-delay: 0.12s; }
+    .sr.sr-d3 { transition-delay: 0.20s; }
+    .sr.sr-d4 { transition-delay: 0.28s; }
+    @media (prefers-reduced-motion: reduce) { .sr { opacity: 1 !important; transform: none !important; transition: none !important; } }
+    @media (max-width: 768px) { .sr.sr-left, .sr.sr-right { transform: translateY(20px); } }
   </style>
 </head>
 <body>
@@ -165,7 +180,7 @@
   <div class="navbar-inner">
     <a href="index.html" class="nav-logo"><img src="logo.png" alt="GAC Motor" /></a>
     <ul class="nav-links">
-      <li><a href="#">About Us</a></li>
+      <li><a href="about.html">About Us</a></li>
       <li>
         <a href="#">Models <svg width="8" height="5" viewBox="0 0 8 5" fill="currentColor"><path d="M0 0l4 5 4-5z"/></svg></a>
         <div class="dropdown">
@@ -176,7 +191,7 @@
           <a href="emzoom.html">Emzoom</a>
         </div>
       </li>
-      <li><a href="#">Contact Us</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
     </ul>
     <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
     <a href="book-a-test-drive.html" class="btn-book">Book A Test Drive</a>
@@ -201,17 +216,17 @@
 <div id="tab-exterior" class="tab-panel active">
 
   <div class="ext-gallery-section" style="padding-bottom:14px;">
-    <div class="ext-gallery" style="height:420px;">
+    <div class="ext-gallery sr sr-scale" style="height:420px;">
       <div class="ext-gallery-left">
         <img src="e9/Exterior 1.png" alt="Awakening Eye LED Headlights" />
         <div class="gallery-caption">Awakening Eye LED Headlights</div>
       </div>
       <div class="ext-gallery-right">
-        <div>
+        <div class="sr sr-right sr-d1">
           <img src="e9/Exterior 2.png" alt="Dual-side Electric Sliding Doors" />
           <div class="gallery-caption">Dual-side Electric Sliding Doors</div>
         </div>
-        <div>
+        <div class="sr sr-right sr-d2">
           <img src="e9/Exterior 3.png" alt="Connecting Taillights &amp; Turn Signal Lights" />
           <div class="gallery-caption">Connecting Taillights &amp; Turn Signal Lights</div>
         </div>
@@ -228,17 +243,17 @@
 <div id="tab-interior" class="tab-panel">
 
   <div class="ext-gallery-section" style="padding-bottom:14px;">
-    <div class="ext-gallery" style="height:420px;">
+    <div class="ext-gallery sr sr-scale" style="height:420px;">
       <div class="ext-gallery-left">
         <img src="e9/Interior 1.png" alt="Premium Second-Row Captain Seats" />
         <div class="gallery-caption">Premium Second-Row Captain Seats</div>
       </div>
       <div class="ext-gallery-right">
-        <div>
+        <div class="sr sr-right sr-d1">
           <img src="e9/interior 2.png" alt="Luxury Lounge Cockpit" />
           <div class="gallery-caption">Luxury Lounge Cockpit</div>
         </div>
-        <div>
+        <div class="sr sr-right sr-d2">
           <img src="e9/interior 3.png" alt="Three-zone Automatic AC" />
           <div class="gallery-caption">Three-zone Automatic AC</div>
         </div>
@@ -255,21 +270,21 @@
 <div class="colour-section">
   <div class="colour-inner">
 
-    <div class="colour-info">
+    <div class="colour-info sr sr-left">
       <p class="colour-eyebrow">Design</p>
       <h2 class="colour-heading">Sporty And<br>Elegant Colour<br>Choice For You</h2>
     </div>
 
-    <div class="colour-car-wrap">
+    <div class="colour-car-wrap sr sr-scale">
       <img id="colourCarImg" src="e9/Color Section/black_e9.png" alt="E9 PHEV Classic Black" />
     </div>
 
     <ul class="colour-list">
-      <li class="colour-item active" data-img="e9/Color Section/black_e9.png" data-name="Classic Black">
+      <li class="colour-item active sr" data-img="e9/Color Section/black_e9.png" data-name="Classic Black">
         <span class="colour-name">Classic Black</span>
         <button class="colour-swatch-btn" style="background:#1a1a1a;border-color:#1a1a1a;"></button>
       </li>
-      <li class="colour-item" data-img="e9/Color Section/white_e9.png" data-name="Blade White">
+      <li class="colour-item sr sr-d1" data-img="e9/Color Section/white_e9.png" data-name="Blade White">
         <span class="colour-name">Blade White</span>
         <button class="colour-swatch-btn" style="background:#f0f0f0;"></button>
       </li>
@@ -283,30 +298,30 @@
      ALL NEW GAC E9 PHEV
 ══════════════════════════ -->
 <section class="all-new">
-  <div class="all-new-header">
+  <div class="all-new-header sr">
     <h2>GAC E9 PHEV</h2>
   </div>
   <div class="all-new-list">
 
     <div class="all-new-row">
-      <div class="all-new-img"><img src="e9/Feature 1.png" alt="Touch Screen Seat And Massage Controls" /></div>
-      <div class="all-new-text">
+      <div class="all-new-img sr sr-left"><img src="e9/Feature 1.png" alt="Touch Screen Seat And Massage Controls" /></div>
+      <div class="all-new-text sr sr-right">
         <h3>Touch Screen Seat And Massage Controls</h3>
         <p>An integrated touchscreen control panel provides seamless access to multi-mode massage functions, seat positioning, and comfort adjustments through a responsive digital interface, allowing rear passengers to personalize relaxation settings for a refined executive-class travel experience.</p>
       </div>
     </div>
 
     <div class="all-new-row reverse">
-      <div class="all-new-img"><img src="e9/Feature 2.png" alt="Ceiling-Mounted HD Display" /></div>
-      <div class="all-new-text">
+      <div class="all-new-img sr sr-right"><img src="e9/Feature 2.png" alt="Ceiling-Mounted HD Display" /></div>
+      <div class="all-new-text sr sr-left">
         <h3>Ceiling-Mounted HD Display</h3>
         <p>A 17.3" IPS display powered by an MT8788 processor with 4G+64G memory delivers high-definition entertainment, wireless Android/iOS screen casting, dual-motor electric folding, multi-touch responsiveness, and seamless access to online media applications.</p>
       </div>
     </div>
 
     <div class="all-new-row">
-      <div class="all-new-img"><img src="e9/Feature 3.png" alt="Sunroof with Panoramic Roof" /></div>
-      <div class="all-new-text">
+      <div class="all-new-img sr sr-left"><img src="e9/Feature 3.png" alt="Sunroof with Panoramic Roof" /></div>
+      <div class="all-new-text sr sr-right">
         <h3>Sunroof with Panoramic Roof</h3>
         <p>An openable sunroof combined with a panoramic roof enhances cabin openness by maximizing natural light, exterior visibility, and spatial perception, creating a brighter and more refined executive-class travel environment.</p>
       </div>
@@ -321,20 +336,20 @@
 ══════════════════════════ -->
 <section class="tech-section">
   <div class="tech-inner">
-    <div class="tech-header">
+    <div class="tech-header sr">
       <p class="eyebrow">Safety &amp; Technology</p>
       <h2 class="section-title">Elevating Drive With Tech Assurance</h2>
     </div>
     <div class="tech-grid">
-      <div class="tech-card">
+      <div class="tech-card sr">
         <div class="tech-card-img"><img src="e9/Safety 1.png" alt="Fusion Automatic Parking Assist" /></div>
         <div class="tech-card-body"><h3 class="tech-title">Fusion Automatic Parking Assist (FAPA)</h3></div>
       </div>
-      <div class="tech-card">
+      <div class="tech-card sr sr-d1">
         <div class="tech-card-img"><img src="e9/Safety 2.png" alt="360° Airbag Protection" /></div>
         <div class="tech-card-body"><h3 class="tech-title">360° Airbag Protection</h3></div>
       </div>
-      <div class="tech-card">
+      <div class="tech-card sr sr-d2">
         <div class="tech-card-img"><img src="e9/Safety 3.png" alt="High-Strength Structural Safety" /></div>
         <div class="tech-card-body"><h3 class="tech-title">High-Strength Structural Safety</h3></div>
       </div>
@@ -344,7 +359,7 @@
 
 
 <!-- ══ BROCHURE ══ -->
-<div class="brochure-section">
+<div class="brochure-section sr sr-scale">
   <p style="font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#999;margin-bottom:12px;">GAC E9 PHEV</p>
   <h2 style="font-size:20px;font-weight:800;color:#111;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:28px;">Download The Brochure</h2>
   <a href="e9/Brochure/E9 PHEV.pdf" target="_blank" class="btn-brochure">Download Brochure</a>
@@ -368,7 +383,7 @@
       <a href="e9.html" class="footer-link">E9</a>
       <a href="emkoo.html" class="footer-link">Emkoo</a>
       <a href="emzoom.html" class="footer-link">Emzoom</a>
-      <a href="#" class="footer-link">Contact Us</a>
+      <a href="contact.html" class="footer-link">Contact Us</a>
     </div>
     <div>
       <input type="email" placeholder="Enter Your Email"
@@ -406,14 +421,28 @@ document.querySelectorAll(".nav-links > li").forEach(li => {
   li.addEventListener("mouseleave", () => { t = setTimeout(() => li.classList.remove("open"), 150); });
 });
 
-/* Tab switching */
+/* ══ Scroll Reveal ══ */
+(function() {
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add("in-view"); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.14, rootMargin: "0px 0px -32px 0px" });
+  document.querySelectorAll(".sr").forEach(el => io.observe(el));
+})();
+
+/* Tab switching — triggers sr animations for newly shown panel */
 document.querySelectorAll('.tab-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     const target = btn.dataset.tab;
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
     document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
     btn.classList.add('active');
-    document.getElementById('tab-' + target).classList.add('active');
+    const panel = document.getElementById('tab-' + target);
+    panel.classList.add('active');
+    setTimeout(() => {
+      panel.querySelectorAll('.sr:not(.in-view)').forEach(el => el.classList.add('in-view'));
+    }, 40);
   });
 });
 

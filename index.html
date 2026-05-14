@@ -381,6 +381,42 @@
     }
 
     /* ════════════════════════════
+       FAQ SECTION
+    ════════════════════════════ */
+    .faq-section { background: #f6f6f8; padding: 88px 0 96px; }
+    .faq-inner { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+    .faq-heading { text-align: center; margin-bottom: 12px; }
+    .faq-heading h2 { font-size: 32px; font-weight: 800; color: #111; margin: 0; letter-spacing: -0.01em; }
+    .faq-subheading { text-align: center; font-size: 14px; color: #888; margin: 0 0 52px; font-weight: 400; }
+    .faq-card { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 16px rgba(0,0,0,0.06); }
+    .faq-item { border-bottom: 1px solid #eee; }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-question {
+      width: 100%; display: flex; align-items: center; justify-content: space-between;
+      padding: 22px 28px; background: none; border: none; cursor: pointer;
+      font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 600;
+      color: #111; text-align: left; gap: 16px; transition: background 0.15s;
+    }
+    .faq-question:hover { background: #fafafa; }
+    .faq-icon {
+      flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
+      border: 1.5px solid #EB0A1E; display: flex; align-items: center; justify-content: center;
+      color: #EB0A1E; font-size: 18px; font-weight: 300; line-height: 1;
+      transition: transform 0.3s, background 0.2s;
+    }
+    .faq-item.open .faq-icon { transform: rotate(45deg); background: #EB0A1E; color: #fff; }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.25s; }
+    .faq-answer-inner { padding: 0 28px 20px; font-size: 13.5px; color: #555; line-height: 1.85; }
+    .faq-item.open .faq-answer { max-height: 300px; }
+
+    @media (max-width: 768px) {
+      .faq-section { padding: 60px 0 68px; }
+      .faq-heading h2 { font-size: 24px; }
+      .faq-question { padding: 18px 20px; font-size: 13px; }
+      .faq-answer-inner { padding: 0 20px 16px; }
+    }
+
+    /* ════════════════════════════
        FOOTER
     ════════════════════════════ */
     .footer-link {
@@ -613,6 +649,113 @@
 
 
 <!-- ══════════════════════════════════
+     FAQ SECTION
+══════════════════════════════════ -->
+<section class="faq-section">
+  <div class="faq-inner">
+    <div class="faq-heading sr">
+      <h2>Frequently Asked Questions</h2>
+    </div>
+    <p class="faq-subheading sr">Answers to your most common questions about GAC Motor Bangladesh</p>
+
+    <div class="faq-card sr">
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Does GAC Motor provide warranty and after-sales service?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p class="faq-answer-inner">Yes, DHS Motors Limited, the Authorized Distributor of GAC Motor, offers warranty coverage along with dedicated after-sales service support. Our service team is always here to ensure a smooth ownership experience for you.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          What is the difference between the GAC EMZOOM and the EMZOOM R Style?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p class="faq-answer-inner">The main difference is that the R Style is the sportier and more premium version. Both models offer powerful turbocharged performance and advanced smart features, but the R Style adds Sport+ mode, special body modifications, and a unique interior design for a sportier look and feel.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Is the GAC EMKOO suitable for family use and long drives?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p class="faq-answer-inner">Yes, the GAC EMKOO is designed with a spacious cabin, advanced safety technology, and premium comfort features, making it ideal for both family use and long journeys. It also offers a futuristic SUV design with intelligent driving assistance systems.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Is the GAC E9 a hybrid vehicle?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p class="faq-answer-inner">Yes, the GAC E9 is a premium plug-in hybrid MPV (PHEV) that combines powerful performance with fuel efficiency and luxury comfort. It is designed for customers who want a premium travel experience with advanced technology. The E9 also competes with the Toyota Alphard and Vellfire by offering luxury, spacious seating, and advanced hybrid performance.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          What is the driving range of the GAC AION Y?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p class="faq-answer-inner">The GAC AION Y is an all-electric SUV designed for smart urban mobility and efficient daily driving. The driving range of AION Y is 430km (WLTP).</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Does the GAC AION V support fast charging?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p class="faq-answer-inner">Yes, the GAC AION V supports fast charging technology for quicker and more convenient charging sessions. It can travel up to 485KM (WLTP) on a full charge and is built with advanced EV technology to deliver a smooth and modern driving experience.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Are GAC vehicles suitable for Bangladesh road conditions?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p class="faq-answer-inner">GAC vehicles are engineered to deliver a balance of performance, comfort, and fuel efficiency for both city and highway driving. Their advanced suspension and smart driving technologies also make them suitable for Bangladesh road conditions.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          What makes the AION V different from other EVs?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p class="faq-answer-inner">The AION V offers features like a built-in refrigerator, massage seats, and up to 485KM (WLTP) range on a single charge, making it more premium and comfortable than many competitors.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Why are GAC vehicles becoming popular in Bangladesh?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <p class="faq-answer-inner">GAC vehicles provide modern premium features, stylish design, and competitive pricing compared to many Japanese and Korean alternatives, making them an increasingly attractive choice for Bangladeshi drivers.</p>
+        </div>
+      </div>
+
+    </div><!-- /faq-card -->
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════
      FOOTER
 ══════════════════════════════════ -->
 <footer style="background:#fff;border-top:1px solid #e8e8e8;padding:48px 28px 28px;">
@@ -688,6 +831,14 @@
   });
 
   autoPlay();
+
+  /* ── FAQ Accordion ── */
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
 
   /* ── Scroll Reveal ── */
   (function() {

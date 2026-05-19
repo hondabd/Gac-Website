@@ -284,6 +284,12 @@
       .form-section { padding: 48px 40px 64px; }
       .model-layout { gap: 28px; }
     }
+
+    /* ── SCROLL REVEAL ── */
+    .sr { opacity: 0; transform: translateY(24px); transition: opacity 0.8s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94); will-change: opacity, transform; }
+    .sr.in-view { opacity: 1 !important; transform: none !important; }
+    .sr-d1 { transition-delay: 0.14s; }
+    @media (prefers-reduced-motion: reduce) { .sr { opacity: 1 !important; transform: none !important; transition: none !important; } }
   </style>
 </head>
 <body>
@@ -315,14 +321,14 @@
 <div class="page-container">
 
   <!-- Page heading -->
-  <div class="page-heading">
+  <div class="page-heading sr">
     <div class="page-eyebrow">GAC Motor Bangladesh</div>
     <h1>Book A Test Drive</h1>
     <p>Experience the innovation, performance, and comfort of GAC Motor vehicles firsthand</p>
   </div>
 
   <!-- Main card -->
-  <div class="card">
+  <div class="card sr sr-d1">
 
     <!-- Model selector -->
     <div class="model-section">
@@ -517,6 +523,18 @@ async function submitForm(e) {
 function closeModal() {
   document.getElementById('modal').classList.remove('show');
 }
+
+/* ── Scroll reveal — double rAF ensures opacity:0 is painted before in-view triggers ── */
+requestAnimationFrame(function() {
+  requestAnimationFrame(function() {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.08, rootMargin: '0px' });
+    document.querySelectorAll('.sr').forEach(el => io.observe(el));
+  });
+});
 </script>
 
 </body>

@@ -119,6 +119,8 @@
       width: 100%;
       overflow: hidden;
       background: #0d1a24;
+      /* Reserve hero space before sizer image loads — keeps below-fold content below fold */
+      min-height: clamp(300px, 55vw, 840px);
     }
     /* Invisible sizer — sets the container height to the
        natural height of the landscape slide images */
@@ -890,7 +892,7 @@
         entries.forEach(e => {
           if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); }
         });
-      }, { threshold: 0.12, rootMargin: '0px 0px -80px 0px' });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
       document.querySelectorAll('.sr').forEach(el => io.observe(el));
     });
   })();

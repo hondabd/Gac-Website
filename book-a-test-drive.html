@@ -289,7 +289,10 @@
     .sr { opacity: 0; transform: translateY(24px); transition: opacity 0.8s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94); will-change: opacity, transform; }
     .sr.in-view { opacity: 1 !important; transform: none !important; }
     .sr-d1 { transition-delay: 0.14s; }
-    @media (prefers-reduced-motion: reduce) { .sr { opacity: 1 !important; transform: none !important; transition: none !important; } }
+    /* Safety: reveal content if JS is delayed beyond 1.5s */
+    .sr { animation: srSafe 0s 1.5s forwards; }
+    @keyframes srSafe { to { opacity: 1; transform: none; } }
+    @media (prefers-reduced-motion: reduce) { .sr { opacity: 1 !important; transform: none !important; transition: none !important; animation: none !important; } }
   </style>
 </head>
 <body>

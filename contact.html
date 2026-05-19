@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>if ('scrollRestoration' in history) history.scrollRestoration = 'manual';</script>
   <title>Contact Us — GAC Motor Bangladesh</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -47,7 +48,7 @@
       overflow: hidden;
       background: #0a1520;
     }
-    .hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; opacity: 0.72; }
+    .hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; opacity: 0; transition: opacity 0.6s ease; }
     .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0.52) 100%); }
     .hero-content { position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0 24px; gap: 12px; }
     .hero-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.26em; text-transform: uppercase; color: rgba(255,255,255,0.55); margin: 0; }
@@ -383,14 +384,33 @@ document.querySelectorAll('.nav-links > li').forEach(li => {
   li.addEventListener('mouseleave', () => { t = setTimeout(() => li.classList.remove('open'), 150); });
 });
 
+/* ── Page load: scroll to top + hero fade-in + deferred reveal ── */
+window.scrollTo({ top: 0, behavior: 'instant' });
+
+/* Hero bg: smooth fade-in after image is ready */
+(function() {
+  const heroBg = document.querySelector('.hero-bg');
+  if (heroBg) {
+    const revealHero = () => { heroBg.style.opacity = '0.72'; };
+    if (heroBg.complete && heroBg.naturalWidth > 0) {
+      requestAnimationFrame(() => requestAnimationFrame(revealHero));
+    } else {
+      heroBg.addEventListener('load', revealHero, { once: true });
+      heroBg.addEventListener('error', revealHero, { once: true });
+    }
+  }
+})();
+
 /* Scroll Reveal */
 (function() {
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); }
-    });
-  }, { threshold: 0.14, rootMargin: '0px 0px -28px 0px' });
-  document.querySelectorAll('.sr').forEach(el => io.observe(el));
+  requestAnimationFrame(function() {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.14, rootMargin: '0px 0px -80px 0px' });
+    document.querySelectorAll('.sr').forEach(el => io.observe(el));
+  });
 })();
 
 /* Formspree Submission */

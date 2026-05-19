@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>if ('scrollRestoration' in history) history.scrollRestoration = 'manual';</script>
   <title>AION V — GAC Motor Bangladesh</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,8 +29,8 @@
     .btn-book:hover { background: #C5001A; }
 
     /* ── HERO ── */
-    .hero-wrap { position: relative; width: 100%; background: #07111a; overflow: hidden; }
-    .hero-wrap img.hero-img { width: 100%; height: auto; display: block; }
+    .hero-wrap { position: relative; width: 100%; background: #07111a; overflow: hidden; min-height: clamp(300px, 55vw, 840px); }
+    .hero-wrap img.hero-img { width: 100%; height: auto; display: block; opacity: 0; transition: opacity 0.55s ease; }
 
     /* ── TAB STRIP ── */
     .tab-strip { display: flex; justify-content: center; align-items: center; background: #fff; border-bottom: 1px solid #ebebeb; position: sticky; top: 72px; z-index: 900; padding: 0; gap: 0; }
@@ -424,14 +425,31 @@ document.querySelectorAll('.nav-links > li').forEach(li => {
   li.addEventListener('mouseleave', () => { t = setTimeout(() => li.classList.remove('open'), 150); });
 });
 
-/* ══ Scroll Reveal ══ */
+/* ── Page load: scroll to top + hero fade-in + deferred reveal ── */
+window.scrollTo({ top: 0, behavior: 'instant' });
+
 (function() {
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add("in-view"); io.unobserve(e.target); }
-    });
-  }, { threshold: 0.14, rootMargin: "0px 0px -32px 0px" });
-  document.querySelectorAll(".sr").forEach(el => io.observe(el));
+  /* Hero image: smooth fade-in after image is ready */
+  const heroImg = document.querySelector('.hero-img');
+  if (heroImg) {
+    const revealHero = () => { heroImg.style.opacity = '1'; };
+    if (heroImg.complete && heroImg.naturalWidth > 0) {
+      requestAnimationFrame(() => requestAnimationFrame(revealHero));
+    } else {
+      heroImg.addEventListener('load', revealHero, { once: true });
+      heroImg.addEventListener('error', revealHero, { once: true });
+    }
+  }
+
+  /* Scroll Reveal — deferred one frame so layout is stable before observing */
+  requestAnimationFrame(function() {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -80px 0px' });
+    document.querySelectorAll('.sr').forEach(el => io.observe(el));
+  });
 })();
 
 /* Tab switching — triggers sr animations for newly shown panel */

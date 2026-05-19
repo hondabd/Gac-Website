@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>if ('scrollRestoration' in history) history.scrollRestoration = 'manual';</script>
   <title>About Us — GAC Motor Bangladesh</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -56,7 +57,8 @@
       position: absolute; inset: 0;
       width: 100%; height: 100%;
       object-fit: cover; object-position: center;
-      opacity: 0.50;
+      opacity: 0;
+      transition: opacity 0.6s ease;
     }
     .hero-grad {
       position: absolute; inset: 0;
@@ -610,18 +612,36 @@ document.querySelectorAll('.nav-links > li').forEach(li => {
   li.addEventListener('mouseleave', () => { t = setTimeout(() => li.classList.remove('open'), 150); });
 });
 
+window.scrollTo({ top: 0, behavior: 'instant' });
+
+/* Hero bg: smooth fade-in after image is ready */
+(function() {
+  const heroBg = document.querySelector('.hero-bg');
+  if (heroBg) {
+    const revealHero = () => { heroBg.style.opacity = '0.50'; };
+    if (heroBg.complete && heroBg.naturalWidth > 0) {
+      requestAnimationFrame(() => requestAnimationFrame(revealHero));
+    } else {
+      heroBg.addEventListener('load', revealHero, { once: true });
+      heroBg.addEventListener('error', revealHero, { once: true });
+    }
+  }
+})();
+
 /* ── Scroll Reveal — Framer Motion equivalent ──
    opacity:0 y:40 → opacity:1 y:0 | 0.7s easeOut | once:true  */
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.14, rootMargin: '0px 0px -40px 0px' });
+requestAnimationFrame(function() {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -80px 0px' });
 
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+});
 
 </script>
 

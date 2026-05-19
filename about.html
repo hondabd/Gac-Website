@@ -4,24 +4,27 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About Us — GAC Motor Bangladesh</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preload" as="image" href="About us/Hero Image.webp" fetchpriority="high" />
   <style>
     *, *::before, *::after { box-sizing: border-box; }
-    body { font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; background: #fff; color: #333; overflow-x: hidden; }
+    body { font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; background: #fff; color: #333; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
 
     /* ══ NAVBAR ══ */
-    .navbar { position: sticky; top: 0; z-index: 1000; background: #fff; border-bottom: 1px solid #e5e5e5; box-shadow: 0 1px 6px rgba(0,0,0,0.07); }
-    .navbar-inner { max-width: 1200px; margin: 0 auto; padding: 0 28px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
-    .nav-logo img { height: 38px; width: auto; display: block; }
-    .nav-links { display: flex; align-items: center; gap: 38px; list-style: none; margin: 0; padding: 0; }
+    .navbar { position: sticky; top: 0; z-index: 1000; background: #fff; border-bottom: 1px solid #ebebeb; box-shadow: 0 1px 0 rgba(0,0,0,0.06); }
+    .navbar-inner { max-width: 1200px; margin: 0 auto; padding: 0 32px; height: 72px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo img { height: 36px; width: auto; display: block; }
+    .nav-links { display: flex; align-items: center; gap: 44px; list-style: none; margin: 0; padding: 0; }
     .nav-links > li { position: relative; }
-    .nav-links > li > a { font-size: 12px; font-weight: 700; color: #333; text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; display: flex; align-items: center; gap: 4px; padding: 4px 0; }
+    .nav-links > li > a { font-size: 12px; font-weight: 700; color: #333; text-decoration: none; letter-spacing: 0.10em; text-transform: uppercase; display: flex; align-items: center; gap: 4px; padding: 4px 0; }
     .nav-links > li > a:hover, .nav-links > li > a.active { color: #EB0A1E; }
     .dropdown { display: none; position: absolute; top: calc(100% + 4px); left: -16px; background: #fff; border: 1px solid #eee; box-shadow: 0 6px 20px rgba(0,0,0,0.10); min-width: 160px; z-index: 500; padding: 6px 0; }
-    .dropdown a { display: block; padding: 9px 20px; font-size: 13px; font-weight: 500; color: #444; text-decoration: none; }
+    .dropdown a { display: block; padding: 10px 22px; font-size: 13px; font-weight: 500; color: #444; text-decoration: none; }
     .dropdown a:hover { color: #EB0A1E; background: #fafafa; }
     .nav-links > li.open .dropdown { display: block; }
-    .btn-book { background: #EB0A1E; color: #fff; font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; padding: 11px 22px; border: none; cursor: pointer; text-decoration: none; white-space: nowrap; display: inline-block; }
+    .btn-book { background: #EB0A1E; color: #fff; font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.10em; padding: 12px 24px; border: none; cursor: pointer; text-decoration: none; white-space: nowrap; display: inline-block; }
     .btn-book:hover { background: #C5001A; }
     .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
     .hamburger span { display: block; width: 24px; height: 2px; background: #333; border-radius: 2px; }
@@ -30,20 +33,22 @@
        opacity:0 y:40 → opacity:1 y:0 | 0.7s easeOut | once:true */
     .reveal {
       opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+      transform: translateY(28px);
+      transition: opacity 0.8s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94);
+      will-change: opacity, transform;
     }
     .reveal.visible { opacity: 1; transform: translateY(0); }
-    .d1 { transition-delay: 0.10s; }
-    .d2 { transition-delay: 0.20s; }
-    .d3 { transition-delay: 0.30s; }
-    .d4 { transition-delay: 0.40s; }
-    .d5 { transition-delay: 0.50s; }
+    @media (prefers-reduced-motion: reduce) { .reveal { opacity:1!important; transform:none!important; transition:none!important; } }
+    .d1 { transition-delay: 0.08s; }
+    .d2 { transition-delay: 0.16s; }
+    .d3 { transition-delay: 0.24s; }
+    .d4 { transition-delay: 0.32s; }
+    .d5 { transition-delay: 0.40s; }
 
     /* ══ HERO ══ */
     .hero {
       position: relative;
-      height: 380px;
+      height: 460px;
       overflow: hidden;
       background: #0a1520;
     }
@@ -51,45 +56,30 @@
       position: absolute; inset: 0;
       width: 100%; height: 100%;
       object-fit: cover; object-position: center;
-      opacity: 0.45;
+      opacity: 0.50;
     }
-    /* Animated red diagonal lines */
-    .hero-lines {
+    .hero-grad {
       position: absolute; inset: 0;
-      overflow: hidden;
+      background: linear-gradient(to right, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.10) 60%, transparent 100%);
       pointer-events: none;
-    }
-    .hero-lines::before,
-    .hero-lines::after {
-      content: '';
-      position: absolute;
-      width: 200%;
-      height: 2px;
-      background: linear-gradient(90deg, transparent 0%, #EB0A1E 40%, #ff6b6b 60%, transparent 100%);
-      opacity: 0.7;
-      animation: lineSweep 3s ease-in-out infinite;
-    }
-    .hero-lines::before { top: 38%; transform: rotate(-8deg); animation-delay: 0s; }
-    .hero-lines::after  { top: 52%; transform: rotate(-8deg); animation-delay: 0.4s; }
-    @keyframes lineSweep {
-      0%   { transform: rotate(-8deg) translateX(-60%); opacity: 0; }
-      20%  { opacity: 0.8; }
-      80%  { opacity: 0.8; }
-      100% { transform: rotate(-8deg) translateX(10%); opacity: 0; }
     }
     .hero-content {
       position: relative; z-index: 2;
       height: 100%;
-      display: flex; align-items: center; justify-content: center;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 14px;
+    }
+    .hero-eyebrow {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.22em;
+      text-transform: uppercase; color: #EB0A1E;
     }
     .hero-title {
       color: #fff;
-      font-size: 52px;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      font-size: 44px;
+      font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase;
       margin: 0;
-      text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+      text-shadow: 0 2px 24px rgba(0,0,0,0.35);
     }
 
     /* ══ SHARED ══ */
@@ -98,40 +88,33 @@
       font-size: 11px; font-weight: 700; letter-spacing: 0.18em;
       text-transform: uppercase; color: #EB0A1E; margin-bottom: 10px;
     }
-    .section-heading {
-      font-size: 26px; font-weight: 700; color: #111;
+    .section-heading { font-size: 26px; font-weight: 600; color: #111;
       letter-spacing: 0.01em; margin: 0 0 20px;
     }
     .section-heading.center { text-align: center; }
-    .body-text {
-      font-size: 15px; color: #444; line-height: 1.9; font-weight: 400;
-    }
+    .body-text { font-size: 13.5px; color: #666; line-height: 1.95; font-weight: 400; }
     .body-text p { margin: 0 0 20px; }
     .body-text p:last-child { margin: 0; }
     hr.section-divider { border: none; border-top: 1px solid #ebebeb; margin: 0; }
 
     /* ══ INTRO ══ */
     .intro-section {
-      padding: 80px 0 0;
+      padding: 96px 0 0;
       background:
-        linear-gradient(to bottom, #fff 20%, rgba(255,255,255,0.85) 52%, rgba(255,255,255,0) 78%),
+        linear-gradient(to bottom, #fff 15%, rgba(255,255,255,0.90) 50%, rgba(255,255,255,0) 78%),
         url('About us/Introduction about GAC background image.jpg') center bottom / cover no-repeat;
-      min-height: 680px;
+      min-height: 720px;
     }
-    .intro-section .section-heading {
-      text-align: center;
-      margin-bottom: 36px;
-      font-size: 32px;
-    }
+    .intro-section .section-heading { text-align: center; margin-bottom: 40px; font-size: 26px; }
     .intro-text {
       max-width: 860px;
       margin: 0 auto;
       text-align: justify;
-      padding-bottom: 200px;
+      padding-bottom: 220px;
     }
 
     /* ══ STATS ══ */
-    .stats-section { padding: 48px 0; background: #fff; border-top: 1px solid #ebebeb; border-bottom: 1px solid #ebebeb; }
+    .stats-section { padding: 56px 0; background: #fff; border-top: 1px solid #ebebeb; border-bottom: 1px solid #ebebeb; }
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -139,61 +122,61 @@
     }
     .stat-block {
       display: flex; flex-direction: column; align-items: center;
-      text-align: center; padding: 36px 24px;
+      text-align: center; padding: 40px 24px;
       border-right: 1px solid #e8e8e8;
     }
     .stat-block:last-child { border-right: none; }
-    .stat-icon { width: 80px; height: 80px; margin-bottom: 20px; }
+    .stat-icon { width: 72px; height: 72px; margin-bottom: 22px; }
     .stat-icon img { width: 100%; height: 100%; object-fit: contain; }
     .stat-label {
-      font-size: 13px; font-weight: 700; letter-spacing: 0.12em;
-      text-transform: uppercase; color: #EB0A1E; margin-bottom: 12px;
+      font-size: 10px; font-weight: 700; letter-spacing: 0.18em;
+      text-transform: uppercase; color: #EB0A1E; margin-bottom: 14px;
     }
-    .stat-values { font-size: 14px; color: #444; line-height: 1.8; font-weight: 500; }
-    .stat-values strong { font-size: 14px; font-weight: 800; color: #111; display: block; }
+    .stat-values { font-size: 13.5px; color: #555; line-height: 1.9; font-weight: 400; }
+    .stat-values strong { font-size: 15px; font-weight: 700; color: #111; display: block; margin-bottom: 2px; }
 
     /* ══ ABOUT LOCAL ══ */
-    .about-local { padding: 72px 0; }
-    .about-local .section-heading { text-align: center; margin-bottom: 28px; font-size: 32px; }
+    .about-local { padding: 88px 0; }
+    .about-local .section-heading { text-align: center; margin-bottom: 36px; font-size: 26px; }
     .about-local-text { max-width: 860px; margin: 0 auto; text-align: justify; }
 
     /* ══ CITY BANNER ══ */
     .city-banner { line-height: 0; }
-    .city-banner img { width: 100%; height: 400px; object-fit: cover; display: block; }
+    .city-banner img { width: 100%; height: 480px; object-fit: cover; display: block; }
 
     /* ══ BRAND ROWS (Group Brand / Investment / Vision) ══ */
-    .brand-section { padding: 80px 0; }
+    .brand-section { padding: 96px 0; }
     .brand-section:nth-child(even) { background: #f9f9f9; }
     .brand-row {
       display: grid; grid-template-columns: 1fr 1fr;
-      gap: 72px; align-items: center;
+      gap: 80px; align-items: center;
       max-width: 1100px; margin: 0 auto; padding: 0 48px;
     }
     .brand-row.reverse .brand-img { order: -1; }
-    .brand-img { overflow: hidden; border-radius: 4px; }
-    .brand-img img { width: 100%; height: 340px; object-fit: cover; display: block; }
-    .section-heading { font-size: 30px; font-weight: 700; color: #111; margin: 0 0 16px; letter-spacing: 0.01em; }
+    .brand-img { overflow: hidden; border-radius: 2px; }
+    .brand-img img { width: 100%; height: 360px; object-fit: cover; display: block; transition: transform 0.6s ease; }
+    .brand-img:hover img { transform: scale(1.03); }
     .brand-sub {
-      font-size: 15px; font-weight: 700; color: #111;
-      letter-spacing: 0.01em; margin-bottom: 16px;
+      font-size: 14px; font-weight: 600; color: #555;
+      letter-spacing: 0.01em; margin-bottom: 20px;
     }
 
     /* ══ PHILOSOPHY ══ */
-    .philosophy-section { padding: 80px 0; background: #fff; }
+    .philosophy-section { padding: 96px 0; background: #fff; }
     .philosophy-grid {
       display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 48px; margin-top: 48px;
+      gap: 56px; margin-top: 56px;
     }
     .philosophy-item { display: flex; flex-direction: column; align-items: center; text-align: center; }
-    .philosophy-icon { width: 88px; height: 88px; margin-bottom: 20px; }
+    .philosophy-icon { width: 72px; height: 72px; margin-bottom: 24px; }
     .philosophy-icon img { width: 100%; height: 100%; object-fit: contain; }
-    .philosophy-name { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: #111; margin-bottom: 10px; }
-    .philosophy-desc { font-size: 12.5px; color: #777; line-height: 1.75; }
+    .philosophy-name { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: #111; margin-bottom: 12px; }
+    .philosophy-desc { font-size: 13px; color: #777; line-height: 1.85; }
 
     /* ══ DEVELOPMENT PLAN e-TIME ══ */
     .dev-section {
-      padding: 80px 0 72px;
-      background: #f9f9f9;
+      padding: 96px 0 88px;
+      background: #f5f5f5;
       position: relative;
       overflow: hidden;
     }
@@ -207,7 +190,7 @@
       pointer-events: none;
       z-index: 0;
     }
-    .dev-intro { max-width: 720px; margin: 0 auto; text-align: center; font-size: 15px; color: #666; line-height: 1.8; margin-bottom: 56px; position: relative; z-index: 2; }
+    .dev-intro { max-width: 720px; margin: 0 auto; text-align: center; font-size: 13.5px; color: #666; line-height: 1.95; margin-bottom: 64px; position: relative; z-index: 2; }
     .dev-letters {
       display: flex;
       justify-content: space-between;
@@ -239,7 +222,7 @@
       color: #111;
       margin-top: 16px;
     }
-    .dev-desc { max-width: 720px; margin: 40px auto 0; text-align: center; font-size: 14px; color: #666; line-height: 1.85; padding: 0 40px; position: relative; z-index: 2; }
+    .dev-desc { max-width: 720px; margin: 48px auto 0; text-align: center; font-size: 13.5px; color: #666; line-height: 1.95; padding: 0 40px; position: relative; z-index: 2; }
 
     /* ══ GLASS ══ */
     .glass-section { position: relative; min-height: 88vh; overflow: hidden; display: flex; align-items: center; }
@@ -249,11 +232,11 @@
       position: relative; z-index: 2;
       width: 100%;
       color: #fff;
-      padding: 80px 0 60px;
+      padding: 96px 0 80px;
     }
-    .glass-top { text-align: center; margin-bottom: 64px; padding: 0 48px; }
-    .glass-eyebrow { font-size: 14px; font-weight: 400; letter-spacing: 0.06em; color: rgba(255,255,255,0.85); margin-bottom: 12px; }
-    .glass-title { font-size: 38px; font-weight: 600; letter-spacing: 0.01em; margin: 0; color: #fff; }
+    .glass-top { text-align: center; margin-bottom: 72px; padding: 0 48px; }
+    .glass-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.65); margin-bottom: 16px; }
+    .glass-title { font-size: 34px; font-weight: 600; letter-spacing: 0.02em; margin: 0; color: #fff; }
     .glass-letters {
       display: flex;
       justify-content: space-between;
@@ -266,16 +249,16 @@
     .gw { font-size: 10.5px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.9); margin-top: 16px; }
 
     /* ══ VISION 2035 ══ */
-    .vision-section { position: relative; padding: 80px 0 90px; overflow: hidden; }
+    .vision-section { position: relative; padding: 100px 0 108px; overflow: hidden; }
     .vision-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; }
-    .vision-overlay { position: absolute; inset: 0; background: rgba(255,255,255,0.40); }
+    .vision-overlay { position: absolute; inset: 0; background: rgba(255,255,255,0.60); }
     .vision-inner { position: relative; z-index: 2; max-width: 660px; margin: 0; padding: 0 0 0 200px; }
-    .vision-heading { font-size: 44px; font-weight: 600; color: #111; margin: 0 0 24px; letter-spacing: 0.01em; }
-    .vision-para { font-size: 16px; color: #222; line-height: 1.85; text-align: justify; margin-bottom: 48px; font-weight: 400; }
-    .vision-stats { display: flex; flex-direction: column; gap: 32px; }
-    .vs-row { display: flex; align-items: center; gap: 22px; }
-    .vs-num { font-size: 88px; font-weight: 700; color: #EB0A1E; line-height: 1; flex-shrink: 0; }
-    .vs-label { font-size: 20px; font-weight: 500; color: #111; }
+    .vision-heading { font-size: 40px; font-weight: 600; color: #111; margin: 0 0 28px; letter-spacing: 0.01em; }
+    .vision-para { font-size: 13.5px; color: #444; line-height: 1.95; text-align: justify; margin-bottom: 52px; font-weight: 400; }
+    .vision-stats { display: flex; flex-direction: column; gap: 36px; }
+    .vs-row { display: flex; align-items: center; gap: 24px; }
+    .vs-num { font-size: 80px; font-weight: 700; color: #EB0A1E; line-height: 1; flex-shrink: 0; }
+    .vs-label { font-size: 18px; font-weight: 500; color: #111; }
 
     /* ══ FOOTER ══ */
     .footer-link { display: block; font-size: 12px; color: #666; text-decoration: none; line-height: 2.2; }
@@ -284,7 +267,7 @@
     /* ══ MOBILE ══ */
     @media (max-width: 768px) {
       .hamburger { display: flex; }
-      .nav-links { display: none; position: absolute; top: 64px; left: 0; right: 0; background: #fff; flex-direction: column; gap: 0; padding: 8px 0 16px; border-bottom: 1px solid #e5e5e5; box-shadow: 0 6px 16px rgba(0,0,0,0.08); z-index: 999; }
+      .nav-links { display: none; position: absolute; top: 72px; left: 0; right: 0; background: #fff; flex-direction: column; gap: 0; padding: 8px 0 16px; border-bottom: 1px solid #e5e5e5; box-shadow: 0 6px 16px rgba(0,0,0,0.08); z-index: 999; }
       .nav-links.open { display: flex; }
       .nav-links > li > a { padding: 13px 24px; }
       .btn-book { display: none; }
@@ -292,18 +275,22 @@
       .nav-links > li.open .dropdown { display: block; }
       .dropdown a { padding: 9px 36px; color: #777; }
 
-      .hero { height: 240px; }
-      .hero-title { font-size: 30px; }
+      .hero { height: 280px; }
+      .hero-title { font-size: 30px; letter-spacing: 0.04em; }
+      .hero-eyebrow { font-size: 9px; }
       .wrap { padding: 0 20px; }
-      .intro-section { padding: 48px 0 36px; }
+      .intro-section { padding: 56px 0 36px; min-height: auto; }
+      .intro-text { padding-bottom: 120px; }
       .stats-grid { grid-template-columns: repeat(2, 1fr); padding: 0 16px; }
-      .stat-block { border-right: none; border-bottom: 1px solid #e8e8e8; }
-      .about-local { padding: 48px 0; }
-      .city-banner img { height: 220px; }
-      .brand-row, .brand-row.reverse { grid-template-columns: 1fr; gap: 28px; padding: 0 20px; }
+      .stat-block { border-right: none; border-bottom: 1px solid #e8e8e8; padding: 28px 16px; }
+      .about-local { padding: 56px 0; }
+      .city-banner img { height: 240px; }
+      .brand-section { padding: 56px 0; }
+      .brand-row, .brand-row.reverse { grid-template-columns: 1fr; gap: 32px; padding: 0 20px; }
       .brand-row.reverse .brand-img { order: 0; }
-      .brand-img img { height: 220px; }
-      .philosophy-grid { grid-template-columns: 1fr; gap: 36px; }
+      .brand-img img { height: 240px; }
+      .philosophy-section { padding: 56px 0; }
+      .philosophy-grid { grid-template-columns: 1fr; gap: 40px; margin-top: 36px; }
       .dev-letters { padding: 0 16px; }
       .dl { font-size: 48px; }
       .dl.e { font-size: 48px; }
@@ -313,12 +300,14 @@
       .glass-letters { padding: 0 20px; }
       .gl { font-size: 48px; }
       .gw { font-size: 7.5px; letter-spacing: 0.1em; }
-      .vision-section { padding: 52px 0; }
+      .vision-section { padding: 56px 0; }
       .vision-inner { padding: 0 20px; max-width: 100%; }
       .vs-num { font-size: 60px; }
-      .vs-label { font-size: 16px; }
-      .vision-heading { font-size: 32px; }
-      .vision-para { font-size: 14px; }
+      .vs-label { font-size: 15px; }
+      .vision-heading { font-size: 30px; }
+      .vision-para { font-size: 13.5px; }
+      .dev-section { padding: 56px 0; }
+      .dev-intro { font-size: 13px; margin-bottom: 40px; }
     }
     @media (min-width: 769px) and (max-width: 1024px) {
       .wrap { padding: 0 28px; }
@@ -356,9 +345,10 @@
 
 <!-- ══ HERO ══ -->
 <div class="hero">
-  <img class="hero-bg" src="About us/Hero Image.webp" alt="GAC Motor Bangladesh" />
-  <div class="hero-lines"></div>
+  <img class="hero-bg" src="About us/Hero Image.webp" alt="GAC Motor Bangladesh" loading="eager" fetchpriority="high" />
+  <div class="hero-grad"></div>
   <div class="hero-content">
+    <div class="hero-eyebrow">GAC Motor Bangladesh</div>
     <h1 class="hero-title">About Us</h1>
   </div>
 </div>
@@ -381,22 +371,22 @@
 <section class="stats-section">
   <div class="stats-grid">
     <div class="stat-block reveal d1">
-      <div class="stat-icon"><img src="About us/core-parts.svg" alt="Core Parts" /></div>
+      <div class="stat-icon"><img src="About us/core-parts.svg" alt="Core Parts" loading="lazy" decoding="async" /></div>
       <div class="stat-label">Core Parts</div>
       <div class="stat-values">R&D · Vehicle · Parts &amp; Components<br>Trade · Finance · Mobility</div>
     </div>
     <div class="stat-block reveal d2">
-      <div class="stat-icon"><img src="About us/performance.svg" alt="Performance" /></div>
+      <div class="stat-icon"><img src="About us/performance.svg" alt="Performance" loading="lazy" decoding="async" /></div>
       <div class="stat-label">Performance</div>
       <div class="stat-values"><strong>3.5M</strong> Production<br><strong>2.67M</strong> Sales</div>
     </div>
     <div class="stat-block reveal d3">
-      <div class="stat-icon"><img src="About us/employee.svg" alt="Employees" /></div>
+      <div class="stat-icon"><img src="About us/employee.svg" alt="Employees" loading="lazy" decoding="async" /></div>
       <div class="stat-label">Employees</div>
       <div class="stat-values"><strong>78,400+</strong> Staff<br>Over 800,000 Industry Cabin</div>
     </div>
     <div class="stat-block reveal d4">
-      <div class="stat-icon"><img src="About us/fortune.svg" alt="Fortune 500" /></div>
+      <div class="stat-icon"><img src="About us/fortune.svg" alt="Fortune 500" loading="lazy" decoding="async" /></div>
       <div class="stat-label">Fortune Global 500</div>
       <div class="stat-values"><strong>Ranked No.88</strong><br>in 2023</div>
     </div>
@@ -428,7 +418,7 @@
       </div>
     </div>
     <div class="brand-img reveal d2">
-      <img src="About us/group-brand-1.jpg" alt="GAC Group Brand" />
+      <img src="About us/group-brand-1.jpg" alt="GAC Group Brand" loading="lazy" decoding="async" />
     </div>
   </div>
 </section>
@@ -445,7 +435,7 @@
       </div>
     </div>
     <div class="brand-img reveal d2">
-      <img src="About us/group-brand-2.png" alt="GAC Investment Structure" />
+      <img src="About us/group-brand-2.png" alt="GAC Investment Structure" loading="lazy" decoding="async" />
     </div>
   </div>
 </section>
@@ -462,7 +452,7 @@
       </div>
     </div>
     <div class="brand-img reveal d2">
-      <img src="About us/group-brand-3.png" alt="Our Vision" />
+      <img src="About us/group-brand-3.png" alt="Our Vision" loading="lazy" decoding="async" />
     </div>
   </div>
 </section>
@@ -477,17 +467,17 @@
     </p>
     <div class="philosophy-grid">
       <div class="philosophy-item reveal d1">
-        <div class="philosophy-icon"><img src="About us/japanese-production-methods.png" alt="Japanese Production Methods" /></div>
+        <div class="philosophy-icon"><img src="About us/japanese-production-methods.png" alt="Japanese Production Methods" loading="lazy" decoding="async" /></div>
         <div class="philosophy-name">Japanese Production Methods</div>
         <div class="philosophy-desc">Adopting world-class lean manufacturing practices to eliminate waste and optimise every production step for maximum efficiency.</div>
       </div>
       <div class="philosophy-item reveal d2">
-        <div class="philosophy-icon"><img src="About us/japanese-lean-management.png" alt="Japanese Lean Management" /></div>
+        <div class="philosophy-icon"><img src="About us/japanese-lean-management.png" alt="Japanese Lean Management" loading="lazy" decoding="async" /></div>
         <div class="philosophy-name">Japanese Lean Management</div>
         <div class="philosophy-desc">Implementing lean principles focused on customer satisfaction, zero-defect production, and continuous improvement across all departments.</div>
       </div>
       <div class="philosophy-item reveal d3">
-        <div class="philosophy-icon"><img src="About us/local-culture.png" alt="Local Culture" /></div>
+        <div class="philosophy-icon"><img src="About us/local-culture.png" alt="Local Culture" loading="lazy" decoding="async" /></div>
         <div class="philosophy-name">Local Culture Integration</div>
         <div class="philosophy-desc">Fully realising local potential through easier operations and thorough waste elimination — building a high-performance, people-first culture.</div>
       </div>
@@ -499,7 +489,7 @@
 <!-- ══ DEVELOPMENT PLAN e-TIME ══ -->
 <section class="dev-section">
   <!-- Globe background as img so SVG renders reliably -->
-  <img class="dev-globe" src="About us/global-map (1).svg" alt="" aria-hidden="true" />
+  <img class="dev-globe" src="About us/global-map (1).svg" alt="" aria-hidden="true" loading="lazy" decoding="async" />
 
   <div class="wrap" style="position:relative;z-index:2;">
     <h2 class="section-heading center reveal">Development Plan</h2>
@@ -535,12 +525,12 @@
 
 <!-- ══ GREEN CLEAN PROJECT GLASS ══ -->
 <section class="glass-section">
-  <img class="glass-bg" src="About us/green-clean-project1.jpg" alt="Green Clean Project" />
+  <img class="glass-bg" src="About us/green-clean-project1.jpg" alt="Green Clean Project" loading="lazy" decoding="async" />
   <div class="glass-overlay"></div>
   <div class="glass-inner">
     <div class="glass-top">
-      <h2 class="glass-title reveal">Green Clean Project GLASS</h2>
       <p class="glass-eyebrow reveal">Green and Low-carbon for Achieving Sustainable Success</p>
+      <h2 class="glass-title reveal">Green Clean Project GLASS</h2>
     </div>
     <div class="glass-letters">
       <div class="gl-col reveal d1"><div class="gl">G</div><div class="gw">Green</div></div>
@@ -555,7 +545,7 @@
 
 <!-- ══ VISION 2035 ══ -->
 <section class="vision-section">
-  <img class="vision-bg" src="About us/group-vision-bg.png" alt="Vision 2035" />
+  <img class="vision-bg" src="About us/group-vision-bg.png" alt="Vision 2035" loading="lazy" decoding="async" />
   <div class="vision-overlay"></div>
   <div class="vision-inner">
     <h2 class="vision-heading reveal">Vision of 2035</h2>
@@ -575,32 +565,33 @@
 
 
 <!-- ══ FOOTER ══ -->
-<footer style="background:#fff;border-top:1px solid #e8e8e8;padding:48px 28px 28px;">
-  <div style="max-width:980px;margin:0 auto;display:grid;grid-template-columns:1.2fr 0.85fr 1fr;gap:36px;align-items:start;">
+<footer style="background:#fff;border-top:1px solid #ebebeb;padding:72px 32px 40px;">
+  <div style="max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:64px;align-items:start;">
     <div>
-      <div style="margin-bottom:16px;"><img src="logo.png" alt="GAC Motor" style="height:28px;width:auto;" /></div>
-      <p style="font-size:11.5px;color:#666;line-height:1.8;max-width:230px;">The Guangzhou Automobile Group Co., Ltd. (GAC) was founded in June 1997 and is currently a Fortune Global 500 company. DHS Motors Limited is the authorized importer and distributor of GAC Motor vehicles in Bangladesh, backed by 15+ years of comprehensive after-sales service experience and genuine parts support for customers across the country.</p>
+      <div style="margin-bottom:20px;"><img src="logo.png" alt="GAC Motor" style="height:30px;width:auto;" /></div>
+      <p style="font-size:12.5px;color:#888;line-height:2.0;max-width:320px;font-weight:400;">The Guangzhou Automobile Group Co., Ltd. (GAC) was founded in June 1997 and is currently a Fortune Global 500 company. DHS Motors Limited is the authorized importer and distributor of GAC Motor vehicles in Bangladesh, backed by 15+ years of comprehensive after-sales service experience and genuine parts support for customers across the country.</p>
     </div>
     <div>
-      <h4 style="font-size:12.5px;font-weight:700;color:#222;letter-spacing:0.05em;margin:0 0 16px;">Quick Links</h4>
-      <a href="about.html" style="display:block;font-size:12px;color:#666;text-decoration:none;line-height:2.2;">About Us</a>
-      <a href="contact.html" style="display:block;font-size:12px;color:#666;text-decoration:none;line-height:2.2;">Contact Us</a>
-      <a href="book-a-test-drive.html" style="display:block;font-size:12px;color:#666;text-decoration:none;line-height:2.2;">Book A Test Drive</a>
+      <h4 style="font-size:10px;font-weight:700;color:#111;letter-spacing:0.18em;text-transform:uppercase;margin:0 0 24px;">Quick Links</h4>
+      <a href="about.html" style="display:block;font-size:12.5px;color:#888;text-decoration:none;line-height:2.6;transition:color 0.2s;" onmouseover="this.style.color='#EB0A1E'" onmouseout="this.style.color='#888'">About Us</a>
+      <a href="contact.html" style="display:block;font-size:12.5px;color:#888;text-decoration:none;line-height:2.6;" onmouseover="this.style.color='#EB0A1E'" onmouseout="this.style.color='#888'">Contact Us</a>
+      <a href="book-a-test-drive.html" style="display:block;font-size:12.5px;color:#888;text-decoration:none;line-height:2.6;" onmouseover="this.style.color='#EB0A1E'" onmouseout="this.style.color='#888'">Book A Test Drive</a>
     </div>
     <div>
-      <h4 style="font-size:12.5px;font-weight:700;color:#222;letter-spacing:0.05em;margin:0 0 12px;">Follow Us</h4>
-      <div style="display:flex;gap:10px;">
-        <a href="https://www.facebook.com/gacmotorbangladesh" target="_blank" style="width:32px;height:32px;border-radius:50%;background:#3b5998;display:flex;align-items:center;justify-content:center;color:#fff;text-decoration:none;">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+      <h4 style="font-size:10px;font-weight:700;color:#111;letter-spacing:0.18em;text-transform:uppercase;margin:0 0 24px;">Follow Us</h4>
+      <div style="display:flex;gap:12px;">
+        <a href="https://www.facebook.com/gacmotorbangladesh" target="_blank" style="width:36px;height:36px;border-radius:50%;background:#3b5998;display:flex;align-items:center;justify-content:center;color:#fff;text-decoration:none;opacity:0.85;transition:opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.85'">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
         </a>
-        <a href="https://www.instagram.com/gacmotorbangladesh" target="_blank" style="width:32px;height:32px;border-radius:50%;background:#e1306c;display:flex;align-items:center;justify-content:center;color:#fff;text-decoration:none;">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        <a href="https://www.instagram.com/gacmotorbangladesh" target="_blank" style="width:36px;height:36px;border-radius:50%;background:#e1306c;display:flex;align-items:center;justify-content:center;color:#fff;text-decoration:none;opacity:0.85;transition:opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.85'">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
         </a>
       </div>
     </div>
   </div>
-  <div style="max-width:980px;margin:28px auto 0;padding-top:16px;border-top:1px solid #efefef;text-align:center;font-size:11px;color:#aaa;">
-    &copy; 2026 GAC Motor Bangladesh. All rights reserved.
+  <div style="max-width:1080px;margin:48px auto 0;padding-top:20px;border-top:1px solid #f0f0f0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+    <span style="font-size:11px;color:#bbb;letter-spacing:0.04em;">&copy; 2026 GAC Motor Bangladesh. All rights reserved.</span>
+    <span style="font-size:11px;color:#ddd;letter-spacing:0.04em;">DHS Motors Limited</span>
   </div>
 </footer>
 
@@ -628,7 +619,7 @@ const observer = new IntersectionObserver(entries => {
       observer.unobserve(entry.target);
     }
   });
-}, { threshold: 0.18 });
+}, { threshold: 0.14, rootMargin: '0px 0px -40px 0px' });
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 

@@ -4,8 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GAC Motor Bangladesh</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preload" as="image" href="Landing page/aion v hero.jpg" fetchpriority="high" />
   <style>
     *, *::before, *::after { box-sizing: border-box; }
     body {
@@ -14,6 +16,7 @@
       background: #fff;
       overflow-x: hidden;
       color: #333;
+      -webkit-font-smoothing: antialiased;
     }
 
     /* ════════════════════════════
@@ -24,24 +27,21 @@
       top: 0;
       z-index: 1000;
       background: #fff;
-      border-bottom: 1px solid #e5e5e5;
-      box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+      border-bottom: 1px solid #ebebeb; box-shadow: 0 1px 0 rgba(0,0,0,0.06);
     }
     .navbar-inner {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 0 28px;
-      height: 64px;
+      padding: 0 32px; height: 72px;
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
-    .nav-logo img { height: 38px; width: auto; display: block; }
+    .nav-logo img { height: 36px; width: auto; display: block; }
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 38px;
-      list-style: none;
+      gap: 44px; list-style: none;
       margin: 0; padding: 0;
     }
     .nav-links > li { position: relative; }
@@ -50,14 +50,26 @@
       font-weight: 700;
       color: #333;
       text-decoration: none;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      letter-spacing: 0.10em; text-transform: uppercase;
       display: flex;
       align-items: center;
       gap: 4px;
       padding: 4px 0;
     }
+    .nav-links > li > a {
+      position: relative;
+    }
+    .nav-links > li > a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; left: 0; right: 0;
+      height: 1px; background: #EB0A1E;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.25s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
     .nav-links > li > a:hover { color: #EB0A1E; }
+    .nav-links > li > a:hover::after { transform: scaleX(1); }
     .dropdown {
       display: none;
       position: absolute;
@@ -70,12 +82,12 @@
     .dropdown-inner {
       background: #fff;
       border: 1px solid #eee;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.10);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08); border-color: #ebebeb;
       padding: 6px 0;
     }
     .dropdown a {
       display: block;
-      padding: 9px 20px;
+      padding: 10px 22px;
       font-size: 13px;
       font-weight: 500;
       color: #444;
@@ -87,10 +99,7 @@
       background: #EB0A1E;
       color: #fff;
       font-family: 'Montserrat', sans-serif;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      padding: 11px 22px;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.10em; padding: 12px 24px;
       border: none;
       cursor: pointer;
       text-decoration: none;
@@ -147,28 +156,28 @@
       object-position: center top;
     }
 
-    /* Dots */
+    /* Dots — bar style, more premium */
     .hero-dots {
       position: absolute;
-      bottom: 22px;
+      bottom: 28px;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
-      gap: 9px;
+      gap: 6px;
       z-index: 30;
     }
     .hero-dot {
-      width: 9px; height: 9px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.38);
+      width: 24px; height: 2px;
+      border-radius: 0;
+      background: rgba(255,255,255,0.3);
       cursor: pointer;
       border: none;
       padding: 0;
-      transition: background 0.3s;
+      transition: background 0.4s, width 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
     }
-    .hero-dot.active { background: rgba(255,255,255,0.95); }
+    .hero-dot.active { background: rgba(255,255,255,0.95); width: 40px; }
 
-    /* Social sidebar */
+    /* Social sidebar — minimal, refined */
     .social-sidebar {
       position: absolute;
       right: 0;
@@ -177,12 +186,16 @@
       display: flex;
       flex-direction: column;
       z-index: 30;
+      gap: 2px;
     }
     .social-btn {
-      width: 34px; height: 34px;
+      width: 32px; height: 32px;
       display: flex; align-items: center; justify-content: center;
       color: #fff; text-decoration: none;
+      opacity: 0.7;
+      transition: opacity 0.25s;
     }
+    .social-btn:hover { opacity: 1; }
 
     /* ════════════════════════════
        DARK / AERIAL VIDEO SECTION
@@ -215,6 +228,18 @@
     /* ════════════════════════════
        MODELS SECTION — infinite drag carousel
     ════════════════════════════ */
+    .models-section-header {
+      text-align: center;
+      padding: 80px 24px 40px;
+      border-top: 1px solid #f0f0f0;
+    }
+    .models-section-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.22em;
+      text-transform: uppercase; color: #EB0A1E; display: block; margin-bottom: 12px;
+    }
+    .models-section-title {
+      font-size: 13.5px; font-weight: 400; color: #aaa; letter-spacing: 0.10em; text-transform: uppercase; line-height: 1.9; margin: 0;
+    }
     .models-scroll-wrap {
       position: relative;
       overflow: hidden;
@@ -223,8 +248,8 @@
       display: flex;
       flex-wrap: nowrap;
       overflow-x: scroll;
-      gap: 28px;
-      padding: 0 60px 28px;
+      gap: 24px;
+      padding: 0 60px 40px;
       scrollbar-width: none;
       cursor: grab;
       user-select: none;
@@ -239,47 +264,48 @@
     }
     .model-card .thumb {
       overflow: hidden;
-      border-radius: 4px;
+      border-radius: 2px;
       line-height: 0;
     }
     .model-card .thumb img {
       width: 100%;
       height: auto;
       display: block;
-      transition: transform 0.4s ease;
+      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       pointer-events: none;
       -webkit-user-drag: none;
     }
-    .model-card:hover .thumb img { transform: scale(1.03); }
+    .model-card:hover .thumb img { transform: scale(1.025); }
     .model-card .model-label {
       text-align: center;
-      font-size: 14px;
-      font-weight: 600;
-      color: #333;
-      margin-top: 12px;
-      letter-spacing: 0.05em;
+      font-size: 12px;
+      font-weight: 700;
+      color: #444;
+      margin-top: 14px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
     }
     /* Arrow buttons */
     .carousel-btn {
       position: absolute;
-      top: calc(50% - 18px);
+      top: calc(50% - 24px);
       transform: translateY(-50%);
-      width: 48px; height: 48px;
-      background: #fff;
-      border: none;
+      width: 44px; height: 44px;
+      background: rgba(255,255,255,0.95);
+      border: 1px solid rgba(0,0,0,0.08);
       border-radius: 50%;
-      box-shadow: 0 2px 14px rgba(0,0,0,0.18);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.10);
       cursor: pointer;
       z-index: 20;
       display: flex; align-items: center; justify-content: center;
-      transition: background 0.2s, color 0.2s;
+      transition: background 0.25s, color 0.25s, box-shadow 0.25s;
       color: #222;
-      font-size: 22px;
+      font-size: 20px;
       line-height: 1;
     }
-    .carousel-btn:hover { background: #EB0A1E; color: #fff; }
-    .carousel-btn.prev { left: 14px; }
-    .carousel-btn.next { right: 14px; }
+    .carousel-btn:hover { background: #EB0A1E; color: #fff; border-color: #EB0A1E; box-shadow: 0 4px 20px rgba(235,10,30,0.25); }
+    .carousel-btn.prev { left: 16px; }
+    .carousel-btn.next { right: 16px; }
 
     /* ════════════════════════════
        HAMBURGER
@@ -292,7 +318,7 @@
     ════════════════════════════ */
     @media (max-width: 768px) {
       .hamburger { display: flex; }
-      .nav-links { display: none; position: absolute; top: 64px; left: 0; right: 0; background: #fff; flex-direction: column; gap: 0; padding: 8px 0 16px; border-bottom: 1px solid #e5e5e5; box-shadow: 0 6px 16px rgba(0,0,0,0.08); z-index: 999; }
+      .nav-links { display: none; position: absolute; top: 72px; left: 0; right: 0; background: #fff; flex-direction: column; gap: 0; padding: 8px 0 16px; border-bottom: 1px solid #e5e5e5; box-shadow: 0 6px 16px rgba(0,0,0,0.08); z-index: 999; }
       .nav-links.open { display: flex; }
       .nav-links > li > a { padding: 13px 24px; font-size: 12px; }
       .btn-book { display: none; }
@@ -310,7 +336,7 @@
     /* ════════════════════════════
        SCROLL REVEAL
     ════════════════════════════ */
-    .sr { opacity: 0; transform: translateY(32px); transition: opacity 0.65s ease-out, transform 0.65s ease-out; will-change: opacity, transform; }
+    .sr { opacity: 0; transform: translateY(28px); transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); will-change: opacity, transform; }
     .sr.sr-left  { transform: translateX(-44px); }
     .sr.sr-right { transform: translateX(44px); }
     .sr.in-view  { opacity: 1 !important; transform: none !important; }
@@ -324,96 +350,100 @@
     /* ════════════════════════════
        CTA ROWS
     ════════════════════════════ */
-    .cta-rows { background: #fff; padding: 16px 0 0; }
+    .cta-rows { background: #fff; padding: 0; }
     .cta-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 60px;
+      gap: 80px;
       align-items: center;
-      max-width: 1100px;
+      max-width: 1080px;
       margin: 0 auto;
-      padding: 26px 48px;
+      padding: 96px 48px;
     }
-    .cta-img { overflow: hidden; border-radius: 4px; }
-    .cta-img img { width: 100%; height: auto; display: block; }
+    .cta-img { overflow: hidden; border-radius: 2px; }
+    .cta-img img { width: 100%; height: auto; display: block; transition: transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+    .cta-img:hover img { transform: scale(1.018); }
     .cta-divider {
-      max-width: 1100px; margin: 0 auto;
+      max-width: 1080px; margin: 0 auto;
       height: 1px; background: #ebebeb;
     }
     /* Full-width Contact Us row — bleeds edge to edge */
-    .cta-contact-row { padding: 26px 0 64px; text-align: center; }
-    .cta-contact-row .cta-img-full { overflow: hidden; margin-bottom: 32px; }
+    .cta-contact-row { padding: 0 0 96px; text-align: center; }
+    .cta-contact-row .cta-img-full { overflow: hidden; margin-bottom: 40px; }
     .cta-contact-row .cta-img-full img { width: 100%; height: 724px; object-fit: cover; object-position: center; display: block; }
     .cta-contact-row .cta-btn { display: inline-block; }
     .cta-tag {
-      font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
+      font-size: 10px; font-weight: 700; letter-spacing: 0.22em;
       text-transform: uppercase; color: #EB0A1E;
       margin: 0 0 14px; display: block;
     }
     .cta-title {
-      font-size: 30px; font-weight: 700; color: #111;
-      line-height: 1.25; margin: 0 0 18px; letter-spacing: 0.01em;
+      font-size: 26px; font-weight: 600; color: #111;
+      line-height: 1.35; margin: 0 0 16px; letter-spacing: -0.01em;
     }
     .cta-desc {
-      font-size: 14px; color: #666;
-      line-height: 1.85; margin: 0 0 28px;
+      font-size: 13.5px; color: #888;
+      line-height: 1.95; margin: 0 0 36px;
     }
     .cta-btn {
       display: inline-block;
       background: #EB0A1E; color: #fff;
       font-family: 'Montserrat', sans-serif;
-      font-size: 12px; font-weight: 700;
-      letter-spacing: 0.08em; text-transform: uppercase;
-      padding: 13px 32px; text-decoration: none;
-      border-radius: 2px;
-      transition: background 0.2s, transform 0.15s;
+      font-size: 10.5px; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      padding: 14px 40px; text-decoration: none;
+      border-radius: 0;
+      transition: background 0.25s;
     }
-    .cta-btn:hover { background: #C5001A; transform: translateY(-2px); }
+    .cta-btn:hover { background: #C5001A; }
 
     @media (max-width: 768px) {
-      .cta-rows { padding: 8px 0 0; }
-      .cta-row { grid-template-columns: 1fr; gap: 20px; padding: 24px 20px; }
+      .cta-rows { padding: 0; }
+      .cta-row { grid-template-columns: 1fr; gap: 24px; padding: 52px 24px; }
       .cta-row .cta-img { order: 0 !important; }
       .cta-row .cta-text { order: 1 !important; }
       .cta-title { font-size: 22px; }
-      .cta-contact-row { padding: 20px 20px 48px; }
-      .cta-contact-row .cta-img-full img { height: 380px; }
+      .cta-desc { max-width: 100%; }
+      .cta-contact-row { padding: 0 0 60px; }
+      .cta-contact-row .cta-img-full img { height: 280px; }
     }
 
     /* ════════════════════════════
        FAQ SECTION
     ════════════════════════════ */
-    .faq-section { background: #f6f6f8; padding: 88px 0 96px; }
-    .faq-inner { max-width: 860px; margin: 0 auto; padding: 0 24px; }
-    .faq-heading { text-align: center; margin-bottom: 12px; }
-    .faq-heading h2 { font-size: 32px; font-weight: 800; color: #111; margin: 0; letter-spacing: -0.01em; }
-    .faq-subheading { text-align: center; font-size: 14px; color: #888; margin: 0 0 52px; font-weight: 400; }
-    .faq-card { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 16px rgba(0,0,0,0.06); }
-    .faq-item { border-bottom: 1px solid #eee; }
+    .faq-section { background: #f7f7f7; padding: 104px 0 112px; }
+    .faq-inner { max-width: 780px; margin: 0 auto; padding: 0 24px; }
+    .faq-eyebrow { text-align: center; font-size: 10px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: #EB0A1E; margin-bottom: 14px; }
+    .faq-heading { text-align: center; margin-bottom: 10px; }
+    .faq-heading h2 { font-size: 26px; font-weight: 600; color: #111; margin: 0; letter-spacing: -0.01em; }
+    .faq-subheading { text-align: center; font-size: 13.5px; color: #aaa; margin: 0 0 56px; font-weight: 400; letter-spacing: 0.01em; line-height: 1.7; }
+    .faq-card { background: #fff; border-radius: 2px; overflow: hidden; border: 1px solid #e8e8e8; }
     .faq-item:last-child { border-bottom: none; }
     .faq-question {
       width: 100%; display: flex; align-items: center; justify-content: space-between;
-      padding: 22px 28px; background: none; border: none; cursor: pointer;
-      font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 600;
-      color: #111; text-align: left; gap: 16px; transition: background 0.15s;
+      padding: 22px 32px; background: none; border: none; cursor: pointer;
+      font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 600;
+      color: #222; text-align: left; gap: 24px;
+      transition: background 0.2s;
     }
-    .faq-question:hover { background: #fafafa; }
+    .faq-question:hover { background: #fafafa; color: #111; }
     .faq-icon {
-      flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
-      border: 1.5px solid #EB0A1E; display: flex; align-items: center; justify-content: center;
-      color: #EB0A1E; font-size: 18px; font-weight: 300; line-height: 1;
-      transition: transform 0.3s, background 0.2s;
+      flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%;
+      border: 1px solid #ddd; display: flex; align-items: center; justify-content: center;
+      color: #bbb; font-size: 15px; font-weight: 300; line-height: 1;
+      transition: transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94), background 0.3s, border-color 0.3s, color 0.3s;
     }
-    .faq-item.open .faq-icon { transform: rotate(45deg); background: #EB0A1E; color: #fff; }
-    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.25s; }
-    .faq-answer-inner { padding: 0 28px 20px; font-size: 13.5px; color: #555; line-height: 1.85; }
-    .faq-item.open .faq-answer { max-height: 300px; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); background: #EB0A1E; color: #fff; border-color: #EB0A1E; }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.45s cubic-bezier(0.25,0.46,0.45,0.94); }
+    .faq-answer-inner { padding: 0 32px 26px; font-size: 13px; color: #777; line-height: 1.95; }
+    .faq-item.open .faq-answer { max-height: 360px; }
+    .faq-item { border-bottom: 1px solid #f0f0f0; }
 
     @media (max-width: 768px) {
-      .faq-section { padding: 60px 0 68px; }
+      .faq-section { padding: 64px 0 72px; }
       .faq-heading h2 { font-size: 24px; }
       .faq-question { padding: 18px 20px; font-size: 13px; }
-      .faq-answer-inner { padding: 0 20px 16px; }
+      .faq-answer-inner { padding: 0 20px 18px; }
     }
 
     /* ════════════════════════════
@@ -480,6 +510,7 @@
     src="Landing page/aion v hero.jpg"
     alt=""
     aria-hidden="true"
+    loading="eager"
   />
 
   <!-- Slides — absolutely fill the sizer-defined space -->
@@ -487,27 +518,27 @@
 
     <!-- Slide 0: Aion V -->
     <div class="hero-slide active" data-index="0">
-      <img src="Landing page/aion v hero.jpg" alt="AION V" />
+      <img src="Landing page/aion v hero.jpg" alt="AION V" loading="eager" fetchpriority="high" />
     </div>
 
     <!-- Slide 1: Aion Y -->
     <div class="hero-slide" data-index="1">
-      <img src="Landing page/aion y hero.jpg" alt="AION Y" />
+      <img src="Landing page/aion y hero.jpg" alt="AION Y" loading="lazy" />
     </div>
 
     <!-- Slide 2: E9 PHEV -->
     <div class="hero-slide" data-index="2">
-      <img src="Landing page/E9 Hero.jpg" alt="E9 PHEV — Luxury Redefined, Electrified" />
+      <img src="Landing page/E9 Hero.jpg" alt="E9 PHEV — Luxury Redefined, Electrified" loading="lazy" />
     </div>
 
     <!-- Slide 3: EMKOO -->
     <div class="hero-slide" data-index="3">
-      <img src="Landing page/Emkoo Hero.jpg" alt="EMKOO — Elegance in Motion, Innovation Redefined" />
+      <img src="Landing page/Emkoo Hero.jpg" alt="EMKOO — Elegance in Motion, Innovation Redefined" loading="lazy" />
     </div>
 
     <!-- Slide 4: EMZOOM -->
     <div class="hero-slide" data-index="4">
-      <img src="Landing page/Emzoom hero.jpg" alt="EMZOOM — Born to Thrill, Built to Move" />
+      <img src="Landing page/Emzoom hero.jpg" alt="EMZOOM — Born to Thrill, Built to Move" loading="lazy" />
     </div>
 
   </div><!-- /hero-slides -->
@@ -545,7 +576,9 @@
 ══════════════════════════════════ -->
 <section class="dark-section" id="darkSection">
   <video
+    id="tvcVideo"
     autoplay muted loop playsinline
+    preload="none"
     style="width:100%; height:auto; display:block;">
     <source src="tvc clips/TVC.mp4" type="video/mp4" />
   </video>
@@ -555,7 +588,11 @@
 <!-- ══════════════════════════════════
      MODELS SECTION
 ══════════════════════════════════ -->
-<section class="models-scroll-wrap" style="background:#fff; padding:52px 0 60px;">
+<section class="models-scroll-wrap" style="background:#fff; padding:0 0 80px;">
+  <div class="models-section-header sr">
+    <span class="models-section-label">Line-Up</span>
+    <p class="models-section-title">Explore Our Models</p>
+  </div>
   <button class="carousel-btn prev" id="carouselPrev">&#8249;</button>
   <button class="carousel-btn next" id="carouselNext">&#8250;</button>
   <div class="models-grid" id="modelsGrid">
@@ -612,7 +649,7 @@
   <!-- Row 1: About GAC — image left, text right -->
   <div class="cta-row sr">
     <div class="cta-img sr sr-left">
-      <img src="landing page cta/about us image.png" alt="About GAC Motor Bangladesh" />
+      <img src="landing page cta/about us image.png" alt="About GAC Motor Bangladesh" loading="lazy" decoding="async" />
     </div>
     <div class="cta-text sr sr-right">
       <h3 class="cta-title">About GAC Motor</h3>
@@ -631,7 +668,7 @@
       <a href="book-a-test-drive.html" class="cta-btn">Schedule Now</a>
     </div>
     <div class="cta-img sr sr-right">
-      <img src="landing page cta/test drive image.png" alt="Book a Test Drive" />
+      <img src="landing page cta/test drive image.png" alt="Book a Test Drive" loading="lazy" decoding="async" />
     </div>
   </div>
 
@@ -640,7 +677,7 @@
   <!-- Row 3: Contact Us — full-width image + centered CTA button -->
   <div class="cta-contact-row sr">
     <div class="cta-img-full sr">
-      <img src="landing page cta/contact us.png" alt="Contact GAC Motor Bangladesh" />
+      <img src="landing page cta/contact us.png" alt="Contact GAC Motor Bangladesh" loading="lazy" decoding="async" />
     </div>
     <a href="contact.html" class="cta-btn">Contact Us</a>
   </div>
@@ -653,6 +690,7 @@
 ══════════════════════════════════ -->
 <section class="faq-section">
   <div class="faq-inner">
+    <p class="faq-eyebrow sr">Support</p>
     <div class="faq-heading sr">
       <h2>Frequently Asked Questions</h2>
     </div>
@@ -758,32 +796,33 @@
 <!-- ══════════════════════════════════
      FOOTER
 ══════════════════════════════════ -->
-<footer style="background:#fff;border-top:1px solid #e8e8e8;padding:48px 28px 28px;">
-  <div style="max-width:980px;margin:0 auto;display:grid;grid-template-columns:1.2fr 0.85fr 1fr;gap:36px;align-items:start;">
+<footer style="background:#fff;border-top:1px solid #ebebeb;padding:72px 32px 40px;">
+  <div style="max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:64px;align-items:start;">
     <div>
-      <div style="margin-bottom:16px;"><img src="logo.png" alt="GAC Motor" style="height:28px;width:auto;" /></div>
-      <p style="font-size:11.5px;color:#666;line-height:1.8;max-width:230px;">The Guangzhou Automobile Group Co., Ltd. (GAC) was founded in June 1997 and is currently a Fortune Global 500 company. DHS Motors Limited is the authorized importer and distributor of GAC Motor vehicles in Bangladesh, backed by 15+ years of comprehensive after-sales service experience and genuine parts support for customers across the country.</p>
+      <div style="margin-bottom:20px;"><img src="logo.png" alt="GAC Motor" style="height:30px;width:auto;" /></div>
+      <p style="font-size:12.5px;color:#888;line-height:2.0;max-width:320px;font-weight:400;">The Guangzhou Automobile Group Co., Ltd. (GAC) was founded in June 1997 and is currently a Fortune Global 500 company. DHS Motors Limited is the authorized importer and distributor of GAC Motor vehicles in Bangladesh, backed by 15+ years of comprehensive after-sales service experience and genuine parts support for customers across the country.</p>
     </div>
     <div>
-      <h4 style="font-size:12.5px;font-weight:700;color:#222;letter-spacing:0.05em;margin:0 0 16px;">Quick Links</h4>
-      <a href="about.html" style="display:block;font-size:12px;color:#666;text-decoration:none;line-height:2.2;">About Us</a>
-      <a href="contact.html" style="display:block;font-size:12px;color:#666;text-decoration:none;line-height:2.2;">Contact Us</a>
-      <a href="book-a-test-drive.html" style="display:block;font-size:12px;color:#666;text-decoration:none;line-height:2.2;">Book A Test Drive</a>
+      <h4 style="font-size:10px;font-weight:700;color:#111;letter-spacing:0.18em;text-transform:uppercase;margin:0 0 24px;">Quick Links</h4>
+      <a href="about.html" style="display:block;font-size:12.5px;color:#888;text-decoration:none;line-height:2.6;transition:color 0.2s;" onmouseover="this.style.color='#EB0A1E'" onmouseout="this.style.color='#888'">About Us</a>
+      <a href="contact.html" style="display:block;font-size:12.5px;color:#888;text-decoration:none;line-height:2.6;" onmouseover="this.style.color='#EB0A1E'" onmouseout="this.style.color='#888'">Contact Us</a>
+      <a href="book-a-test-drive.html" style="display:block;font-size:12.5px;color:#888;text-decoration:none;line-height:2.6;" onmouseover="this.style.color='#EB0A1E'" onmouseout="this.style.color='#888'">Book A Test Drive</a>
     </div>
     <div>
-      <h4 style="font-size:12.5px;font-weight:700;color:#222;letter-spacing:0.05em;margin:0 0 12px;">Follow Us</h4>
-      <div style="display:flex;gap:10px;">
-        <a href="https://www.facebook.com/gacmotorbangladesh" target="_blank" style="width:32px;height:32px;border-radius:50%;background:#3b5998;display:flex;align-items:center;justify-content:center;color:#fff;text-decoration:none;">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+      <h4 style="font-size:10px;font-weight:700;color:#111;letter-spacing:0.18em;text-transform:uppercase;margin:0 0 24px;">Follow Us</h4>
+      <div style="display:flex;gap:12px;">
+        <a href="https://www.facebook.com/gacmotorbangladesh" target="_blank" style="width:36px;height:36px;border-radius:50%;background:#3b5998;display:flex;align-items:center;justify-content:center;color:#fff;text-decoration:none;opacity:0.85;transition:opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.85'">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
         </a>
-        <a href="https://www.instagram.com/gacmotorbangladesh" target="_blank" style="width:32px;height:32px;border-radius:50%;background:#e1306c;display:flex;align-items:center;justify-content:center;color:#fff;text-decoration:none;">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        <a href="https://www.instagram.com/gacmotorbangladesh" target="_blank" style="width:36px;height:36px;border-radius:50%;background:#e1306c;display:flex;align-items:center;justify-content:center;color:#fff;text-decoration:none;opacity:0.85;transition:opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.85'">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
         </a>
       </div>
     </div>
   </div>
-  <div style="max-width:980px;margin:28px auto 0;padding-top:16px;border-top:1px solid #efefef;text-align:center;font-size:11px;color:#aaa;">
-    &copy; 2026 GAC Motor Bangladesh. All rights reserved.
+  <div style="max-width:1080px;margin:48px auto 0;padding-top:20px;border-top:1px solid #f0f0f0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+    <span style="font-size:11px;color:#bbb;letter-spacing:0.04em;">&copy; 2026 GAC Motor Bangladesh. All rights reserved.</span>
+    <span style="font-size:11px;color:#ddd;letter-spacing:0.04em;">DHS Motors Limited</span>
   </div>
 </footer>
 
@@ -958,6 +997,20 @@
         moved = false;
       }
     }, true);
+  })();
+
+  /* ── Lazy-load TVC video — only start buffering when near viewport ── */
+  (function() {
+    const vid = document.getElementById('tvcVideo');
+    if (!vid) return;
+    const io = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) {
+        vid.load();
+        vid.play().catch(() => {});
+        io.disconnect();
+      }
+    }, { rootMargin: '400px' });
+    io.observe(vid);
   })();
 
 </script>

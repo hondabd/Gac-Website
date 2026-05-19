@@ -4,25 +4,27 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AION Y — GAC Motor Bangladesh</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preload" as="image" href="Aion y/Hero image.png" fetchpriority="high" />
   <style>
     *, *::before, *::after { box-sizing: border-box; }
-    body { font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; background: #fff; color: #333; overflow-x: hidden; }
+    body { font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; background: #fff; color: #333; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
 
     /* ── NAVBAR ── */
-    .navbar { position: sticky; top: 0; z-index: 1000; background: #fff; border-bottom: 1px solid #e5e5e5; box-shadow: 0 1px 6px rgba(0,0,0,0.07); }
-    .navbar-inner { max-width: 1200px; margin: 0 auto; padding: 0 28px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
-    .nav-logo img { height: 38px; width: auto; display: block; }
-    .nav-links { display: flex; align-items: center; gap: 38px; list-style: none; margin: 0; padding: 0; }
+    .navbar { position: sticky; top: 0; z-index: 1000; background: #fff; border-bottom: 1px solid #ebebeb; box-shadow: 0 1px 0 rgba(0,0,0,0.06); }
+    .navbar-inner { max-width: 1200px; margin: 0 auto; padding: 0 32px; height: 72px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo img { height: 36px; width: auto; display: block; }
+    .nav-links { display: flex; align-items: center; gap: 44px; list-style: none; margin: 0; padding: 0; }
     .nav-links > li { position: relative; }
-    .nav-links > li > a { font-size: 12px; font-weight: 700; color: #333; text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; display: flex; align-items: center; gap: 4px; padding: 4px 0; }
+    .nav-links > li > a { font-size: 12px; font-weight: 700; color: #333; text-decoration: none; letter-spacing: 0.10em; text-transform: uppercase; display: flex; align-items: center; gap: 4px; padding: 4px 0; }
     .nav-links > li > a:hover { color: #EB0A1E; }
     .dropdown { display: none; position: absolute; top: calc(100% + 4px); left: -16px; background: #fff; border: 1px solid #eee; box-shadow: 0 6px 20px rgba(0,0,0,0.10); min-width: 160px; z-index: 500; padding: 6px 0; }
-    .dropdown a { display: block; padding: 9px 20px; font-size: 13px; font-weight: 500; color: #444; text-decoration: none; }
+    .dropdown a { display: block; padding: 10px 22px; font-size: 13px; font-weight: 500; color: #444; text-decoration: none; }
     .dropdown a:hover { color: #EB0A1E; background: #fafafa; }
     .nav-links > li.open .dropdown { display: block; }
-    .btn-book { background: #EB0A1E; color: #fff; font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; padding: 11px 22px; border: none; cursor: pointer; text-decoration: none; white-space: nowrap; display: inline-block; }
+    .btn-book { background: #EB0A1E; color: #fff; font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.10em; padding: 12px 24px; border: none; cursor: pointer; text-decoration: none; white-space: nowrap; display: inline-block; }
     .btn-book:hover { background: #C5001A; }
 
     /* ── HERO ── */
@@ -30,9 +32,9 @@
     .hero-wrap img.hero-img { width: 100%; height: auto; display: block; }
 
     /* ── TAB STRIP ── */
-    .tab-strip { display: flex; justify-content: center; align-items: center; background: #fff; border-bottom: 1px solid #e8e8e8; position: sticky; top: 64px; z-index: 900; padding: 16px 0; gap: 12px; }
-    .tab-btn { padding: 14px 56px; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #aaa; cursor: pointer; border: none; background: transparent; font-family: 'Montserrat', sans-serif; transition: color 0.15s, background 0.15s; border-radius: 4px; }
-    .tab-btn.active { background: #EB0A1E; color: #fff; }
+    .tab-strip { display: flex; justify-content: center; align-items: center; background: #fff; border-bottom: 1px solid #ebebeb; position: sticky; top: 72px; z-index: 900; padding: 0; gap: 0; }
+    .tab-btn { padding: 18px 60px; font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #999; cursor: pointer; border: none; border-bottom: 2px solid transparent; background: transparent; font-family: 'Montserrat', sans-serif; transition: color 0.2s, border-color 0.2s; border-radius: 0; }
+    .tab-btn.active { color: #EB0A1E; border-bottom-color: #EB0A1E; background: transparent; }
     .tab-btn:not(.active):hover { color: #555; }
 
     /* ── TAB PANELS ── */
@@ -40,27 +42,22 @@
     .tab-panel.active { display: block; }
 
     /* ── GALLERY ── */
-    .ext-gallery-section { background: #fff; padding: 48px 80px 60px; }
-    .ext-gallery { display: grid; grid-template-columns: 1.5fr 1fr; gap: 4px; max-width: 1100px; margin: 0 auto; overflow: hidden; }
+    .ext-gallery-section { background: #fff; padding: 56px 64px 72px; }
+    .ext-gallery { display: grid; grid-template-columns: 1.5fr 1fr; gap: 3px; max-width: 1200px; margin: 0 auto; overflow: hidden; }
     .ext-gallery-left { overflow: hidden; position: relative; min-height: 0; }
     .ext-gallery-left img { width: 100%; height: 100%; object-fit: cover; display: block; min-height: 0; }
     .ext-gallery-right { display: grid; grid-template-rows: 1fr 1fr; gap: 4px; min-height: 0; overflow: hidden; }
     .ext-gallery-right > div { position: relative; overflow: hidden; min-height: 0; }
     .ext-gallery-right img { width: 100%; height: 100%; object-fit: cover; display: block; min-height: 0; }
-    .gallery-caption {
-      position: absolute; bottom: 0; left: 0; right: 0;
-      padding: 28px 16px 14px;
-      background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 100%);
-      color: #fff; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
-    }
+    .gallery-caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 32px 18px 14px; background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 100%); color: #fff; font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; }
 
     /* ── COLOUR SELECTOR ── */
-    .colour-section { background: #fafafa; padding: 72px 0; }
+    .colour-section { background: #f7f7f7; padding: 80px 0; }
     .colour-inner { max-width: 1300px; margin: 0 auto; padding: 0 64px; display: grid; grid-template-columns: 1fr 2fr 1fr; gap: 40px; align-items: center; }
     .colour-info { padding-right: 16px; }
-    .colour-eyebrow { font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #EB0A1E; margin-bottom: 14px; }
-    .colour-heading { font-size: 28px; font-weight: 700; color: #111; line-height: 1.2; text-transform: uppercase; letter-spacing: 0.01em; margin: 0; }
-    .colour-car-wrap { display: flex; align-items: center; justify-content: center; padding: 16px 0; }
+    .colour-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: #EB0A1E; margin-bottom: 16px; }
+    .colour-heading { font-size: 24px; font-weight: 600; color: #111; line-height: 1.3; text-transform: uppercase; letter-spacing: 0.02em; margin: 0; }
+    .colour-car-wrap { display: flex; align-items: center; justify-content: center; padding: 28px 0; }
     .colour-car-wrap img {
       width: 100%; max-width: 680px; height: auto; object-fit: contain; display: block;
       transition: opacity 0.2s ease;
@@ -108,46 +105,46 @@
     .colour-list::-webkit-scrollbar-track { background: #f0f0f0; border-radius: 4px; }
     .colour-list::-webkit-scrollbar-thumb { background: #bbb; border-radius: 4px; }
     .colour-list::-webkit-scrollbar-thumb:hover { background: #999; }
-    .colour-item { display: flex; align-items: center; justify-content: space-between; padding: 10px 10px 10px 20px; border: 1px solid #e8e8e8; border-radius: 50px; background: #f0f0f0; cursor: pointer; gap: 14px; transition: all 0.2s; }
-    .colour-name { font-size: 14px; font-weight: 400; color: #555; letter-spacing: 0.01em; }
-    .colour-item.active { background: #fff; border-color: #ccc; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+    .colour-item { display: flex; align-items: center; justify-content: space-between; padding: 11px 12px 11px 20px; border: 1px solid #e5e5e5; border-radius: 50px; background: #efefef; cursor: pointer; gap: 14px; transition: background 0.2s, border-color 0.2s; }
+    .colour-name { font-size: 13px; font-weight: 400; color: #666; letter-spacing: 0.01em; }
+    .colour-item.active { background: #fff; border-color: #d0d0d0; box-shadow: 0 1px 8px rgba(0,0,0,0.06); }
     .colour-item.active .colour-name { color: #111; font-weight: 600; }
     .colour-swatch-btn { width: 28px; height: 28px; border-radius: 50%; border: 1px solid #ddd; background: #fff; padding: 0; flex-shrink: 0; display: block; box-sizing: border-box; }
     .colour-swatch-btn img { width: 100%; height: 100%; border-radius: 50%; display: block; }
-    .colour-item:hover { border-color: #bbb; background: #f8f8f8; }
+    .colour-item:hover { border-color: #bbb; background: #f5f5f5; }
 
     /* ── ALL NEW AION Y ── */
-    .all-new { background: #fff; padding: 80px 0; }
-    .all-new-header { text-align: center; margin-bottom: 64px; }
-    .all-new-header h2 { font-size: 30px; font-weight: 600; color: #111; letter-spacing: 0.01em; margin: 0; font-family: 'Montserrat', sans-serif; }
-    .all-new-list { max-width: 1100px; margin: 0 auto; padding: 0 48px; display: flex; flex-direction: column; gap: 64px; }
-    .all-new-row { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 56px; align-items: center; }
+    .all-new { background: #fff; padding: 96px 0 104px; }
+    .all-new-header { text-align: center; margin-bottom: 72px; }
+    .all-new-header h2 { font-size: 26px; font-weight: 600; color: #111; letter-spacing: 0.01em; margin: 0; font-family: 'Montserrat', sans-serif; }
+    .all-new-list { max-width: 1060px; margin: 0 auto; padding: 0 48px; display: flex; flex-direction: column; gap: 80px; }
+    .all-new-row { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 72px; align-items: center; }
     .all-new-row.reverse { grid-template-columns: 0.9fr 1.1fr; }
     .all-new-row.reverse .all-new-img { order: 2; }
     .all-new-row.reverse .all-new-text { order: 1; }
-    .all-new-img img { width: 100%; height: auto; display: block; border-radius: 4px; }
-    .all-new-text h3 { font-size: 20px; font-weight: 700; color: #111; margin: 0 0 16px; letter-spacing: 0.01em; text-transform: uppercase; }
-    .all-new-text p { font-size: 14px; color: #666; line-height: 1.85; margin: 0; }
+    .all-new-img img { width: 100%; height: auto; display: block; border-radius: 2px; }
+    .all-new-text h3 { font-size: 18px; font-weight: 700; color: #111; margin: 0 0 18px; letter-spacing: 0.02em; text-transform: uppercase; }
+    .all-new-text p { font-size: 13.5px; color: #777; line-height: 1.95; margin: 0; }
 
     /* ── TECH ASSURANCE ── */
-    .tech-section { background: #fafafa; padding: 80px 0; }
-    .tech-inner { max-width: 1100px; margin: 0 auto; padding: 0 48px; }
-    .tech-header { margin-bottom: 48px; }
-    .tech-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; }
-    .tech-card { background: #fff; border: 1px solid #ebebeb; border-radius: 8px; overflow: hidden; }
+    .tech-section { background: #f7f7f7; padding: 96px 0 104px; }
+    .tech-inner { max-width: 1060px; margin: 0 auto; padding: 0 48px; }
+    .tech-header { margin-bottom: 52px; }
+    .tech-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+    .tech-card { background: #fff; border: 1px solid #e8e8e8; border-radius: 2px; overflow: hidden; transition: box-shadow 0.3s; }`n    .tech-card:hover { box-shadow: 0 4px 24px rgba(0,0,0,0.08); }`n    .tech-card:hover .tech-card-img img { transform: scale(1.02); }
     .tech-card-img { overflow: hidden; }
-    .tech-card-img img { width: 100%; height: 240px; object-fit: cover; display: block; }
-    .tech-card-body { padding: 20px 22px 24px; }
-    .tech-title { font-size: 15px; font-weight: 600; color: #111; margin: 0; line-height: 1.4; letter-spacing: 0.01em; }
+    .tech-card-img img { width: 100%; height: 220px; object-fit: cover; display: block; transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94); }
+    .tech-card-body { padding: 20px 24px 26px; }
+    .tech-title { font-size: 13.5px; font-weight: 600; color: #111; margin: 0; line-height: 1.5; letter-spacing: 0.01em; }
 
     /* ── BROCHURE ── */
-    .brochure-section { background: linear-gradient(135deg, #eeeeee 0%, #e4e4e4 100%); padding: 80px 24px; text-align: center; }
-    .btn-brochure { display: inline-block; background: #111; color: #fff; font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; padding: 18px 52px; border-radius: 6px; text-decoration: none; text-transform: uppercase; box-shadow: 0 4px 20px rgba(0,0,0,0.18); transition: background 0.2s, transform 0.15s; }
-    .btn-brochure:hover { background: #333; transform: translateY(-2px); }
+    .brochure-section { background: #f0f0f0; padding: 88px 24px; text-align: center; border-top: 1px solid #e8e8e8; }
+    .btn-brochure { display: inline-block; background: #111; color: #fff; font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; padding: 16px 52px; border-radius: 0; text-decoration: none; text-transform: uppercase; transition: background 0.25s; }
+    .btn-brochure:hover { background: #333; }
 
     /* ── SHARED ── */
-    .eyebrow { font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #EB0A1E; margin-bottom: 12px; }
-    .section-title { font-size: 30px; font-weight: 600; color: #111; line-height: 1.2; letter-spacing: 0.01em; text-transform: uppercase; font-family: 'Montserrat', sans-serif; margin: 0; }
+    .eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: #EB0A1E; margin-bottom: 14px; }
+    .section-title { font-size: 26px; font-weight: 600; color: #111; line-height: 1.25; letter-spacing: -0.01em; font-family: 'Montserrat', sans-serif; margin: 0; }
 
     /* ── FOOTER ── */
     .footer-link { display: block; font-size: 12px; color: #666; text-decoration: none; line-height: 2.2; }
@@ -160,39 +157,39 @@
 
     @media (max-width: 768px) {
       .hamburger { display: flex; }
-      .nav-links { display: none; position: absolute; top: 64px; left: 0; right: 0; background: #fff; flex-direction: column; gap: 0; padding: 8px 0 16px; border-bottom: 1px solid #e5e5e5; box-shadow: 0 6px 16px rgba(0,0,0,0.08); z-index: 999; }
+      .nav-links { display: none; position: absolute; top: 72px; left: 0; right: 0; background: #fff; flex-direction: column; gap: 0; padding: 8px 0 16px; border-bottom: 1px solid #e5e5e5; box-shadow: 0 6px 16px rgba(0,0,0,0.08); z-index: 999; }
       .nav-links.open { display: flex; }
       .nav-links > li > a { padding: 13px 24px; font-size: 12px; }
       .btn-book { display: none; }
       .dropdown { position: static; padding-top: 0; box-shadow: none; border: none; border-top: 1px solid #f0f0f0; margin-top: 4px; }
       .nav-links > li.open .dropdown { display: block; }
       .dropdown a { padding: 9px 36px; font-size: 12px; color: #777; }
-      .tab-btn { padding: 12px 28px; font-size: 11px; }
-      .ext-gallery-section { padding: 20px 16px 28px; }
+      .tab-btn { padding: 12px 28px; font-size: 10px; }
+      .ext-gallery-section { padding: 24px 16px 32px; }
       .ext-gallery { grid-template-columns: 1fr !important; height: auto !important; }
-      .ext-gallery-left { height: 220px; }
-      .ext-gallery-right { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr; height: 130px; }
-      .colour-section { padding: 40px 0; }
-      .colour-inner { grid-template-columns: 1fr !important; padding: 0 20px; gap: 20px; text-align: center; }
+      .ext-gallery-left { height: 240px; }
+      .ext-gallery-right { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr; height: 140px; }
+      .colour-section { padding: 52px 0; }
+      .colour-inner { grid-template-columns: 1fr !important; padding: 0 20px; gap: 24px; text-align: center; }
       .colour-info { padding-right: 0; }
-      .colour-heading { font-size: 22px; }
+      .colour-heading { font-size: 20px; }
       .colour-car-wrap img { max-width: 300px; margin: 0 auto; }
-      .colour-list { max-width: 320px; margin: 0 auto; }
-      .all-new { padding: 40px 0 60px; }
-      .all-new-list { padding: 0 20px; gap: 40px; }
-      .all-new-row, .all-new-row.reverse { grid-template-columns: 1fr !important; gap: 20px; }
+      .colour-list { max-width: 320px; margin: 0 auto; max-height: 260px; overflow-y: auto; }
+      .all-new { padding: 56px 0 72px; }
+      .all-new-list { padding: 0 20px; gap: 48px; }
+      .all-new-header h2 { font-size: 22px; }
+      .all-new-row, .all-new-row.reverse { grid-template-columns: 1fr !important; gap: 24px; }
       .all-new-row.reverse .all-new-img { order: 0 !important; }
       .all-new-row.reverse .all-new-text { order: 0 !important; }
-      .all-new-header h2 { font-size: 22px; }
       .all-new-text h3 { font-size: 16px; }
       .all-new-text p { font-size: 13px; }
-      .tech-section { padding: 40px 0; }
+      .tech-section { padding: 56px 0 64px; }
       .tech-inner { padding: 0 20px; }
       .tech-grid { grid-template-columns: 1fr !important; }
-      .tech-header { margin-bottom: 28px; }
+      .tech-header { margin-bottom: 32px; }
       .section-title { font-size: 22px !important; }
-      .brochure-section { padding: 48px 20px; }
-      .btn-brochure { padding: 14px 32px; font-size: 12px; }
+      .brochure-section { padding: 56px 20px; }
+      .btn-brochure { padding: 14px 36px; font-size: 11px; }
     }
     @media (min-width: 769px) and (max-width: 1024px) {
       .colour-inner { padding: 0 28px; gap: 24px; }
@@ -201,7 +198,7 @@
       .ext-gallery-section { padding: 32px 32px 40px; }
     }
     /* ══ SCROLL REVEAL ══ */
-    .sr { opacity: 0; transform: translateY(32px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; will-change: opacity, transform; }
+    .sr { opacity: 0; transform: translateY(28px); transition: opacity 0.8s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94); will-change: opacity, transform; }
     .sr.sr-left  { transform: translateX(-44px); }
     .sr.sr-right { transform: translateX(44px); }
     .sr.sr-scale { transform: scale(0.95) translateY(12px); }
@@ -242,7 +239,7 @@
 <!-- ══ HERO ══ -->
 <!-- IMAGE SLOT: Hero image → [model-folder]/Hero image.png -->
 <div class="hero-wrap">
-  <img class="hero-img" src="Aion y/Hero image.png" alt="GAC AION Y" />
+  <img class="hero-img" src="Aion y/Hero image.png" alt="GAC AION Y" loading="eager" fetchpriority="high" />
 </div>
 
 <!-- ══ TAB STRIP ══ -->
@@ -260,16 +257,16 @@
   <div class="ext-gallery-section">
     <div class="ext-gallery sr sr-scale" style="height:420px;">
       <div class="ext-gallery-left">
-        <img src="Aion y/Exterior 1.png" alt='AION 19" Rim' />
+        <img src="Aion y/Exterior 1.png" alt='AION 19" Rim' loading="eager" />
         <div class="gallery-caption">AION 19" Rim</div>
       </div>
       <div class="ext-gallery-right">
         <div class="sr sr-right sr-d1">
-          <img src="Aion y/exterior 2.png" alt="Angel Wing LED Headlights" />
+          <img src="Aion y/exterior 2.png" alt="Angel Wing LED Headlights" loading="lazy" decoding="async" />
           <div class="gallery-caption">Angel Wing LED Headlights</div>
         </div>
         <div class="sr sr-right sr-d2">
-          <img src="Aion y/exterior 3.png" alt="Skyline Connected LED Taillight" />
+          <img src="Aion y/exterior 3.png" alt="Skyline Connected LED Taillight" loading="lazy" decoding="async" />
           <div class="gallery-caption">Skyline Connected LED Taillight</div>
         </div>
       </div>
@@ -287,16 +284,16 @@
   <div class="ext-gallery-section">
     <div class="ext-gallery sr sr-scale" style="height:420px;">
       <div class="ext-gallery-left">
-        <img src="Aion y/interior 1.png" alt="Sunroof With Electric Sunshade" />
+        <img src="Aion y/interior 1.png" alt="Sunroof With Electric Sunshade" loading="lazy" decoding="async" />
         <div class="gallery-caption">Sunroof With Electric Sunshade</div>
       </div>
       <div class="ext-gallery-right">
         <div class="sr sr-right sr-d1">
-          <img src="Aion y/interior 2.png" alt="Spacious Cockpit Blends Comfort with Innovation" />
+          <img src="Aion y/interior 2.png" alt="Spacious Cockpit Blends Comfort with Innovation" loading="lazy" decoding="async" />
           <div class="gallery-caption">Spacious Cockpit Blends Comfort with Innovation</div>
         </div>
         <div class="sr sr-right sr-d2">
-          <img src="Aion y/interior 3.png" alt="Multiple Compartment with Wireless Charging" />
+          <img src="Aion y/interior 3.png" alt="Multiple Compartment with Wireless Charging" loading="lazy" decoding="async" />
           <div class="gallery-caption">Multiple Compartment with Wireless Charging</div>
         </div>
       </div>
@@ -374,7 +371,7 @@
   <div class="all-new-list">
 
     <div class="all-new-row">
-      <div class="all-new-img sr sr-left"><img src="Aion y/feature 1.png" alt="Lounge-Class Rear Comfort" /></div>
+      <div class="all-new-img sr sr-left"><img src="Aion y/feature 1.png" alt="Lounge-Class Rear Comfort" loading="lazy" decoding="async" /></div>
       <div class="all-new-text sr sr-right">
         <h3>Lounge-Class Rear Comfort</h3>
         <p>Inside Aion Y, the rear cabin offers lounge-class comfort with exceptional legroom, a fully flat floor, and flexible seating, creating a spacious, open environment designed for effortless relaxation on every drive.</p>
@@ -382,7 +379,7 @@
     </div>
 
     <div class="all-new-row reverse">
-      <div class="all-new-img sr sr-right"><img src="Aion y/feature 2.png" alt='14.6" Touchscreen Display' /></div>
+      <div class="all-new-img sr sr-right"><img src="Aion y/feature 2.png" alt='14.6" Touchscreen Display' loading="lazy" decoding="async" /></div>
       <div class="all-new-text sr sr-left">
         <h3>14.6" Touchscreen Display</h3>
         <p>Equipped with a 14.6-inch touchscreen, the Aion Y integrates infotainment, navigation, Apple CarPlay, and voice control into a unified system, delivering responsive interaction, high-resolution visuals, and seamless connectivity within an intelligent digital cockpit.</p>
@@ -390,7 +387,7 @@
     </div>
 
     <div class="all-new-row">
-      <div class="all-new-img sr sr-left"><img src="Aion y/feature 3.png" alt="Magazine Battery" /></div>
+      <div class="all-new-img sr sr-left"><img src="Aion y/feature 3.png" alt="Magazine Battery" loading="lazy" decoding="async" /></div>
       <div class="all-new-text sr sr-right">
         <h3>Magazine Battery</h3>
         <p>Aion Y features the Magazine Battery with advanced thermal management and multi-layer cell protection, engineered to resist heat propagation and maintain structural integrity under extreme conditions, ensuring enhanced safety and long-term battery durability.</p>
@@ -409,15 +406,15 @@
     </div>
     <div class="tech-grid">
       <div class="tech-card sr">
-        <div class="tech-card-img"><img src="Aion y/safety 1.png" alt="Automatic Emergency Braking" /></div>
+        <div class="tech-card-img"><img src="Aion y/safety 1.png" alt="Automatic Emergency Braking" loading="lazy" decoding="async" /></div>
         <div class="tech-card-body"><h3 class="tech-title">Automatic Emergency Braking</h3></div>
       </div>
       <div class="tech-card sr sr-d1">
-        <div class="tech-card-img"><img src="Aion y/safety 2.png" alt="Lane Departure Warning" /></div>
+        <div class="tech-card-img"><img src="Aion y/safety 2.png" alt="Lane Departure Warning" loading="lazy" decoding="async" /></div>
         <div class="tech-card-body"><h3 class="tech-title">Lane Departure Warning</h3></div>
       </div>
       <div class="tech-card sr sr-d2">
-        <div class="tech-card-img"><img src="Aion y/safety 3.png" alt="Adaptive Cruise Control" /></div>
+        <div class="tech-card-img"><img src="Aion y/safety 3.png" alt="Adaptive Cruise Control" loading="lazy" decoding="async" /></div>
         <div class="tech-card-body"><h3 class="tech-title">Adaptive Cruise Control</h3></div>
       </div>
     </div>
@@ -427,39 +424,40 @@
 
 <!-- ══ BROCHURE ══ -->
 <div class="brochure-section sr sr-scale">
-  <p style="font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#999;margin-bottom:12px;">GAC AION Y</p>
-  <h2 style="font-size:20px;font-weight:800;color:#111;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:28px;">Download The Brochure</h2>
+  <p style="font-size:10px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:#EB0A1E;margin-bottom:12px;">GAC AION Y</p>
+  <h2 style="font-size:26px;font-weight:600;color:#111;letter-spacing:-0.01em;margin-bottom:28px;">Download The Brochure</h2>
   <a href="Aion y/AION Y.pdf" target="_blank" class="btn-brochure">Download Brochure</a>
 </div>
 
 
 <!-- ══ FOOTER ══ -->
-<footer style="background:#fff;border-top:1px solid #e8e8e8;padding:48px 28px 28px;">
-  <div style="max-width:980px;margin:0 auto;display:grid;grid-template-columns:1.2fr 0.85fr 1fr;gap:36px;align-items:start;">
+<footer style="background:#fff;border-top:1px solid #ebebeb;padding:72px 32px 40px;">
+  <div style="max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:64px;align-items:start;">
     <div>
-      <div style="margin-bottom:16px;"><img src="logo.png" alt="GAC Motor" style="height:28px;width:auto;" /></div>
-      <p style="font-size:11.5px;color:#666;line-height:1.8;max-width:230px;">The Guangzhou Automobile Group Co., Ltd. (GAC) was founded in June 1997 and is currently a Fortune Global 500 company. DHS Motors Limited is the authorized importer and distributor of GAC Motor vehicles in Bangladesh, backed by 15+ years of comprehensive after-sales service experience and genuine parts support for customers across the country.</p>
+      <div style="margin-bottom:20px;"><img src="logo.png" alt="GAC Motor" style="height:30px;width:auto;" /></div>
+      <p style="font-size:12.5px;color:#888;line-height:2.0;max-width:320px;font-weight:400;">The Guangzhou Automobile Group Co., Ltd. (GAC) was founded in June 1997 and is currently a Fortune Global 500 company. DHS Motors Limited is the authorized importer and distributor of GAC Motor vehicles in Bangladesh, backed by 15+ years of comprehensive after-sales service experience and genuine parts support for customers across the country.</p>
     </div>
     <div>
-      <h4 style="font-size:12.5px;font-weight:700;color:#222;letter-spacing:0.05em;margin:0 0 16px;">Quick Links</h4>
-      <a href="about.html" style="display:block;font-size:12px;color:#666;text-decoration:none;line-height:2.2;">About Us</a>
-      <a href="contact.html" style="display:block;font-size:12px;color:#666;text-decoration:none;line-height:2.2;">Contact Us</a>
-      <a href="book-a-test-drive.html" style="display:block;font-size:12px;color:#666;text-decoration:none;line-height:2.2;">Book A Test Drive</a>
+      <h4 style="font-size:10px;font-weight:700;color:#111;letter-spacing:0.18em;text-transform:uppercase;margin:0 0 24px;">Quick Links</h4>
+      <a href="about.html" style="display:block;font-size:12.5px;color:#888;text-decoration:none;line-height:2.6;transition:color 0.2s;" onmouseover="this.style.color='#EB0A1E'" onmouseout="this.style.color='#888'">About Us</a>
+      <a href="contact.html" style="display:block;font-size:12.5px;color:#888;text-decoration:none;line-height:2.6;" onmouseover="this.style.color='#EB0A1E'" onmouseout="this.style.color='#888'">Contact Us</a>
+      <a href="book-a-test-drive.html" style="display:block;font-size:12.5px;color:#888;text-decoration:none;line-height:2.6;" onmouseover="this.style.color='#EB0A1E'" onmouseout="this.style.color='#888'">Book A Test Drive</a>
     </div>
     <div>
-      <h4 style="font-size:12.5px;font-weight:700;color:#222;letter-spacing:0.05em;margin:0 0 12px;">Follow Us</h4>
-      <div style="display:flex;gap:10px;">
-        <a href="https://www.facebook.com/gacmotorbangladesh" target="_blank" style="width:32px;height:32px;border-radius:50%;background:#3b5998;display:flex;align-items:center;justify-content:center;color:#fff;text-decoration:none;">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+      <h4 style="font-size:10px;font-weight:700;color:#111;letter-spacing:0.18em;text-transform:uppercase;margin:0 0 24px;">Follow Us</h4>
+      <div style="display:flex;gap:12px;">
+        <a href="https://www.facebook.com/gacmotorbangladesh" target="_blank" style="width:36px;height:36px;border-radius:50%;background:#3b5998;display:flex;align-items:center;justify-content:center;color:#fff;text-decoration:none;opacity:0.85;transition:opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.85'">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
         </a>
-        <a href="https://www.instagram.com/gacmotorbangladesh" target="_blank" style="width:32px;height:32px;border-radius:50%;background:#e1306c;display:flex;align-items:center;justify-content:center;color:#fff;text-decoration:none;">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        <a href="https://www.instagram.com/gacmotorbangladesh" target="_blank" style="width:36px;height:36px;border-radius:50%;background:#e1306c;display:flex;align-items:center;justify-content:center;color:#fff;text-decoration:none;opacity:0.85;transition:opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.85'">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
         </a>
       </div>
     </div>
   </div>
-  <div style="max-width:980px;margin:28px auto 0;padding-top:16px;border-top:1px solid #efefef;text-align:center;font-size:11px;color:#aaa;">
-    &copy; 2026 GAC Motor Bangladesh. All rights reserved.
+  <div style="max-width:1080px;margin:48px auto 0;padding-top:20px;border-top:1px solid #f0f0f0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+    <span style="font-size:11px;color:#bbb;letter-spacing:0.04em;">&copy; 2026 GAC Motor Bangladesh. All rights reserved.</span>
+    <span style="font-size:11px;color:#ddd;letter-spacing:0.04em;">DHS Motors Limited</span>
   </div>
 </footer>
 

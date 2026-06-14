@@ -29,10 +29,9 @@
     .btn-book:hover { background: #C5001A; }
 
     /* ── HERO ── */
-    .hero-wrap { position: relative; width: 100%; background: #07111a; overflow: hidden; }
+    .hero-wrap { position: relative; width: 100%; background: #07111a; overflow: hidden; min-height: clamp(100px, 25vw, 480px); }
     .hero-wrap img.hero-img {
       width: 100%; height: auto; display: block;
-      aspect-ratio: 16/5;
       opacity: 0; transform: scale(1.02);
       transition: opacity 0.65s ease-out, transform 0.65s ease-out;
       will-change: opacity, transform;

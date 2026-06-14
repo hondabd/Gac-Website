@@ -30,7 +30,7 @@
     .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
     .hamburger span { display: block; width: 24px; height: 2px; background: #333; border-radius: 2px; }
 
-    /* ══ SCROLL REVEAL ══ */
+    /* ══ SCROLL REVEAL — base (mobile inherits, desktop overrides below) ══ */
     .sr { opacity: 0; transform: translateY(28px); transition: opacity 0.8s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94); will-change: opacity, transform; }
     .sr.sr-left  { transform: translateX(-40px); }
     .sr.sr-right { transform: translateX(40px); }
@@ -40,6 +40,14 @@
     .sr.sr-d3 { transition-delay: 0.30s; }
     .sr.sr-d4 { transition-delay: 0.40s; }
     @media (prefers-reduced-motion: reduce) { .sr { opacity:1!important; transform:none!important; transition:none!important; } }
+    /* ══ SCROLL REVEAL — desktop overrides ══ */
+    @media (min-width: 769px) {
+      .sr { transform: translateY(30px); transition: opacity 0.7s ease-out, transform 0.7s ease-out; }
+      .sr.sr-d1 { transition-delay: 0.12s; }
+      .sr.sr-d2 { transition-delay: 0.24s; }
+      .sr.sr-d3 { transition-delay: 0.36s; }
+      .sr.sr-d4 { transition-delay: 0.48s; }
+    }
 
     /* ══ HERO ══ */
     .hero {
@@ -55,9 +63,9 @@
     .hero-title { font-size: 48px; font-weight: 600; color: #fff; margin: 0; letter-spacing: 0.06em; text-transform: uppercase; }
 
     /* ══ SHOWROOM SECTION ══ */
-    .showroom-section { background: #f5f5f5; padding: 96px 0 88px; }
+    .showroom-section { background: #f5f5f5; padding: 0 0 64px; }
     .showroom-wrap { max-width: 1060px; margin: 0 auto; padding: 0 48px; }
-    .showroom-heading { text-align: center; margin-bottom: 56px; }
+    .showroom-heading { text-align: center; margin-bottom: 48px; }
     .showroom-heading-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: #EB0A1E; margin: 0 0 12px; display: block; }
     .showroom-heading h2 { font-size: 26px; font-weight: 600; color: #111; margin: 0; letter-spacing: 0.01em; }
     .showroom-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; }
@@ -96,16 +104,16 @@
     }
 
     /* ══ ENQUIRY SECTION ══ */
-    .enquiry-section { background: #fff; padding: 96px 0 104px; border-top: 1px solid #ebebeb; }
-    .enquiry-wrap { max-width: 800px; margin: 0 auto; padding: 0 48px; }
-    .enquiry-heading { text-align: center; margin-bottom: 52px; }
+    .enquiry-section { background: #fff; padding: 0 0 104px; border-top: 1px solid #ebebeb; }
+    .enquiry-wrap { max-width: 800px; margin: 0 auto; padding: 64px 48px 0; }
+    .enquiry-heading { text-align: center; margin-bottom: 48px; }
     .enquiry-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: #EB0A1E; display: block; margin-bottom: 12px; }
     .enquiry-heading h2 { font-size: 26px; font-weight: 600; color: #111; letter-spacing: -0.01em; line-height: 1.35; margin: 0; }
     .enquiry-form { background: #fff; padding: 0; }
     .form-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-bottom: 20px; }
     .form-group { display: flex; flex-direction: column; gap: 8px; }
     .form-group.full { grid-column: 1 / -1; }
-    .form-group label { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #999; }
+    .form-group label { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #111111; }
     .form-group input,
     .form-group select,
     .form-group textarea {
@@ -152,6 +160,60 @@
     }
     .form-error.show { display: block; }
 
+    /* ══ CONTACT INFO CARDS ══ */
+    .contact-info-section {
+      background: #f5f5f5;
+      padding: 56px 0 56px;
+    }
+    .contact-info-wrap {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 0 48px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      align-items: stretch;
+    }
+    .contact-card {
+      background: #fff;
+      border: 1px solid #e8e8e8;
+      border-radius: 2px;
+      box-shadow: 0 1px 12px rgba(0,0,0,0.05);
+      padding: 40px 32px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      transition: box-shadow 0.25s, border-color 0.25s;
+    }
+    .contact-card:hover { box-shadow: 0 4px 24px rgba(0,0,0,0.09); border-color: #d8d8d8; }
+    .contact-card-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #111;
+      margin-bottom: 2px;
+    }
+    .contact-card-title {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #999;
+      margin: 0;
+    }
+    .contact-card-value {
+      font-size: 22px;
+      font-weight: 700;
+      color: #EB0A1E;
+      letter-spacing: 0.02em;
+      margin: 0;
+      text-decoration: none;
+      line-height: 1.2;
+    }
+    .contact-card-value:hover { color: #C5001A; }
+
     /* ══ FOOTER ══ */
     .footer-link { display: block; font-size: 12px; color: #666; text-decoration: none; line-height: 2.2; }
     .footer-link:hover { color: #EB0A1E; }
@@ -166,18 +228,31 @@
       .dropdown { position: static; box-shadow: none; border: none; border-top: 1px solid #f0f0f0; }
       .nav-links > li.open .dropdown { display: block; }
       .dropdown a { padding: 9px 36px; color: #777; }
+      /* Mobile scroll-reveal — vertical fade, 600ms ease-out */
+      .sr { transform: translateY(24px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+      .sr.sr-left, .sr.sr-right { transform: translateY(24px); }
+      /* Contact info cards */
+      .contact-info-section { padding: 32px 0 40px; }
+      .contact-info-wrap { grid-template-columns: 1fr; padding: 0 20px; gap: 16px; }
+      .contact-card { padding: 28px 20px; gap: 12px; }
+      .contact-card-value { font-size: 18px; }
+      /* Hero */
       .hero { height: 300px; }
       .hero-title { font-size: 28px; letter-spacing: 0.04em; }
       .hero-content { padding: 0 20px; gap: 8px; }
       .hero-eyebrow { font-size: 9px; }
+      /* Showroom section */
       .showroom-wrap, .enquiry-wrap { padding: 0 20px; }
-      .showroom-section { padding: 64px 0 56px; }
+      .showroom-section { padding: 0 0 40px; }
+      .showroom-heading { margin-bottom: 28px; }
       .showroom-grid { grid-template-columns: 1fr; gap: 20px; }
       .showroom-card-top { padding: 28px 24px 20px; }
       .showroom-map-wrap { height: 200px; }
-      .form-row { grid-template-columns: 1fr; }
-      .enquiry-section { padding: 64px 0 72px; }
+      /* Enquiry / form */
+      .enquiry-section { padding: 40px 0 72px; }
+      .enquiry-heading { margin-bottom: 28px; }
       .enquiry-heading h2 { font-size: 20px; }
+      .form-row { grid-template-columns: 1fr; }
       .btn-submit { width: 100%; padding: 15px 24px; }
       .form-note { text-align: center; }
     }
@@ -186,6 +261,7 @@
       .hero-title { font-size: 38px; }
       .showroom-grid { gap: 24px; }
     }
+    @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr !important; gap: 40px !important; } }
   </style>
 </head>
 <body>
@@ -219,10 +295,52 @@
   <img class="hero-bg" src="contact us page/hero image.jpg" alt="Contact GAC Motor Bangladesh" loading="eager" fetchpriority="high" />
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <p class="hero-eyebrow sr">GAC Motor Bangladesh</p>
     <h1 class="hero-title sr sr-d1">Contact Us</h1>
   </div>
 </div>
+
+
+<!-- ══ CONTACT INFO CARDS ══ -->
+<section class="contact-info-section">
+  <div class="contact-info-wrap">
+
+    <!-- Phone -->
+    <div class="contact-card sr sr-d1">
+      <div class="contact-card-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+        </svg>
+      </div>
+      <p class="contact-card-title">Phone</p>
+      <a href="tel:09617006600" class="contact-card-value">09617-006600</a>
+    </div>
+
+    <!-- Hotline -->
+    <div class="contact-card sr sr-d2">
+      <div class="contact-card-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 18v-6a9 9 0 0118 0v6"/>
+          <path d="M21 19a2 2 0 01-2 2h-1a2 2 0 01-2-2v-3a2 2 0 012-2h3zM3 19a2 2 0 002 2h1a2 2 0 002-2v-3a2 2 0 00-2-2H3z"/>
+        </svg>
+      </div>
+      <p class="contact-card-title">Hotline</p>
+      <a href="tel:16697" class="contact-card-value">16697</a>
+    </div>
+
+    <!-- Email -->
+    <div class="contact-card sr sr-d3">
+      <div class="contact-card-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="4" width="20" height="16" rx="2"/>
+          <path d="M22 7l-10 7L2 7"/>
+        </svg>
+      </div>
+      <p class="contact-card-title">Email</p>
+      <a href="mailto:info@gac.com.bd" class="contact-card-value">info@gac.com.bd</a>
+    </div>
+
+  </div>
+</section>
 
 
 <!-- ══ SHOWROOM SECTION ══ -->
@@ -230,7 +348,6 @@
   <div class="showroom-wrap">
 
     <div class="showroom-heading sr">
-      <span class="showroom-heading-eyebrow">Visit Us</span>
       <h2>Our Showrooms</h2>
     </div>
 
@@ -294,7 +411,6 @@
   <div class="enquiry-wrap">
 
     <div class="enquiry-heading sr">
-      <span class="enquiry-eyebrow">Get In Touch</span>
       <h2>Send Us a Message</h2>
     </div>
 
@@ -340,7 +456,7 @@
 
 <!-- ══ FOOTER ══ -->
 <footer style="background:#fff;border-top:1px solid #ebebeb;padding:72px 32px 40px;">
-  <div style="max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:64px;align-items:start;">
+  <div class="footer-grid" style="max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:64px;align-items:start;">
     <div>
       <div style="margin-bottom:20px;"><img src="logo.png" alt="GAC Motor" style="height:30px;width:auto;" /></div>
       <p style="font-size:12.5px;color:#888;line-height:2.0;max-width:320px;font-weight:400;">The Guangzhou Automobile Group Co., Ltd. (GAC) was founded in June 1997 and is currently a Fortune Global 500 company. DHS Motors Limited is the authorized importer and distributor of GAC Motor vehicles in Bangladesh, backed by 15+ years of comprehensive after-sales service experience and genuine parts support for customers across the country.</p>

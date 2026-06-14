@@ -317,6 +317,7 @@
       .stats-grid { padding: 0 28px; }
       .dl { font-size: 76px; }
     }
+    @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr !important; gap: 40px !important; } }
   </style>
 </head>
 <body>
@@ -350,7 +351,6 @@
   <img class="hero-bg" src="About us/Hero Image.webp" alt="GAC Motor Bangladesh" loading="eager" fetchpriority="high" />
   <div class="hero-grad"></div>
   <div class="hero-content">
-    <div class="hero-eyebrow">GAC Motor Bangladesh</div>
     <h1 class="hero-title">About Us</h1>
   </div>
 </div>
@@ -568,7 +568,7 @@
 
 <!-- ══ FOOTER ══ -->
 <footer style="background:#fff;border-top:1px solid #ebebeb;padding:72px 32px 40px;">
-  <div style="max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:64px;align-items:start;">
+  <div class="footer-grid" style="max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:64px;align-items:start;">
     <div>
       <div style="margin-bottom:20px;"><img src="logo.png" alt="GAC Motor" style="height:30px;width:auto;" /></div>
       <p style="font-size:12.5px;color:#888;line-height:2.0;max-width:320px;font-weight:400;">The Guangzhou Automobile Group Co., Ltd. (GAC) was founded in June 1997 and is currently a Fortune Global 500 company. DHS Motors Limited is the authorized importer and distributor of GAC Motor vehicles in Bangladesh, backed by 15+ years of comprehensive after-sales service experience and genuine parts support for customers across the country.</p>

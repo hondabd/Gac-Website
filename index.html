@@ -329,11 +329,20 @@
       .dropdown-inner { box-shadow: none; border: none; border-top: 1px solid #f0f0f0; }
       .dropdown a { padding: 9px 36px; font-size: 12px; color: #777; }
       .nav-links > li.open .dropdown { display: block; }
-      .model-card { flex: 0 0 280px; }
-      .models-grid { padding: 0 20px 24px; gap: 16px; }
-      .carousel-btn { width: 36px; height: 36px; font-size: 18px; }
-      .carousel-btn.prev { left: 6px; }
-      .carousel-btn.next { right: 6px; }
+      /* Mobile model layout — vertical stack, no slider */
+      .models-section-header { padding: 32px 24px 24px; }
+      .carousel-btn { display: none !important; }
+      /* Override inline padding:0 0 80px on the section wrapper */
+      .models-scroll-wrap { padding: 0 0 48px !important; overflow: visible !important; }
+      .models-grid {
+        flex-direction: column;
+        overflow-x: hidden;
+        overflow-y: visible;
+        cursor: default;
+        padding: 0 20px 0;
+        gap: 24px;
+      }
+      .model-card { flex: none; width: 100%; }
     }
 
     /* ════════════════════════════
@@ -409,6 +418,8 @@
       .cta-desc { max-width: 100%; }
       .cta-contact-row { padding: 0 0 60px; }
       .cta-contact-row .cta-img-full img { height: 280px; }
+      /* Footer — stack vertically on mobile */
+      .footer-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
     }
 
     /* ════════════════════════════
@@ -593,7 +604,6 @@
 ══════════════════════════════════ -->
 <section class="models-scroll-wrap" style="background:#fff; padding:0 0 80px;">
   <div class="models-section-header sr">
-    <span class="models-section-label">Line-Up</span>
     <p class="models-section-title">Explore Our Models</p>
   </div>
   <button class="carousel-btn prev" id="carouselPrev">&#8249;</button>
@@ -693,7 +703,7 @@
 ══════════════════════════════════ -->
 <section class="faq-section">
   <div class="faq-inner">
-    <p class="faq-eyebrow sr">Support</p>
+
     <div class="faq-heading sr">
       <h2>Frequently Asked Questions</h2>
     </div>
@@ -800,7 +810,7 @@
      FOOTER
 ══════════════════════════════════ -->
 <footer style="background:#fff;border-top:1px solid #ebebeb;padding:72px 32px 40px;">
-  <div style="max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:64px;align-items:start;">
+  <div class="footer-grid" style="max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:64px;align-items:start;">
     <div>
       <div style="margin-bottom:20px;"><img src="logo.png" alt="GAC Motor" style="height:30px;width:auto;" /></div>
       <p style="font-size:12.5px;color:#888;line-height:2.0;max-width:320px;font-weight:400;">The Guangzhou Automobile Group Co., Ltd. (GAC) was founded in June 1997 and is currently a Fortune Global 500 company. DHS Motors Limited is the authorized importer and distributor of GAC Motor vehicles in Bangladesh, backed by 15+ years of comprehensive after-sales service experience and genuine parts support for customers across the country.</p>
@@ -914,6 +924,18 @@
   (function() {
     const track = document.getElementById('modelsGrid');
     if (!track) return;
+
+    /* On mobile: vertical scroll layout — skip clone injection, add scroll reveal */
+    if (window.innerWidth <= 768) {
+      track.querySelectorAll('.model-card').forEach(card => card.classList.add('sr'));
+      requestAnimationFrame(function() {
+        const io = new IntersectionObserver(entries => {
+          entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); } });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+        track.querySelectorAll('.model-card').forEach(el => io.observe(el));
+      });
+      return;
+    }
 
     const CARD_W = 800;
     const GAP    = 28;

@@ -1,6 +1,12 @@
 {
   "trailingSlash": false,
   "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.gac.com.bd" }],
+      "destination": "https://gac.com.bd/:path*",
+      "permanent": true
+    },
     { "source": "/index.html", "destination": "/", "permanent": true },
     { "source": "/about.html", "destination": "/about-us", "permanent": true },
     { "source": "/about_us", "destination": "/about-us", "permanent": true },

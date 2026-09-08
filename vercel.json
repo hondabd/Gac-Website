@@ -2,23 +2,26 @@
   "trailingSlash": false,
   "redirects": [
     { "source": "/index.html", "destination": "/", "permanent": true },
-    { "source": "/about.html", "destination": "/about_us", "permanent": true },
-    { "source": "/contact.html", "destination": "/contact_us", "permanent": true },
+    { "source": "/about.html", "destination": "/about-us", "permanent": true },
+    { "source": "/about_us", "destination": "/about-us", "permanent": true },
+    { "source": "/contact.html", "destination": "/contact-us", "permanent": true },
+    { "source": "/contact_us", "destination": "/contact-us", "permanent": true },
     { "source": "/emzoom.html", "destination": "/emzoom", "permanent": true },
     { "source": "/emkoo.html", "destination": "/emkoo", "permanent": true },
     { "source": "/e9.html", "destination": "/e9", "permanent": true },
     { "source": "/aion-v.html", "destination": "/aion-v", "permanent": true },
     { "source": "/aion-y.html", "destination": "/aion-y", "permanent": true },
-    { "source": "/book-a-test-drive.html", "destination": "/book_a_test_drive", "permanent": true }
+    { "source": "/book-a-test-drive.html", "destination": "/book-a-test-drive", "permanent": true },
+    { "source": "/book_a_test_drive", "destination": "/book-a-test-drive", "permanent": true }
   ],
   "rewrites": [
-    { "source": "/about_us", "destination": "/about.html" },
-    { "source": "/contact_us", "destination": "/contact.html" },
+    { "source": "/about-us", "destination": "/about.html" },
+    { "source": "/contact-us", "destination": "/contact.html" },
     { "source": "/emzoom", "destination": "/emzoom.html" },
     { "source": "/emkoo", "destination": "/emkoo.html" },
     { "source": "/e9", "destination": "/e9.html" },
     { "source": "/aion-v", "destination": "/aion-v.html" },
     { "source": "/aion-y", "destination": "/aion-y.html" },
-    { "source": "/book_a_test_drive", "destination": "/book-a-test-drive.html" }
+    { "source": "/book-a-test-drive", "destination": "/book-a-test-drive.html" }
   ]
 }
